@@ -37,7 +37,7 @@ function Nav() {
               <i className="fa-solid fa-magnifying-glass"></i>
             </div>
 
-            <a className="login" rel="stylesheet" href="#">
+            <a className="login" rel="stylesheet" href="Login.js" onClick={() => window.location.href = '/Login'}>
               <i className="fa-regular fa-user"></i>
               <p> Log In </p>
             </a>
@@ -58,7 +58,9 @@ function Nav() {
                 onMouseEnter={() => hoverMouseEnter(1)}
                 onMouseLeave={hoverMouseLeave}
               >
-                <a href="#Home" className='item'>Home</a>
+                <a href="/Home" className="item">
+                  Home
+                </a>
                 {/* {isHovered === 1 && (
                   <ul className="drop-down">
                     <li>Upper Body Equipment</li>
@@ -76,16 +78,32 @@ function Nav() {
               onMouseEnter={() => hoverMouseEnter(2)}
               onMouseLeave={hoverMouseLeave}
             >
-              <a href="#GymEquipment" className='item'>Gym Equipment</a>
+              <a href="/GymEquipment" className="item">
+                Gym Equipment
+              </a>
               {isHovered === 2 && (
                 <ul className="drop-down">
-                  <li><a href='#home'>Upper Body Equipment</a></li>
-                  <li><a href='#home'>Lower Body Equipment</a></li>
-                  <li><a href='#home'>Torso Gym Equipment</a></li>
-                  <li><a href='#home'>Weight Benches and Rack</a></li>
-                  <li><a href='#home'>Cable Motion Gym</a></li>
-                  <li><a href='#home'>Plate Loaded Machines</a></li>
-                  <li><a href='#home'>Egyptian Gym Equipment</a></li>
+                  <li>
+                    <a href="#home">Upper Body Equipment</a>
+                  </li>
+                  <li>
+                    <a href="#home">Lower Body Equipment</a>
+                  </li>
+                  <li>
+                    <a href="#home">Torso Gym Equipment</a>
+                  </li>
+                  <li>
+                    <a href="#home">Weight Benches and Rack</a>
+                  </li>
+                  <li>
+                    <a href="#home">Cable Motion Gym</a>
+                  </li>
+                  <li>
+                    <a href="#home">Plate Loaded Machines</a>
+                  </li>
+                  <li>
+                    <a href="#home">Egyptian Gym Equipment</a>
+                  </li>
                 </ul>
               )}
             </li>
@@ -93,10 +111,14 @@ function Nav() {
               onMouseEnter={() => hoverMouseEnter(3)}
               onMouseLeave={hoverMouseLeave}
             >
-              <a href="#Cardio" className='item'>Cardio</a>
+              <a href="/Cardio" className="item">
+                Cardio
+              </a>
               {isHovered === 3 && (
                 <ul className="drop-down">
-                  <li><a>Commercial Treadmills</a></li>
+                  <li>
+                    <a>Commercial Treadmills</a>
+                  </li>
                   <li>Commercial Elliptical</li>
                   <li>Commercial Stationary Bikes</li>
                   <li>Commercial Spin Bikes</li>
@@ -109,7 +131,9 @@ function Nav() {
               onMouseEnter={() => hoverMouseEnter(4)}
               onMouseLeave={hoverMouseLeave}
             >
-              <a href="#HomeGym" className='item'>Home Gym</a>
+              <a href="/HomeGym" className="item">
+                Home Gym
+              </a>
               {isHovered === 4 && (
                 <ul className="drop-down">
                   <li>Cairdo Machines For Home</li>
@@ -123,7 +147,9 @@ function Nav() {
               onMouseEnter={() => hoverMouseEnter(5)}
               onMouseLeave={hoverMouseLeave}
             >
-              <a href="#Accessories" className='item'>Accessories</a>
+              <a href="/Accessories" className="item">
+                Accessories
+              </a>
               {isHovered === 5 && (
                 <ul className="drop-down">
                   <li>Functional Gym Equipment</li>
@@ -136,7 +162,9 @@ function Nav() {
               onMouseEnter={() => hoverMouseEnter(6)}
               onMouseLeave={hoverMouseLeave}
             >
-              <a href="#Spa" className='item'>Spa</a>
+              <a href="/Spa" className="item">
+                Spa
+              </a>
               {isHovered === 6 && (
                 <ul className="drop-down">
                   <li>Outdoor Whirlpools</li>
@@ -151,7 +179,9 @@ function Nav() {
               onMouseEnter={() => hoverMouseEnter(7)}
               onMouseLeave={hoverMouseLeave}
             >
-              <a href="#Rec-Room" className='item'>Rec Room</a>
+              <a href="/Rec-Room" className="item">
+                Rec Room
+              </a>
               {isHovered === 7 && (
                 <ul className="drop-down">
                   <li>Pool Tables</li>
@@ -166,13 +196,17 @@ function Nav() {
               onMouseEnter={() => hoverMouseEnter(8)}
               onMouseLeave={hoverMouseLeave}
             >
-              <a href="#Lockers" className='item'>Lockers</a>
+              <a href="/Lockers" className="item">
+                Lockers
+              </a>
             </li>
             <li
               onMouseEnter={() => hoverMouseEnter(9)}
               onMouseLeave={hoverMouseLeave}
             >
-              <a href="#Flooring" className='item'>Flooring</a>
+              <a href="/Flooring" className="item">
+                Flooring
+              </a>
             </li>
           </ul>
         </div>
