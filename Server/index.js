@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
   console.log(`MongoDB Server Started `);
 });
 const port = process.env.PORT;
-
+app.use(cors());
 app.use("/api/users", userRoutes);
 
 app.listen(port, () => {
