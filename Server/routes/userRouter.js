@@ -37,21 +37,20 @@ router.post("/register", async (req, res) => {
       createdAt: createdAt,
       role: role,
     });
-    
-    const token = await jwt.sign(
-      { Id: user._id },
-      process.env.JWT_SECRET_KEY,
-      {
-        expiresIn: "1h",
-      }
-    );
 
-     // Saving the user in the database
-     const newUser = await user.save();
+    const token = await jwt.sign({ Id: user._id }, process.env.JWT_SECRET_KEY, {
+      expiresIn: "1h",
+    });
+
+    // Saving the user in the database
+    const newUser = await user.save();
 
     res
       .status(201)
-      .json({ status: "User Registered successfully", data: { token , newUser } });
+      .json({
+        status: "User Registered successfully",
+        data: { token, newUser },
+      });
   } catch (error) {
     // Log and handle registration errors
     console.error(error);
@@ -71,14 +70,10 @@ router.post("/login", async (req, res) => {
       return res.status(401).json("Authentication failed");
     }
     //generate JWT token
-    const token = await jwt.sign(
-      { userId: user._id },
-      process.env.JWT_SECRET_KEY,
-      {
-        expiresIn: "1h",
-      }
-    );
-    res.status(200).json({ Status: "Successful Login",  data: {token,user} });
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
+      expiresIn: "1h",
+    });
+    res.status(200).json({ Status: "Successful Login", data: { token, user } });
   } catch (error) {
     res.status(500).json("login failed");
     console.log(error);
