@@ -37,7 +37,7 @@ function Nav() {
               <i className="fa-solid fa-magnifying-glass"></i>
             </div>
 
-            <a className="login" rel="stylesheet" href="Login.js" onClick={() => window.location.href = '/Login'}>
+            <a className="login" rel="stylesheet" href="/Login" onClick={() => window.location.href = '/Login'}>
               <i className="fa-regular fa-user"></i>
               <p> Log In </p>
             </a>
