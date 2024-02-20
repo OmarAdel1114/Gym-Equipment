@@ -24,7 +24,7 @@ function Nav() {
       setIsHovered(null);
     }, 200);
   };
-
+  
   return (
     <div className="container">
       <div className="nav-bar">
@@ -117,7 +117,7 @@ function Nav() {
               {isHovered === 3 && (
                 <ul className="drop-down">
                   <li>
-                    <a>Commercial Treadmills</a>
+                    <a href='./Treadmills'>Commercial Treadmills</a>
                   </li>
                   <li>Commercial Elliptical</li>
                   <li>Commercial Stationary Bikes</li>

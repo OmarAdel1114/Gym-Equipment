@@ -8,6 +8,10 @@ import Login from '../src/Components/login/Login';
 
 const router = createBrowserRouter([
   {
+    path: '/',
+    Component: Home,
+  },
+  {
     path: '/Home',
     Component: Home,
   },
