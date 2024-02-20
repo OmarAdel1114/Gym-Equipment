@@ -24,7 +24,7 @@ function Nav() {
       setIsHovered(null);
     }, 200);
   };
-  
+
   return (
     <div className="container">
       <div className="nav-bar">
@@ -37,7 +37,12 @@ function Nav() {
               <i className="fa-solid fa-magnifying-glass"></i>
             </div>
 
-            <a className="login" rel="stylesheet" href="/Login" onClick={() => window.location.href = '/Login'}>
+            <a
+              className="login"
+              rel="stylesheet"
+              href="/Login"
+              onClick={() => (window.location.href = '/Login')}
+            >
               <i className="fa-regular fa-user"></i>
               <p> Log In </p>
             </a>
@@ -116,9 +121,7 @@ function Nav() {
               </a>
               {isHovered === 3 && (
                 <ul className="drop-down">
-                  <li>
-                    <a href='./Treadmills'>Commercial Treadmills</a>
-                  </li>
+                  <li>Commercial Treadmills</li>
                   <li>Commercial Elliptical</li>
                   <li>Commercial Stationary Bikes</li>
                   <li>Commercial Spin Bikes</li>
