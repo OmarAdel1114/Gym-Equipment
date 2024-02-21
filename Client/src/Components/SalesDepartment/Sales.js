@@ -1,6 +1,7 @@
 import React from 'react';
 import homeGymPhoto from '../../assets/media/About-sec/Home-Equipment.webp';
 import commercialGym from '../../assets/media/About-sec/Commercial-Gym.webp';
+import './sales.css';
 
 function Sales() {
   const partitions = [
@@ -133,20 +134,22 @@ function Sales() {
     },
   ];
   return (
-    <div>
+    <div className="section-holder">
       <h2 className="header sales">BLUE SHELL EGYPT</h2>
       <h3>The Company's Sales Department</h3>
-      {partitions.map((partition) => {
-        return (
-          <section className={`partition`}>
-            <img src={partition.photo} alt="" />
-            <div className="text">
-              <h4>{partition.title}</h4>
-              <p>{partition.text}</p>
-            </div>
-          </section>
-        );
-      })}
+      <div className="partitions">
+        {partitions.map((partition, index) => {
+          return (
+            <section key={index} className={`partition`}>
+              <img src={partition.photo} alt="" />
+              <div className="text">
+                <h4>{partition.title}</h4>
+                <p>{partition.text}</p>
+              </div>
+            </section>
+          );
+        })}
+      </div>
     </div>
   );
 }
