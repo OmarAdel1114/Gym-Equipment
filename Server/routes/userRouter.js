@@ -62,20 +62,27 @@ router.post("/login", async (req, res) => {
     const { userName, password } = req.body;
     const user = await User.findOne({ userName });
 
+    // checks if the userName in the database
+    if (!user) {
+      return res.status(401).json("Wrong userName");
+    }
+
+    // compare the sent password with the password in the database
     const matchedPassword = await bcrypt.compare(password, user.password);
 
-    if (!matchedPassword || !user) {
-      return res.status(401).json("Authentication failed");
-      console.log("8alat yabaa");
+    if (!matchedPassword) {
+      return res.status(401).json("Wrong Password");
     }
+
     //generate JWT token
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
       expiresIn: "1h",
     });
     res.status(200).json({ Status: "Successful Login", data: { token, user } });
+  
   } catch (error) {
-    res.status(500).json("login failed", error);
-    console.log(error);
+    console.log("Login failed", error);
+    res.status(500).json({ error: "login failed", message: error.message });
   }
 });
 
