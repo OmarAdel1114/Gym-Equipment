@@ -45,12 +45,10 @@ router.post("/register", async (req, res) => {
     // Saving the user in the database
     const newUser = await user.save();
 
-    res
-      .status(201)
-      .json({
-        status: "User Registered successfully",
-        data: { token, newUser },
-      });
+    res.status(201).json({
+      status: "User Registered successfully",
+      data: { token, newUser },
+    });
   } catch (error) {
     // Log and handle registration errors
     console.error(error);
@@ -75,7 +73,7 @@ router.post("/login", async (req, res) => {
     });
     res.status(200).json({ Status: "Successful Login", data: { token, user } });
   } catch (error) {
-    res.status(500).json("login failed");
+    res.status(500).json("login failed", error);
     console.log(error);
   }
 });
