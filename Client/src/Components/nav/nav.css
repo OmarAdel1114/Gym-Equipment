@@ -193,6 +193,10 @@ li {
   border-radius: 10px;
   margin: 5px 0;
 }
+.nav-holder ul li .item:hover {
+  color: blue;
+}
+
 
 li .drop-down {
   background-color: var(--secondry-color);

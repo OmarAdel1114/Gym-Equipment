@@ -1,0 +1,24 @@
+.partitions {
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: space-around;
+}
+
+.partition {
+  max-width: 300px;
+  height: auto;
+  margin: 20px 50px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+}
+.partition img {
+  width: 100%;
+  border-radius: 10px;
+}
