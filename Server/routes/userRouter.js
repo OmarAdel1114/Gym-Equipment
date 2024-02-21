@@ -11,12 +11,21 @@ const verifyToken = require("../middleware/auth.middleware");
 // get all users
 router.get("/", verifyToken, async (req, res) => {
   try {
+    const page = parseInt(req.query.page) || 1;
+    const perPage = parseInt(req.query.perPage) || 3; // Default to 3 users per page
+    const skipCount = (page - 1) * perPage;
+
     // getting all users
-    const users = await User.find({});
+    const users = await User.find({}, { __v: 0, password: 0 }) // Excluding __v and password fields
+      .skip(skipCount)
+      .limit(perPage);
+
     res.json({ Status: "Success", data: { users } });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: error.message });
+    console.error("Error fetching users:", error);
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", message: error.message });
   }
 });
 
@@ -24,26 +33,28 @@ router.get("/", verifyToken, async (req, res) => {
 router.post("/register", async (req, res) => {
   try {
     // importing user model
-    const { firstName, lastName, userName, email, password, createdAt, role } =
-      req.body;
+    const { firstName, lastName, userName, email, password, role } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
+    const createdAt = new Date(); //This let the server create the timestamp
 
     const user = new User({
-      firstName: firstName,
-      lastName: lastName,
-      userName: userName,
-      email: email,
+      firstName,
+      lastName,
+      userName,
+      email,
       password: hashedPassword,
-      createdAt: createdAt,
-      role: role,
+      createdAt,
+      role,
     });
-
-    const token = await jwt.sign({ Id: user._id }, process.env.JWT_SECRET_KEY, {
-      expiresIn: "1h",
-    });
-
     // Saving the user in the database
     const newUser = await user.save();
+
+    /* We generate the token after the user is saved the DB 
+      to make sure that token is generated only for the saved users */
+
+    const token = jwt.sign({ Id: user._id }, process.env.JWT_SECRET_KEY, {
+      expiresIn: "1h",
+    });
 
     res.status(201).json({
       status: "User Registered successfully",
@@ -51,8 +62,10 @@ router.post("/register", async (req, res) => {
     });
   } catch (error) {
     // Log and handle registration errors
-    console.error(error);
-    res.status(400).json({ message: err.message });
+    console.error("Registration Failed", error);
+    res
+      .status(400)
+      .json({ error: "Registration Failed", message: error.message });
   }
 });
 
@@ -79,7 +92,6 @@ router.post("/login", async (req, res) => {
       expiresIn: "1h",
     });
     res.status(200).json({ Status: "Successful Login", data: { token, user } });
-  
   } catch (error) {
     console.log("Login failed", error);
     res.status(500).json({ error: "login failed", message: error.message });
