@@ -1,0 +1,20 @@
+##
+The Backend APIs 
+##
+
+### Users APIs ###
+# GET all users
+# POST login
+# POST Register 
+
+### Products APIs ###
+# GET all Products
+# GET Product by Id
+# POST add new Product
+# DELETE a Product
+# PUT(Update) a Product
+
+
+### Cart APIs ###
+# ProductId
+# UserId 
