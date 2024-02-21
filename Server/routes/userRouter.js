@@ -65,7 +65,8 @@ router.post("/login", async (req, res) => {
     const matchedPassword = await bcrypt.compare(password, user.password);
 
     if (!matchedPassword || !user) {
-      return res.status(401).json("Authentication failed");
+      // return res.status(401).json("Authentication failed");
+      console.log("8alat yabaa");
     }
     //generate JWT token
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
