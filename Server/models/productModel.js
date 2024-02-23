@@ -6,18 +6,22 @@ const productSchema = new mongoose.Schema({
     required: [true, "Title is required"],
   },
   price: {
-    type: float,
+    type: Number,
+    float: true,
     required: true,
   },
   brand: {
     type: String,
-    enum: ["Quardo", "Garlando"],
-    default: "Garlando",
+    required: true,
   },
   color: {
     type: String,
+    required: true,
   },
   photo: {
     type: String,
+    required: true,
   },
 });
+
+module.exports = mongoose.model("products", productSchema);

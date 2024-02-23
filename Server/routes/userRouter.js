@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 router.use(express.json());
 const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
 require("dotenv").config();
 const User = require("../models/userModel");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 const verifyToken = require("../middleware/auth.middleware");
 
 // get all users

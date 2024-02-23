@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const Product = require('./productModel');
 
 const userSchema = new mongoose.Schema({
   firstName: {
@@ -16,12 +17,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Username is required"],
     unique: [true, "Username is not available"],
-    
   },
   email: {
     type: String,
     required: [true, "Email is required"],
     unique: true,
+    lowerCase: true,
     validate: [validator.isEmail, "Must be a valid Email"],
   },
   password: {
@@ -31,7 +32,8 @@ const userSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now(),
+    default: () => Date.now(),
+    immutable: true,
   },
   role: {
     type: String,
@@ -41,6 +43,7 @@ const userSchema = new mongoose.Schema({
   token: {
     type: String,
   },
+  
 });
 
 module.exports = mongoose.model("users", userSchema);
