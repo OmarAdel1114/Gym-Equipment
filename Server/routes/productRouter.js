@@ -6,6 +6,7 @@ const Product = require("../models/productModel");
 const jwt = require("jsonwebtoken");
 const verifyToken = require("../middleware/auth.middleware");
 
+//Get all products
 router.get("/", async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
@@ -25,6 +26,22 @@ router.get("/", async (req, res) => {
   }
 });
 
+//Get product by Id
+router.get("/:id", async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      res.status(404).json("Product not available");
+    } else {
+      res.status(200).json({ message: "Product found", data: product });
+    }
+  } catch (error) {
+    console.error("Failed to find the product", error);
+    res.status(400).json(error);
+  }
+});
+
+// add a new product for admins only
 router.post("/add", verifyToken, async (req, res) => {
   try {
     const { prodTitle, price, brand, color, photo } = req.body;
@@ -45,6 +62,51 @@ router.post("/add", verifyToken, async (req, res) => {
     res
       .status(500)
       .json({ error: "Failed to add new Product", message: error.message });
+  }
+});
+
+// delete a product for admins only
+router.delete("/:id", verifyToken, async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const product = await Product.findById({ _id: id });
+
+    if (!product) {
+      res.status(404).json("Product not available");
+    } else {
+      await Product.deleteOne(product);
+      res
+        .status(200)
+        .json({ message: "product removed successfully", data: product });
+    }
+  } catch (error) {
+    console.error("Failed to delete the product", error);
+    res.status(400).json(error);
+  }
+});
+
+// update a product for admins only
+router.patch("/:id", verifyToken, async (req, res) => {
+  try {
+    const { prodTitle, price, brand, color, photo } = req.body;
+
+    const updatedProduct = await Product.findByIdAndUpdate(req.params.id, {
+      prodTitle,
+      price,
+      brand,
+      color,
+      photo,
+    });
+    if (!updatedProduct) {
+      return res.status(404).json({ error: "product not found" });
+    }
+    res
+      .status(201)
+      .json({ message: "Product updated successfully", data: updatedProduct });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json("internal server error");
   }
 });
 
