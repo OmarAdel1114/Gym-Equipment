@@ -31,25 +31,23 @@ function Login() {
   return (
     <div className="form-holder">
       <div className="photo-header">
-        <h2 className="Login-heading">Login with your Email</h2>
         <img src={photo} alt="" />
+        <h2 className="Login-heading">Login with your Email</h2>
       </div>
       <form onSubmit={handleSubmit}>
-        <label>UserName</label>
         <input
           value={userName}
-          placeholder="Enter your Name"
+          placeholder="UserName"
           type="text"
           onChange={(e) => setUserName(e.target.value)}
         />
-        <label>password</label>
         <input
-          placeholder="Enter your Password"
+          placeholder=" Password"
           value={password}
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Submit</button>
+        <button type="submit">Login</button>
         <a href="/Register"> Don't Have an Account ? </a>
       </form>
     </div>

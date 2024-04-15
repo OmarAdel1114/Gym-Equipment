@@ -1,6 +1,7 @@
 :root {
   /* --primary-color: #40a798; */
-  --primary-color: #3d9be9;
+  --primary-color: rgb(61, 155, 233);
+  --darken-color: rgb(52, 117, 171);
   --secondry-color: white;
 }
 * {
@@ -12,7 +13,7 @@
 }
 
 i {
-  transition: all 0.2s linear;
+  transition: all 0.1s linear;
 }
 li {
   list-style-type: none;
@@ -22,20 +23,15 @@ li {
   width: 100%;
 }
 
-.header {
+.nav-bar .header {
   padding: 10px 25px;
   display: flex;
   justify-content: center;
   align-items: center;
   /* border-top: solid 2px blue; */
-  border-bottom: solid 2px ;
+  border-bottom: solid 2px;
 }
-.header {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 .header img {
   max-width: 200px;
   border-radius: 10px;
@@ -103,17 +99,19 @@ li {
   border-radius: 10px;
   font-weight: bold;
   transition: all 0.2s linear;
-  background-color: white;
+  /* background-color: white; */
 }
 .login i {
   margin: 0 5px 0 0;
+  
+}
+#login {
+  transition: all 0.1s linear;
 }
 
-.login:hover,
-.login:hover .login i {
-  transform: scale(1.1);
-  color: white;
-  background-color: var(--primary-color);
+.login:hover #login,
+.login:hover .fa-user {
+  color: var(--primary-color);
 }
 
 .cart-icon .cart-btn {
@@ -141,7 +139,12 @@ li {
   }
 }
 
+
+
 /* nav-bar */
+
+
+
 
 .nav-holder {
   width: 100%;
@@ -150,21 +153,11 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.nav-holder .nav-bar {
-  width: 90%;
-  margin: 0 auto;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-around;
-  list-style-type: none;
-  background-color: var(--secondry-color);
-  border-radius: 0 0 10px 10px;
+  
 }
 
 .nav-holder .nav-bar {
   width: 95%;
-  /* margin: 0 auto; */
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
@@ -172,8 +165,9 @@ li {
   /* background-color: var(--primary-color); */
   border-radius: 0 0 10px 10px;
 }
-.nav-bar-hover li {
-  background-color: var(--primary-color);
+
+.nav-bar  li > a.item {
+  color: white;
 }
 
 .nav-holder ul li {
@@ -190,11 +184,8 @@ li {
   transition: all 0.1s linear;
   padding: 10px;
   width: 100%;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   margin: 5px 0;
-}
-.nav-holder ul li .item:hover {
-  color: blue;
 }
 
 
@@ -227,10 +218,10 @@ li .drop-down {
   color: var(--secondry-color);
 }
 
-
 .nav-bar ul li:hover .item {
-  background-color: var(--primary-color);
-  color: var(--secondry-color);
+  /* background-color: var(--primary-color); */
+  /* color: var(--secondry-color); */
+  border-bottom: 2px white solid;
 }
 
 /* drop down */

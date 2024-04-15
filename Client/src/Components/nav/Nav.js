@@ -44,7 +44,7 @@ function Nav() {
               onClick={() => (window.location.href = '/Login')}
             >
               <i className="fa-regular fa-user"></i>
-              <p> Log In </p>
+              <p id='login'> Log In </p>
             </a>
 
             <div className="cart-icon">
@@ -58,7 +58,6 @@ function Nav() {
         <div className="nav-holder">
           {/* <ul className={isHovered ? 'nav-bar-hover' : 'nav-bar'}> */}
           <ul className={isHovered ? 'nav-bar' : 'nav-bar'}>
-            <div className="item-holder">
               <li
                 onMouseEnter={() => hoverMouseEnter(1)}
                 onMouseLeave={hoverMouseLeave}
@@ -78,7 +77,6 @@ function Nav() {
                   </ul>
                 )} */}
               </li>
-            </div>
             <li
               onMouseEnter={() => hoverMouseEnter(2)}
               onMouseLeave={hoverMouseLeave}
