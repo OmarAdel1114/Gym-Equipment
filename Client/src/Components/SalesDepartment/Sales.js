@@ -137,6 +137,7 @@ function Sales() {
     <div className="sales section-holder">
       <h2 className="header">BLUE SHELL EGYPT</h2>
       <h3>The Company's Sales Department</h3>
+      {/* <h3>Product Categories</h3> */}
       <div className = "partitions">
         {partitions.map((partition, index) => {
           return (
@@ -144,7 +145,7 @@ function Sales() {
               <img src={partition.photo} alt="" />
               <div className="text">
                 <h4>{partition.title}</h4>
-                <p>{partition.text}</p>
+                <p className='text'>{partition.text}</p>
               </div>
             </section>
           );

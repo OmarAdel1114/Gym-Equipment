@@ -9,6 +9,7 @@ function Landing() {
       <div className='text'>
        <p> Easy with our <span id='colored'>Gym</span> </p>
       <button>Shop Now</button>
+      <p className='small'>At the gym, hotels, home and more.</p>
       </div>
     </div>
   )
