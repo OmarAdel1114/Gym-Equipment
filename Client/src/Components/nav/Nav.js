@@ -25,8 +25,34 @@ function Nav() {
     }, 200);
   };
 
+  function openNav() {
+    document.querySelector('.side-menu').style.width = '300px';
+    document.querySelector('.side-menu').style.padding = '40px';
+  }
+  function closeNav() {
+    document.querySelector('.side-menu').style.width = '0';
+    document.querySelector('.side-menu').style.padding = '0';
+  }
+
   return (
     <div className="container">
+      <div className='side-menu'>
+        <ul>
+        <li id='close-btn' onClick={closeNav}><a href='#'>X</a></li>
+          <li><a href='#home'>Home</a></li>
+          <li><a href='#gym-equipment'>Gym-Equipment</a></li>
+          <li><a href='#cardio'>Cardio</a></li>
+          <li><a href='#home-gym'>Home-Gym</a></li>
+          <li><a href='#accessories'>Accessories</a></li>
+          <li><a href='#spa'> Spa</a></li>
+          <li><a href='#rec-room'> Rec-Room</a></li>
+          <li><a href='#locker'> Locker</a></li>
+        </ul>
+        <div className='Lang.'>
+          <div><a href='#home'>English</a></div>
+          <div> <a href='#home'>Arabic </a> </div>
+        </div>
+      </div>
       <div className="nav-bar">
         <div className="header">
           <img src={logo} alt="" />
@@ -51,6 +77,11 @@ function Nav() {
               <button className="cart-btn">
                 <i className="fa-solid fa-cart-shopping"></i>
               </button>
+            </div>
+            <div className='menu' onClick={openNav}>
+              <div></div>
+              <div></div>
+              <div></div>
             </div>
           </div>
         </div>

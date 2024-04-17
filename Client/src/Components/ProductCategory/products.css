@@ -2,6 +2,10 @@
   --swiper-slide-width: 'fit-content';
   --swiper-scroll-bar-margin: '10px 0';
 }
+.products {
+  border-bottom: 1px solid;
+}
+
 
 .products .header {
   font-size: 3rem;
@@ -35,6 +39,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 25px;
 }
 
 .product-photo {
@@ -45,9 +50,9 @@
 
 .product-name {
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin-top: 10px;
-  font-weight: 600;
+  padding: 5px;
   transition: all linear 0.1s;
 }
 

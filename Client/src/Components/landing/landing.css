@@ -24,6 +24,9 @@
     display: inline;
 
 }
+@media screen and (max-width:768px) {
+    
+}
 .landing .text{
     display: flex;
     align-items: center;
@@ -32,14 +35,19 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 4rem;
+    /* font-size: 4rem; */
+    font-size: 4.5vw;
     font-weight: bold;
     z-index: 3;
 }
 .landing .text p {
     color: white;
-
+    margin-bottom: 10px;
 }
+.landing .bigger {
+    font-size: 5vw;
+}
+
 .landing button {
     width: fit-content;
     padding: 15px 30px;
@@ -48,6 +56,12 @@
     background-color: var(--primary-color);
     border: none;
     cursor: pointer;
+}
+@media screen and (max-width:768px) {
+ .landing button {
+    padding: 10px 20px;
+    font-size: 0.8rem;
+ }   
 }
 .landing button:hover {
     opacity: 0.95;
