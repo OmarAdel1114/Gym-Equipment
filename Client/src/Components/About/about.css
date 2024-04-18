@@ -1,0 +1,43 @@
+.about .text {
+    margin: 20px 0;
+    text-align: left;
+    word-spacing: 5px;
+    font-size: 1rem;
+}
+
+ .colored {
+    color: #818181;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: block;
+    margin: 10px 0;
+}
+.about .text p {
+    display: block;
+}
+.partners {
+    width: 40%;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    /* text-align: left; */
+}
+
+.sub-header {
+    margin-bottom: 20px;
+}
+.partners-logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+.partners-logos img {
+    width: 80px;
+    cursor: pointer;
+}

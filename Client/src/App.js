@@ -3,6 +3,7 @@ import Nav from './Components/nav/Nav';
 import Landing from './Components/landing/Landing';
 import Sales from './Components/SalesDepartment/Sales';
 import Products from './Components/ProductCategory/Products';
+import About from './Components/About/About';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Landing />
       {/* <Sales /> */}
       <Products />
+      <About />
     </div>
   );
 }
