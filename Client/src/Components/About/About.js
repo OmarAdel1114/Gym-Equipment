@@ -23,7 +23,7 @@ function About() {
       <h3 className="header">ABOUT US</h3>
       <div className="text">
         <p>
-          <span className="colored">What is Blue Shell mission?</span>
+          <span className="sub-heading">What is Blue Shell mission?</span>
           We create innovative solutions to help people achieve fitness and we
           strive to make fitness available to all, at all ages and in all
           places.
@@ -39,9 +39,9 @@ function About() {
           solutions, we aim to inspire fitness and create unique training
           environments for all.
         </p>
-        <img src={signature} alt="ceo-signature" />
+        <img src={signature} alt="ceo-signature" id='ceo-signature' />
       </div>
-      <div className="partners">
+      {/* <div className="partners">
         <h4 className="sub-header">OUR PARTNERS</h4>
         <div className="partners-logos">
           <img src={joola} alt="joola" />
@@ -59,7 +59,7 @@ function About() {
           <img src={jacuzzi} alt="jacuzzi" />
           <img src={hammerStrnegth} alt="hammerStrength" />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
