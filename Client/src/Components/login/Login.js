@@ -15,12 +15,12 @@ function Login() {
     setErrors({ email: '', password: '' });
 
     if (!userName.includes('@')) {
-      setErrors({...errors, email: "email must include @"})
-      return
+      setErrors({ ...errors, email: 'email must include @' });
+      return;
     }
     if (password < 8) {
-      setErrors({...errors, password: "password must be at least 8 chars"})
-      return
+      setErrors({ ...errors, password: 'password must be at least 8 chars' });
+      return;
     }
 
     try {
