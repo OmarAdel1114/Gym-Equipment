@@ -32,6 +32,8 @@ function Login() {
         .then((response) => {
           if (response.status !== 200) {
             console.log('moshkla 200');
+          } else {
+            console.log(response);
           }
         });
       console.log(response);
