@@ -9,9 +9,14 @@
 
 .products .header, .about .header {
   font-size: 3rem;
+  font-family: "roboto-light";
+  letter-spacing: 5px;
   margin: 50px 0 10px ;
 }
 .products h3 {
+  font-family: "roboto-light";
+  font-size: 1.1rem;
+  font-weight: 300;
   margin-bottom: 20px;
 }
 

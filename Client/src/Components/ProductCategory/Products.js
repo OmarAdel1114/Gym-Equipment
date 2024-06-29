@@ -18,7 +18,6 @@ import stairmaster from '../../assets/media/products/stairmaster.jpg';
 import dumbbells from '../../assets/media/products/dumbbells.jpg';
 import IndoorBike from '../../assets/media/products/kettler indoor bike.jpg';
 
-
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/bundle';
@@ -35,16 +34,18 @@ function Products() {
     { name: 'treadmill', photo: bar },
   ];
 
-  const swiperRef = useRef(null)
-  
-  
+  const swiperRef = useRef(null);
 
   return (
     <div className="container products">
-      <h2 className="header">BLUE SHELL EGYPT</h2>
-      <h3>Products Category</h3>
+      <h2 className="header">BEST SELLERS</h2>
+      <h3 className="info">
+        Built to last and made in-house. Quality is always the number one
+        priority.
+      </h3>
       <div className="products-holder">
-        <Swiper ref={swiperRef}
+        <Swiper
+          ref={swiperRef}
           modules={[
             Navigation,
             // Scrollbar,
@@ -55,7 +56,7 @@ function Products() {
           ]}
           breakpoints={{
             428: {
-              slidesPerView:1,
+              slidesPerView: 1,
               spaceBetween: 10,
             },
             640: {
@@ -72,17 +73,16 @@ function Products() {
             },
           }}
           direction="horizontal"
-          centeredSlides = {true}
+          centeredSlides={true}
           slidesPerView={4}
           spaceBetween={-50}
           freeMode={true}
-          mousewheel={{forceToAxis: true}}
-          
-          scrollbar= {true} 
+          mousewheel={{ forceToAxis: true }}
+          scrollbar={true}
           //  pagination={{ type: 'progressbar' }}
           // loop={true}
-        //   navigation
-        //   scrollbar={{ draggable: true }}
+          //   navigation
+          //   scrollbar={{ draggable: true }}
         >
           {products.map((product, index) => {
             return (
