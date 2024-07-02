@@ -9,9 +9,12 @@ const userRoutes = require("./routes/userRouter");
 const productRoutes = require("./routes/productRouter");
 const cartRoutes = require("./routes/cartRouter");
 
-mongoose.connect(process.env.MONGO_URL).then(() => {
-  console.log(`MongoDB Server Started `);
-});
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => {
+    console.log(`MongoDB Server Started `);
+  })
+  .catch((err) => console.error("Could not connect to MongoDB...", err));
 const port = process.env.PORT;
 
 app.use(cors());
