@@ -1,13 +1,16 @@
 import React from 'react'
 import './landing.css'
-import video from '../../assets/media/Gym cinematic promotion video.mp4'
+import photo from '../../assets/media/gym landing.jpg'
 
 function Landing() {
   return (
-    <div className='container'>
-      <video muted autoPlay loop  className='landing-video'>
-        <source src={video} type='video/mp4'/>
-      </video>
+    <div className='container landing'>
+      <img src= {photo} alt='landing'/>
+      <div className='text'>
+       <p className='bigger'> Easy with our <span id='colored'>Gym</span> </p>
+      <button>Shop Now</button>
+      <p className='small'>At the gym, hotels, home and more.</p>
+      </div>
     </div>
   )
 }
