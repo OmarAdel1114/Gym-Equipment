@@ -12,7 +12,7 @@ function Landing() {
       <div className="text">
         <p className="bigger">
           {' '}
-          ourGear Up for <span id="colored">Success</span>{' '}
+          Gear Up for <span id="colored">Success</span>{' '}
         </p>
         <p className="small">
           We are a complete ecosystem of High-Quality fitness solutions. We

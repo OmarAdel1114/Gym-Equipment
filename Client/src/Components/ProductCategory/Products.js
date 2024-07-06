@@ -15,8 +15,10 @@ import bar from '../../assets/media/products/bar.webp';
 import multigym from '../../assets/media/products/multigym.jpg';
 import heavybag from '../../assets/media/products/heavybag.jpg';
 import stairmaster from '../../assets/media/products/stairmaster.jpg';
-import dumbbells from '../../assets/media/products/dumbbells.jpg';
+import dumbbellsBbundle from '../../assets/media/products/hex-dumbbell-bundle-45kg-433168_360x.webp';
 import IndoorBike from '../../assets/media/products/kettler indoor bike.jpg';
+import dumbbells from '../../assets/media/products/hex-dumbbells-5-25kg-600662_360x.webp';
+import airHockey from "../../assets/media/products/airhockey_01.jpg"
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -25,13 +27,14 @@ import 'swiper/css/bundle';
 function Products() {
   const products = [
     { name: 'bars', photo: bar , price:"$250.00", },
+    { name: 'Hex Dumbbell Bundle [195kg]', photo: dumbbellsBbundle , price:"$549.00", },
+    { name: 'Hex Dumbbells [5-40kg]', photo: dumbbells , price:"$39.00", },
     { name: 'treadmill', photo: treadmill , price:"$250.00", },
+    { name: 'heavybag', photo: heavybag , price:"$250.00", },
     { name: 'multigym Machine', photo: multigym , price:"$250.00", },
     { name: 'stairmaster', photo: stairmaster , price:"$250.00", },
-    { name: 'dumbbells', photo: dumbbells , price:"$250.00", },
-    { name: 'heavybag', photo: heavybag , price:"$250.00", },
+    { name: `Air Hockey Table Game `, photo:  airHockey, price:"$250.00", },
     { name: 'Kettler & indoor Bikes', photo: IndoorBike , price:"$250.00", },
-    { name: 'treadmill', photo: bar , price:"$250.00", },
   ];
 
   const swiperRef = useRef(null);
