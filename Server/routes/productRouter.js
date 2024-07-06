@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 const Product = require("../models/productModel");
 const jwt = require("jsonwebtoken");
 const verifyToken = require("../middleware/auth.middleware");
-
+const upload = require("../middleware/upload");
+const { uploadToCloudinary } = require("../utils/cloudinary");
 //Get all products
 router.get("/", async (req, res) => {
   try {
@@ -42,28 +43,40 @@ router.get("/:id", async (req, res) => {
 });
 
 // add a new product for admins only
-router.post("/add", verifyToken, async (req, res) => {
-  try {
-    const { prodTitle, price, brand, color, photo } = req.body;
+router.post(
+  "/add",
+  verifyToken,
+  upload.single("productImage"),
+  async (req, res) => {
+    try {
+      const { prodTitle, price, brand, color } = req.body;
 
-    const product = new Product({
-      prodTitle,
-      price,
-      brand,
-      color,
-      photo,
-    });
+      if (!prodTitle || !price || !brand || !color || !req.file) {
+        console.log("All attributes must be provided");
+      }
+      
+      data = await uploadToCloudinary(req.file.path, "product-images");
 
-    const newProduct = await product.save();
+      const product = new Product({
+        prodTitle,
+        price,
+        brand,
+        color,
+        imageUrl: data.url,
+        publicId: data.public_id,
+      });
 
-    res.status(201).json({ Status: "Success", data: { newProduct } });
-  } catch (error) {
-    console.error("Failed to add new Product", error);
-    res
-      .status(500)
-      .json({ error: "Failed to add new Product", message: error.message });
+      const newProduct = await product.save();
+
+      res.status(201).json({ Status: "Success", data: { newProduct } });
+    } catch (error) {
+      console.error("Failed to add new Product", error);
+      res
+        .status(500)
+        .json({ error: "Failed to add new Product", message: error.message });
+    }
   }
-});
+);
 
 // delete a product for admins only
 router.delete("/:id", verifyToken, async (req, res) => {
