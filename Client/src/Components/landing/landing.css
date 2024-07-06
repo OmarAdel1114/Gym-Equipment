@@ -9,7 +9,7 @@
   height: 100vh;
   background: url('../../assets/media/pexels-michal-packo-663414463-20201303.jpg')
     no-repeat left center;
-    background-size: 55%;
+  background-size: 55%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -45,8 +45,6 @@
   color: var(--primary-color);
   display: inline;
 }
-@media screen and (max-width: 768px) {
-}
 .landing .text {
   position: relative;
   text-align: left;
@@ -54,6 +52,18 @@
   max-width: 55%;
   padding: 40px;
   z-index: 2;
+}
+@media screen and (max-width: 768px) {
+  .landing {
+    background-size: cover;
+  }
+
+  .landing .text {
+    text-align: center;
+    max-width: 100%;
+    padding: 10px;
+  }
+ 
 }
 .landing .text p {
   color: white;
@@ -93,8 +103,9 @@
   opacity: 0.95;
   background: linear-gradient(
       to bottom,
-      rgba(150, 150, 150, 0.6) 0%, /* Darker grey on hover */
-      rgba(255, 255, 255, 0) 50% /* Transparent white */
+      rgba(150, 150, 150, 0.6) 0%,
+      /* Darker grey on hover */ rgba(255, 255, 255, 0) 50%
+        /* Transparent white */
     ),
     #3690d8; /* Slightly darker blue on hover */
   transform: scale(1.05); /* Slightly enlarge the button */
@@ -111,16 +122,16 @@
 }
 
 @media (max-width: 768px) {
-    .text {
-      max-width: 90%; /* Adjust the width on smaller screens */
-      padding: 20px; /* Reduce padding on smaller screens */
-    }
-  
-    .bigger {
-      font-size: 2em; /* Adjust the size of the heading on smaller screens */
-    }
-  
-     .small {
-      font-size: 1em; /* Adjust the size of the paragraph on smaller screens */
-    }
+  .text {
+    max-width: 90%; /* Adjust the width on smaller screens */
+    padding: 20px; /* Reduce padding on smaller screens */
   }
+
+  .bigger {
+    font-size: 2em; /* Adjust the size of the heading on smaller screens */
+  }
+
+  .small {
+    font-size: 1em; /* Adjust the size of the paragraph on smaller screens */
+  }
+}

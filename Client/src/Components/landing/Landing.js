@@ -19,8 +19,8 @@ function Landing() {
           offer high standard equipment and a variety of services to set up your
           gym from scratch
         </p>
-        <p className="small">At the gym, hotels, home and more.</p>
         <button>Shop Now</button>
+        <p className="small">At the gym, hotels, home and more.</p>
       </div>
     </div>
   );

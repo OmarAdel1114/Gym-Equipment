@@ -10,7 +10,7 @@ import {
   Mousewheel,
 } from 'swiper/modules';
 
-import treadmill from '../../assets/media/products/treadmill.jpg';
+import treadmill from '../../assets/media/products/Commercial Treadmill Gymmost 98,900LE.webp';
 import bar from '../../assets/media/products/bar.webp';
 import multigym from '../../assets/media/products/multigym.jpg';
 import heavybag from '../../assets/media/products/heavybag.jpg';
@@ -29,9 +29,9 @@ function Products() {
     { name: 'bars', photo: bar , price:"$250.00", },
     { name: 'Hex Dumbbell Bundle [195kg]', photo: dumbbellsBbundle , price:"$549.00", },
     { name: 'Hex Dumbbells [5-40kg]', photo: dumbbells , price:"$39.00", },
+    { name: 'multigym Machine', photo: multigym , price:"$250.00", },
     { name: 'treadmill', photo: treadmill , price:"$250.00", },
     { name: 'heavybag', photo: heavybag , price:"$250.00", },
-    { name: 'multigym Machine', photo: multigym , price:"$250.00", },
     { name: 'stairmaster', photo: stairmaster , price:"$250.00", },
     { name: `Air Hockey Table Game `, photo:  airHockey, price:"$250.00", },
     { name: 'Kettler & indoor Bikes', photo: IndoorBike , price:"$250.00", },
@@ -60,7 +60,7 @@ function Products() {
           breakpoints={{
             1: {
               slidesPerView: 1,
-              spaceBetween: 50,
+              // spaceBetween: 30,
             },
             640: {
               slidesPerView: 2,
@@ -95,11 +95,11 @@ function Products() {
           //   navigation
           //   scrollbar={{ draggable: true }}
         >
+          <div className="slide-holder">
           {products.map((product, index) => {
             return (
-              <div className="slide-holder">
                 <SwiperSlide>
-                  <div className="card">
+                  <div className="card" id= {index} >
                     <div className="product-info">
                      <div className="photo">
                       <img src={product.photo} alt="home" className='product-photo' />
@@ -110,9 +110,9 @@ function Products() {
                     <button>Veiw Product</button>
                   </div>
                 </SwiperSlide>
-              </div>
             );
           })}
+          </div>
         </Swiper>
       </div>
     </div>

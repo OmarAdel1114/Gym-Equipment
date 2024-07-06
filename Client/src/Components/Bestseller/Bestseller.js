@@ -13,10 +13,9 @@ function Bestseller({ productId }) {
     axios
       .get(url)
       .then((response) => {
-        setProducts(response.data);
-        response.request === 200? 
-        setLoading(false): setLoading(true);
-        console.log(response);
+        setProducts(response.data.data.products);
+        console.log(response.data.data.products);
+        response.request === 200 ? setLoading(false) : setLoading(true);
       })
       .catch((error) => {
         setError(error);
@@ -24,26 +23,29 @@ function Bestseller({ productId }) {
       });
   }, [productId]);
 
-  if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error: {error.message}</p>;
+  // if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  if (!Array.isArray(products)) {
+    return <div>No Product available</div>;
+  }
   return (
     <div className="best-sellers">
       <h2 className="header-title">BEST SELLERS</h2>
       <h3 className="info">Items that prove useful to customers</h3>
-      {products.map((product, id) => (
-        <div className="card-holder">
-          <div className="card">
+      <div className="card-holder">
+        {products.map((product, index) => (
+          <div className="card" key={index} id={product.id}>
             <div className="photo">
               <img src={product.photo} alt="product-info" />
             </div>
             <div className="product-info">
-              <p>{product.name}</p>
-              <p> {product.price} </p>
+              <p className='product-name'>{product.brand}</p>
+              <p className='product-price'> {product.price} </p>
             </div>
             <button className="product-view"> View Product</button>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

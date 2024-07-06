@@ -8,7 +8,7 @@
   letter-spacing: 5px;
   margin: 50px 0 10px;
 }
-.best-sellers .info {
+ .info {
   font-family: 'roboto-light';
   font-size: 1.1rem;
   font-weight: 300;
@@ -17,9 +17,12 @@
 
 .card-holder {
   margin: 20px 0 100px 0;
+  width: 80%;
+  margin: 0 auto;
   /* border: 1px solid; */
   padding: 25px 50px;
   display: flex;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
 }

@@ -1,0 +1,98 @@
+/* Footer.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+:root {
+  --primary-color: rgb(21, 141, 240);
+}
+
+.footer {
+  background-color: #111;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  padding: 40px 0;
+}
+.footer * {
+    color: white;
+}
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.footer-logo img {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-about,
+.footer-contact,
+.footer-social {
+  flex: 1;
+}
+
+.footer-about h2,
+.footer-contact h2,
+.footer-social h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+}
+
+.footer-about p {
+  font-size: 1em;
+  color: #bbb;
+}
+
+.footer-contact ul {
+  list-style: none;
+  padding: 0;
+  font-size: 1em;
+  color: #bbb;
+}
+
+.footer-contact li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.footer-contact svg {
+  margin-right: 10px;
+}
+
+.footer-social h2 {
+  margin-bottom: 10px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 1.5em;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: var(--primary-color);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.9em;
+  color: #888;
+}
