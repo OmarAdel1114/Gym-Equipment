@@ -15,7 +15,7 @@ function App() {
       <Bestseller />
       {/* <Sales /> */}
       <Products />
-      <About />
+      {/* <About /> */}
     </div>
   );
 }

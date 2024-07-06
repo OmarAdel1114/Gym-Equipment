@@ -24,21 +24,21 @@ import 'swiper/css/bundle';
 
 function Products() {
   const products = [
-    { name: 'bars', photo: bar },
-    { name: 'treadmill', photo: treadmill },
-    { name: 'multigym Machine', photo: multigym },
-    { name: 'stairmaster', photo: stairmaster },
-    { name: 'dumbbells', photo: dumbbells },
-    { name: 'heavybag', photo: heavybag },
-    { name: 'Kettler & indoor Bikes', photo: IndoorBike },
-    { name: 'treadmill', photo: bar },
+    { name: 'bars', photo: bar , price:"$250.00", },
+    { name: 'treadmill', photo: treadmill , price:"$250.00", },
+    { name: 'multigym Machine', photo: multigym , price:"$250.00", },
+    { name: 'stairmaster', photo: stairmaster , price:"$250.00", },
+    { name: 'dumbbells', photo: dumbbells , price:"$250.00", },
+    { name: 'heavybag', photo: heavybag , price:"$250.00", },
+    { name: 'Kettler & indoor Bikes', photo: IndoorBike , price:"$250.00", },
+    { name: 'treadmill', photo: bar , price:"$250.00", },
   ];
 
   const swiperRef = useRef(null);
 
   return (
     <div className="container products">
-      <h2 className="header">BEST SELLERS</h2>
+      <h2 className="header-title">Featured products</h2>
       <h3 className="info">
         Built to last and made in-house. Quality is always the number one
         priority.
@@ -55,32 +55,40 @@ function Products() {
             Pagination,
           ]}
           breakpoints={{
-            428: {
+            1: {
               slidesPerView: 1,
-              spaceBetween: 10,
+              spaceBetween: 50,
             },
             640: {
               slidesPerView: 2,
-              spaceBetween: 20,
+              // spaceBetween: -10,
             },
             768: {
-              slidesPerView: 4,
-              spaceBetween: 40,
+              slidesPerView: 2,
+              // spaceBetween: -10,
             },
-            1024: {
+            910: {
+              slidesPerView: 3,
+              // spaceBetween: -10,
+            },
+            1170: {
+              slidesPerView: 4,
+              // spaceBetween: -10,
+            },
+            1400: {
               slidesPerView: 5,
-              spaceBetween: 50,
+              // spaceBetween: -10,
             },
           }}
           direction="horizontal"
-          centeredSlides={true}
+          // centeredSlides={true}
           slidesPerView={4}
-          spaceBetween={-50}
-          freeMode={true}
+          spaceBetween={15}
+          // freeMode={true}
           mousewheel={{ forceToAxis: true }}
-          scrollbar={true}
+          // scrollbar={true}
           //  pagination={{ type: 'progressbar' }}
-          // loop={true}
+          loop={true}
           //   navigation
           //   scrollbar={{ draggable: true }}
         >
@@ -88,13 +96,15 @@ function Products() {
             return (
               <div className="slide-holder">
                 <SwiperSlide>
-                  <div className="product-holder">
-                    <img
-                      src={product.photo}
-                      alt="home"
-                      className="product-photo"
-                    />
-                    <p className="product-name">{product.name}</p>
+                  <div className="card">
+                    <div className="product-info">
+                     <div className="photo">
+                      <img src={product.photo} alt="home" className='product-photo' />
+                      </div> 
+                      <p className="product-name">{product.name}</p>
+                      <p className='product-price'>{product.price}</p>
+                    </div>
+                    <button>Veiw Product</button>
                   </div>
                 </SwiperSlide>
               </div>
