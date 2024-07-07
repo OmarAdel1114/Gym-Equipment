@@ -19,7 +19,7 @@ function Landing() {
           offer high standard equipment and a variety of services to set up your
           gym from scratch
         </p>
-        <button>Shop Now</button>
+        <button onClick={() => (window.location.href = '/Shop')}>Shop Now</button>
         <p className="small">At the gym, hotels, home and more.</p>
       </div>
     </div>

@@ -45,7 +45,7 @@ function Nav() {
             <a href="#home">Home</a>
           </li>
           <li>
-            <a href="#SHOP">SHOP</a>
+            <a href="/Shop" onClick={() => (window.location.href = '/Shop')}>SHOP</a>
           </li>
           <li>
             <a href="#ABOUT">ABOUT US</a>
@@ -80,12 +80,12 @@ function Nav() {
                 </a>
               </li>
               <li>
-                <a href="/SHOP" className="item">
+                <a href="/Shop" className="item">
                   SHOP
                 </a>
               </li>
               <li>
-                <a href="/ABOUT" className="item">
+                <a href="/ABOUT" className="item" onClick={() => (window.location.href = '/Shop')}>
                   ABOUT US
                 </a>
               </li>

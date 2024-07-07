@@ -8,6 +8,7 @@
     max-width: 800px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     animation: flow 3s linear infinite;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     /* transition: transform 0.3s, box-shadow 0.3s; */
   }
 
@@ -30,7 +31,6 @@
   }
   
   .cta-section:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   }
   
   .cta-section h2 {

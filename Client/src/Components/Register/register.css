@@ -1,6 +1,168 @@
-.register .form {
+:root {
+    --primary-color: #3897f0;
+    --darken-color: #2876c4;
+    --error-color: #e74c3c;
+    --input-bg: #fafafa;
+    --border-color: #dbdbdb;
+  }
+  
+  @font-face {
+    font-family: 'MuseoModerno';
+    src: url(../../Fonts/MuseoModerno/MuseoModerno-Italic-VariableFont_wght.ttf);
+  }
+  
+  /* body {
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+   */
+  .register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .register-page * {
+    font-family: "roboto-light";
+    font-weight: 600;
+  }
+  
+  .register-container {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    /* width: 100%; */
+    /* max-width: 350px; */
+  }
 
-}
-.register form label {
-    padding: 2px 5px;
-}
+  @media screen and (max-width: 375px) {
+    .register-container {
+    padding: 10px;
+    box-shadow: none;
+    border: none;
+    }
+  }
+  
+  
+  .register-header {
+    margin-bottom: 20px;
+  }
+  
+  .register-header .register-logo {
+    font-family: "MuseoModerno";
+    font-size: clamp(1.5rem, 2.5rem, 3.5rem);
+    text-transform: uppercase;
+  }
+  
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    min-width: 270px;
+    /* width: 300px; */
+  }
+  
+  .register-heading {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+  }
+  
+  .register-input {
+    padding: 12px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    background-color: var(--input-bg);
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 13px;
+    font-family: "roboto-light";
+    font-weight: 500;
+  }
+  
+  .register-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+  }
+  
+  .register-button {
+    padding: 6px;
+    margin: 20px 0 35px;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    position: relative;
+  }
+  
+  .register-button::before {
+    content: "";
+    background-color: #d0cfcf;
+    width: 100%;
+    height: 0.4px;
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+  }
+  
+  .register-button::after {
+    content: "OR";
+    background-color: white;
+    color: #888;
+    padding: 2px 20px;
+    /* width: 100%; */
+    /* height: 0.4px; */
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .register-button:hover {
+    background-color: var(--darken-color);
+  }
+  
+  .register-link {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    margin: 15px 0 5px;
+  }
+  
+  .register-link p {
+    display: inline;
+    color: #888;
+    font-weight: 600;
+  }
+  
+  .register-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+  
+  .register-error {
+    color: var(--error-color);
+    font-size: 0.8rem;
+    /* margin-top: -1px; */
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  

@@ -10,7 +10,7 @@ function CTASection() {
         programs.
       </p>
 
-      <button className='cta-button'>Shop Now</button>
+      <button className='cta-button' onClick={() => (window.location.href = '/Shop')}>Shop Now</button>
     </div>
   );
 }

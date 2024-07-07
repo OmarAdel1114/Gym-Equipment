@@ -8,72 +8,82 @@ function Login() {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({ email: '', password: '' });
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors({ email: '', password: '' });
 
+    let hasError = false;
+
     if (!userName.includes('@')) {
-      setErrors({ ...errors, email: 'email must include @' });
-      return;
+      setErrors((prevErrors) => ({ ...prevErrors, email: 'Email must include @' }));
+      hasError = true;
     }
-    if (password < 8) {
-      setErrors({ ...errors, password: 'password must be at least 8 chars' });
-      return;
+    if (password.length < 8) {
+      setErrors((prevErrors) => ({ ...prevErrors, password: 'Password must be at least 8 characters' }));
+      hasError = true;
     }
 
+    if (hasError) return;
+
     try {
-      const response = await axios
-        .post('https://gym-equipment.vercel.app/api/users/login', {
-          userName,
-          password,
-        })
-        .then((response) => {
-          if (response.status !== 200) {
-            console.log('moshkla 200');
-          } else {
-            console.log(response);
-          }
-        });
-      console.log(response);
+      const response = await axios.post('https://gym-equipment.vercel.app/api/users/login', {
+        userName,
+        password,
+      });
+
+      if (response.status === 200) {
+        console.log('Login successful:', response.data);
+        navigate('/dashboard'); // Navigate to the dashboard or another appropriate route
+      } else {
+        console.log('Unexpected response status:', response.status);
+      }
     } catch (error) {
-      console.error('login failed yacta', error);
+      console.error('Login failed:', error);
+      setErrors((prevErrors) => ({ ...prevErrors, general: 'Login failed. Please try again.' }));
     }
   };
 
-  const Validation = () => {};
-
   return (
-    <div className="form-holder">
-      <div className="photo-header">
-        <img src={photo} alt="" />
+    <div className="login-page">
+      <div className="login-container">
+        <div className="login-header">
+          <p className='login-logo'>BlueShell</p>
+          {/* <img src={photo} alt="Logo" className="login-logo" /> */}
+        </div>
+        <form onSubmit={handleSubmit} className="login-form">
+          {/* <h2 className="login-heading">Login</h2> */}
+
+          <input
+            value={userName}
+            placeholder="username, or email"
+            type="email"
+            onChange={(e) => setUserName(e.target.value)}
+            className="login-input"
+          />
+          {errors.email && <div className="login-error">{errors.email}</div>}
+
+          <input
+            placeholder="Password"
+            value={password}
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            className="login-input"
+          />
+          {errors.password && <div className="login-error">{errors.password}</div>}
+          {errors.general && <div className="login-error">{errors.general}</div>}
+          
+          <button type="submit" className="login-button">Log in</button>
+          <p className="login-link">
+            <a href="/accounts/password">Forget Password?</a>
+          </p>
+          <p className="login-link">
+            <p>Don't have an account? </p>
+            <a href="/register">Sign up</a>
+          </p>
+        </form>
       </div>
-      <form onSubmit={handleSubmit}>
-        <h2 className="Login-heading">Login</h2>
-
-        <input
-          value={userName}
-          placeholder="email"
-          type="mail"
-          onChange={(e) => setUserName(e.target.value)}
-        />
-        {errors.email && <div className="error-500">{errors.email}</div>}
-
-        <input
-          placeholder=" Password"
-          value={password}
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {errors.password && <div className="error-500">{errors.password}</div>}
-        <p>
-          {' '}
-          <a href="/accounts/password"> Forget Password? </a>
-        </p>
-        <button type="submit">Login</button>
-        <a href="/Register"> Don't Have an Account ? </a>
-      </form>
     </div>
   );
 }

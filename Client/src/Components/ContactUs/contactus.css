@@ -27,8 +27,9 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  min-width: 300px; 
 }
-.contact-form * {
+.contact-form *, .contact-form label * {
   font-family: 'roboto-light';
   font-weight: 600;
 }
