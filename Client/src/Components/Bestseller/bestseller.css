@@ -1,5 +1,13 @@
+:root {
+  --primary-color: #007bff; /* Define primary color */
+}
+
 .best-sellers {
   border-bottom: 1px solid;
+}
+.card * {
+  font-family: "roboto-light";
+  font-weight: 600;
 }
 
 .best-sellers .header {
@@ -8,7 +16,8 @@
   letter-spacing: 5px;
   margin: 50px 0 10px;
 }
- .info {
+
+.info {
   font-family: 'roboto-light';
   font-size: 1.1rem;
   font-weight: 300;
@@ -16,29 +25,33 @@
 }
 
 .card-holder {
-  margin: 20px 0 100px 0;
+  margin: 20px auto 100px;
   width: 80%;
-  margin: 0 auto;
-  /* border: 1px solid; */
   padding: 25px 50px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
+
 .card {
   position: relative;
   min-height: 350px;
-  /* width: 300px; */
-  /* padding: 10px; */
-  margin: 15px 15px;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);   */
+  margin: 15px;
   display: flex;
-  /* overflow: hidden; */
   flex-direction: column;
+  transition: all 0.2s linear;
 }
+
+/* .card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+} */
+
+.card::before,
 .card::after,
-.card::before {
+.card .product-info::before,
+.card .product-info::after {
   content: '';
   position: absolute;
   width: 15px;
@@ -47,103 +60,113 @@
   border: 3px solid #000;
   opacity: 0;
   transition: all 0.1s linear;
-
-
 }
+
 .card::before {
   top: -6px;
-  left: -6px; 
+  left: -6px;
   border-bottom: none;
   border-right: none;
 }
 
 .card::after {
-  bottom: -6px; 
+  bottom: -6px;
   right: -6px;
   border-top: none;
   border-left: none;
 }
 
-.card .product-info::after,
 .card .product-info::before {
-  content: '';
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  background-color: transparent;
-  border: 3px solid #000;
-  opacity: 0;
-  transition: all 0.1s linear;
+  top: -6px;
+  right: -6px;
+  border-bottom: none;
+  border-left: none;
 }
-.card .product-info::before {
-    top: -6px;
-    right: -6px; 
-    border-bottom: none;
-    border-left: none;
-  }
-  
-  .card .product-info::after {
-    bottom: -6px; 
-    left: -6px;
-    border-top: none;
-    border-right: none;
-  }
 
+.card .product-info::after {
+  bottom: -6px;
+  left: -6px;
+  border-top: none;
+  border-right: none;
+}
 
+.card:hover::before,
+.card:hover::after,
+.card:hover .product-info::before,
+.card:hover .product-info::after {
+  opacity: 1;
+}
 
-  .card:hover::before,
-  .card:hover::after,
-  .card:hover .product-info::before,
-  .card:hover .product-info::after {
-    opacity: 1;
-  }
 .card .photo {
   width: 100%;
-  /* margin: 10%; */
   position: relative;
   display: flex;
 }
 
-.card .photo img {
+.product-photo {
+  width: 100%;
   object-fit: cover;
+  background-size: 100%;
+  overflow: hidden;
 }
 
 .card .photo::after {
-  content: "";
-  background-color: white;
+  content: '';
+  background-color: var(--primary-color);
+  opacity: 0.5;
   width: 30px;
   height: 30px;
   position: absolute;
+  border-radius: 0px 0px 0px 100%;
   right: 0;
   top: 0;
   z-index: 10;
 }
-.card .product-info{
+
+
+.best-seller-photo {
+  width: 300px;
+  overflow: hidden;
+}
+
+
+.card .product-info {
   width: 100%;
   font-family: 'roboto-light';
   font-weight: 400;
   font-size: 1rem;
   margin: 15px 0;
   padding: 8px;
-  transition: all linear 0.1s;
+  transition: all 0.1s linear;
   text-transform: uppercase;
   text-align: left;
-  text-transform: uppercase;
-  font-family: "roboto-light";
-
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
 }
+
 .card .product-info p {
-  display: block;
-  font-family: "roboto-light";
   margin: 12px 0;
-  text-transform: uppercase;
-
+  font-size: 1.1rem;
 }
+.card .product-info .product-price {
+  text-transform: none;
+  font-weight: 400;
+}
+
+.prev-price {
+  text-decoration: line-through;
+  color: #888;
+}
+
+
+
 .card button {
   width: 100%;
   padding: 15px 20px;
   letter-spacing: 1px;
-  font-family: "roboto-light";
+  font-family: 'roboto-light';
   font-weight: 600;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   border: none;
@@ -152,9 +175,8 @@
   cursor: pointer;
   text-transform: uppercase;
   transition: all 0.1s linear;
-
 }
+
 .card button:hover {
-  /* box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3); */
   padding: 15px 20px 15px 5px;
 }

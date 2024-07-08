@@ -109,8 +109,7 @@ const Footer = () => {
             <h2>About Us</h2>
             <p>
               We provide high-quality fitness equipment and services to help you
-              set up your dream gym. Our solutions are designed to meet your
-              fitness goals and exceed your expectations.
+              set up your dream gym.
             </p>
           </div>
           <div className="footer-contact">

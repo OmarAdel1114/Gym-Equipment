@@ -36,11 +36,22 @@ function Bestseller({ productId }) {
         {products.map((product, index) => (
           <div className="card" key={index} id={product.id}>
             <div className="photo">
-              <img src={product.photo} alt="product-info" />
+              <img
+                src={product.imageUrl}
+                className="product-photo best-seller-photo"
+                alt="product-info"
+              />
             </div>
             <div className="product-info">
-              <p className='product-name'>{product.brand}</p>
-              <p className='product-price'> {product.price} </p>
+              <p className="product-name">
+                {product.brand} {product.prodTitle}
+              </p>
+              <p className="product-price">
+                <span className="prev-price">
+                  ${parseFloat(product.price) + 10 + 0.0}
+                </span>{' '}
+                to ${product.price}{' '}
+              </p>
             </div>
             <button className="product-view"> View Product</button>
           </div>
