@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
     const perPage = parseInt(req.query.perPage) || 3; // Default to 3 products per page
     const skipCount = (page - 1) * perPage;
 
-    const products = await Product.find({}, { __v: 0 ,color:0})
+    const products = await Product.find({}, { __v: 0, color: 0, publicId: 0 })
       .skip(skipCount)
       .limit(perPage);
 
@@ -30,7 +30,10 @@ router.get("/", async (req, res) => {
 //Get product by Id
 router.get("/:id", async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id, {
+      __v: 0,
+      publicId: 0,
+    });
     if (!product) {
       res.status(404).json("Product not available");
     } else {
@@ -54,7 +57,7 @@ router.post(
       if (!prodTitle || !price || !brand || !color || !req.file) {
         console.log("All attributes must be provided");
       }
-      
+
       data = await uploadToCloudinary(req.file.path, "product-images");
 
       const product = new Product({

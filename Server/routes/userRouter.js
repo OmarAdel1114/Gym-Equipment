@@ -8,17 +8,17 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const verifyToken = require("../middleware/auth.middleware");
 
-// get all users
+// get all users for Admins
 router.get("/", verifyToken, async (req, res) => {
   try {
-    const page = parseInt(req.query.page) || 1;
-    const perPage = parseInt(req.query.perPage) || 3; // Default to 3 users per page
-    const skipCount = (page - 1) * perPage;
+    // const page = parseInt(req.query.page) || 1;
+    // const perPage = parseInt(req.query.perPage) || 3; // Default to 3 users per page
+    // const skipCount = (page - 1) * perPage;
 
     // getting all users
     const users = await User.find({}, { __v: 0, password: 0 }) // Excluding __v and password fields
-      .skip(skipCount)
-      .limit(perPage);
+      // .skip(skipCount)
+      // .limit(perPage);
 
     res.json({ Status: "Success", data: { users } });
   } catch (error) {
