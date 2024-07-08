@@ -16,9 +16,9 @@ router.get("/", verifyToken, async (req, res) => {
     // const skipCount = (page - 1) * perPage;
 
     // getting all users
-    const users = await User.find({}, { __v: 0, password: 0 }) // Excluding __v and password fields
-      // .skip(skipCount)
-      // .limit(perPage);
+    const users = await User.find({}, { __v: 0, password: 0 }); // Excluding __v and password fields
+    // .skip(skipCount)
+    // .limit(perPage);
 
     res.json({ Status: "Success", data: { users } });
   } catch (error) {
@@ -72,12 +72,12 @@ router.post("/register", async (req, res) => {
 // Login
 router.post("/login", async (req, res) => {
   try {
-    const { userName, password } = req.body;
-    const user = await User.findOne({ userName });
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
 
-    // checks if the userName in the database
+    // checks if the email in the database
     if (!user) {
-      return res.status(401).json("Wrong userName");
+      return res.status(401).json("Wrong email");
     }
 
     // compare the sent password with the password in the database
