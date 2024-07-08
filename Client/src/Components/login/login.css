@@ -1,78 +1,171 @@
-.form-holder {
+:root {
+  --primary-color: #3897f0;
+  --darken-color: #2876c4;
+  --error-color: #e74c3c;
+  --input-bg: #fafafa;
+  --border-color: #dbdbdb;
+}
+
+@font-face {
+  font-family: 'MuseoModerno';
+  src: url(../../Fonts/MuseoModerno/MuseoModerno-Italic-VariableFont_wght.ttf);
+}
+
+
+/* 
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+} */
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-direction: column;
-}
-.photo-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
 }
 
-form {
-  min-width: 325px;
-  width: 500px;
-  padding: 20px 50px 50px 50px;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid;
-  border-radius: 10px;
+.login-page * {
+  font-family: "roboto-light";
+  font-weight: 600;
 }
-.Login-heading {
-  font-size: 2rem;
-  margin-bottom: 30px;
+
+.login-container {
+  background-color: white;
+  border: 1px solid var(--border-color);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
+  /* width: 100%; */
+  /* max-width: 350px; */
 }
 
-form input {
+@media screen and (max-width: 375px) {
+  .login-container {
   padding: 10px;
-  border-radius: 5px;
-  border: 1px solid rgb(188, 187, 187);
-  background-color: rgb(245, 245, 245);
-  margin: 5px 0;
-}
-form input:hover {
-  border: 1px solid var(--primary-color);
-}
-form input:active {
+  box-shadow: none;
   border: none;
+  }
 }
 
-form button {
-  align-self: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  background-color: var(--primary-color);
-  padding: 10px 40px;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  font-weight: bold;
-  font-size: 1.1rem;
-  transition: all 0.1s linear;
+.login-header {
+  margin-bottom: 20px;
 }
-form button:hover {
+
+.login-header .login-logo {
+font-family: "MuseoModerno";
+font-size: clamp(1.5rem, 2.5rem, 3.5rem);
+text-transform: uppercase;
+}
+
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  min-width: 270px;
+  /* width: 300px; */
+}
+
+.login-heading {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+.login-input {
+  padding: 12px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  background-color: var(--input-bg);
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 13px;
+  font-family: "roboto-light";
+  font-weight: 500;
+
+}
+
+
+.login-input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.login-button {
+  padding: 6px;
+  margin: 20px 0 35px;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  position: relative;
+
+}
+
+.login-button::before {
+  content: "";
+  background-color: #d0cfcf;
+  width: 100%;
+  height: 0.4px;
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+}
+.login-button::after {
+  content: "OR";
+  background-color: white;
+  color: #888;
+  padding: 2px 20px;
+  /* width: 100%; */
+  /* height: 0.4px; */
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.login-button:hover {
   background-color: var(--darken-color);
 }
-form a {
-  color: var(--darken-color);
-  align-self: center;
-  margin: 10px 0;
-  font-size: 0.8rem;
+
+.login-link {
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  margin: 15px 0 5px ;
 }
-form a:hover {
+
+.login-link p {
+  display: inline;
+  color: #888;
+  font-weight: 600;
+}
+
+.login-link a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.login-link a:hover {
   text-decoration: underline;
 }
 
-
-/* errors */
-.error-500 {
-  color: red;
-  margin: 2px;
+.login-error {
+  color: var(--error-color);
   font-size: 0.8rem;
+  /* margin-top: -1px; */
+  margin-bottom: 10px;
+  text-align: left;
 }

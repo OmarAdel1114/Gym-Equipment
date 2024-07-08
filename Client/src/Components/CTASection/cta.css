@@ -1,0 +1,65 @@
+.cta-section {
+    padding: 50px;
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+    border-radius: 15px;
+    margin: 50px auto;
+    max-width: 800px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: flow 3s linear infinite;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    /* transition: transform 0.3s, box-shadow 0.3s; */
+  }
+
+  @keyframes flow {
+    0% {
+        transform:translateY(0px)
+    }
+    25% {
+        transform: translateY(-10px);
+    }
+    50% {
+        transform: translateY(0px);
+    }
+    75% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+  }
+  
+  .cta-section:hover {
+  }
+  
+  .cta-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  .cta-section p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    color: #f1f1f1;
+  }
+  
+  .cta-button {
+    padding: 15px 30px;
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    border-radius: 30px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  }
+  
+  .cta-button:hover {
+    /* background-color: var(--primary-color); */
+    /* color: white; */
+    transform: scale(1.05);
+  }

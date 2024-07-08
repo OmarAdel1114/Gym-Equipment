@@ -1,0 +1,170 @@
+
+.footer {
+  /* background-color: #111; */
+  background : linear-gradient(var(--primary-color), black);
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  padding: 40px 0 0;
+}
+.footer * {
+  color: white;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.footer-services {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.service {
+  flex: 1 1 30%;
+  text-align: center;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  background: linear-gradient(
+    to left,
+    var(--primary-color),
+    rgb(250, 120, 219)
+  );
+  transition: all 0.2s linear;
+}
+.service:hover {
+  background: linear-gradient(220deg, var(--primary-color), rgb(251, 64, 207));
+}
+
+.service-holder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.service-icon {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.service p {
+  font-weight: 500;
+}
+
+.service span {
+  display: block;
+  margin-top: 5px;
+  font-family: 'roboto-light', sans-serif;
+}
+.footer-logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.footer-logo img {
+  width: 150px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 10px;
+  /* background-color: var(--primary-color); */
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-about,
+.footer-contact,
+.footer-social {
+  flex: 1;
+  /* width: 50%; */
+}
+
+.footer-about h2,
+.footer-contact h2,
+.footer-social h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+  display: flex;
+  
+}
+
+.footer-about p {
+  font-size: 1em;
+  color: #bbb;
+  text-align: left;
+  font-family: "roboto-light", sans-serif;
+
+}
+
+.footer-contact ul {
+  list-style: none;
+  padding: 0;
+  font-size: 1em;
+  color: #bbb;
+  
+}
+
+.footer-contact li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  
+}
+.footer-contact li * {
+  font-family: "roboto-light", sans-serif;
+}
+
+
+.footer-contact svg {
+  margin-right: 10px;
+}
+
+.footer-social h2 {
+  margin-bottom: 10px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 1.5em;
+  transition: all  0.1s linear;
+
+}
+
+.social-icons a:hover {
+  color: var(--primary-color);
+  transform: scale(1.1);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin: 30px 0 10px 0;
+  font-size: 1em;
+  color: #888;
+
+}
+.footer-bottom span , span a *{
+  color: #888;
+  font-weight: bold;
+}
+
+
+.footer-bottom * {
+  font-family: "roboto-light", sans-serif;
+}

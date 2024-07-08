@@ -20,7 +20,7 @@ import butterfly from '../../assets/media/partners/butterfly.jpg';
 function About() {
   return (
     <div className="container about">
-      <h3 className="header">ABOUT US</h3>
+      <h3 className="header-title">ABOUT US</h3>
       <div className="text">
         <p>
           <span className="sub-heading">What is Blue Shell mission?</span>

@@ -1,6 +1,7 @@
 :root {
   /* --primary-color: #40a798; */
-  --primary-color: rgb(61, 155, 233);
+  /* --primary-color: rgb(61, 155, 233); */
+  --primary-color: rgb(21, 141, 240);
   --darken-color: rgb(52, 117, 171);
   --secondry-color: white;
 }

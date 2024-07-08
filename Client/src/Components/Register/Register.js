@@ -1,115 +1,125 @@
 import axios from 'axios';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import './register.css';
 import photo from '../../assets/media/New_Blue Logo Whait_2 (2) (1).webp';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
-  const [number, setNumber] = useState('');
-  const [fullName, setFullName] = useState('');
   const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({
-    number: '',
     userName: '',
-    fullName: '',
+    email: '',
     password: '',
   });
-
-  const passwordRef = useRef('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors({ number: '', userName: '', fullName: '', password: '' });
+    setErrors({ userName: '', email: '', password: '' });
 
-    if (number < 11) {
-      setErrors({ ...errors, number: 'you must type your number' });
-      return;
+    let hasError = false;
+
+    if (userName.trim() === '') {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        userName: 'Username is required',
+      }));
+      hasError = true;
     }
-    if (userName.includes(1)) {
-      setErrors({ ...errors, number: 'you must type your number' });
-      return;
+    if (!email.includes('@')) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: 'Email must include @',
+      }));
+      hasError = true;
+    }
+    if (password.length < 8) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: 'Password must be at least 8 characters',
+      }));
+      hasError = true;
     }
 
-    if (password < 8) {
-      setErrors({
-        ...errors,
-        password: 'your password must be 8 chars or more',
-      });
-      return;
-    }
+    if (hasError) return;
 
     try {
-      const response = await axios
-        .post('https://gym-equipment.vercel.app/api/users/register', {
-          number,
-          fullName,
+      const response = await axios.post(
+        'https://gym-equipment.vercel.app/api/users/register',
+        {
           userName,
+          email,
           password,
-        })
-        .then((response) => {
-          if (response.status !== 200) {
-            console.log('moshkla 200');
-          }
-        });
-      console.log(response);
+        }
+      );
+
+      if (response.status === 200) {
+        console.log('Registration successful:', response.data);
+        navigate('/dashboard'); // Navigate to the dashboard or another appropriate route
+      } else {
+        console.log('Unexpected response status:', response.status);
+      }
     } catch (error) {
-      console.error('login failed yacta', error);
+      console.error('Registration failed:', error);
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        general: 'Registration failed. Please try again.',
+      }));
     }
-    console.log('successful but not to server');
   };
 
   return (
-    <div className="register">
-      <div className="form-holder">
-        <div className="photo-header">
-          <img src={photo} alt="" />
+    <div className="register-page">
+      <div className="register-container">
+        <div className="register-header">
+          <p className="register-logo">BlueShell</p>
+          {/* <img src={photo} alt="Logo" className="register-logo" /> */}
         </div>
+        <form onSubmit={handleSubmit} className="register-form">
+          {/* <h2 className="register-heading">Register</h2> */}
 
-        <form onSubmit={handleSubmit}>
-          <h2 className="Login-heading">Register</h2>
-          {/* <label>* Mobile Number</label> */}
-          <input
-            value={number}
-            placeholder="mobile Number"
-            type="number"
-            onChange={(e) => setNumber(e.target.value)}
-          />
-          {errors.number && <div className="error-500">{errors.number}</div>}
-          {/* <label>* User Name</label> */}
           <input
             value={userName}
-            placeholder="UserName"
-            type="text"
+            placeholder="Username"
             onChange={(e) => setUserName(e.target.value)}
+            className="register-input"
           />
-          {/* <label>Full Name</label> */}
           {errors.userName && (
-            <div className="error-500">{errors.userName}</div>
+            <div className="register-error">{errors.userName}</div>
           )}
 
           <input
-            value={fullName}
-            placeholder="Full Name"
-            type="text"
-            onChange={(e) => setFullName(e.target.value)}
+            value={email}
+            placeholder="Email"
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+            className="register-input"
           />
-          {/* <label>* Password</label> */}
-          {errors.fullName && (
-            <div className="error-500">{errors.fullName}</div>
-          )}
+          {errors.email && <div className="register-error">{errors.email}</div>}
 
           <input
-            placeholder=" Password"
+            placeholder="Password"
             value={password}
             type="password"
             onChange={(e) => setPassword(e.target.value)}
-            ref={passwordRef}
+            className="register-input"
           />
           {errors.password && (
-            <div className="error-500">{errors.password}</div>
+            <div className="register-error">{errors.password}</div>
+          )}
+          {errors.general && (
+            <div className="register-error">{errors.general}</div>
           )}
 
-          <button type="submit">Sign Up</button>
+          <button type="submit" className="register-button">
+            Sign up
+          </button>
+          <p className="register-link">
+            <p>Already have an account? </p>
+            <a href="/login">Log in</a>
+          </p>
         </form>
       </div>
     </div>
