@@ -51,7 +51,7 @@ function Nav() {
             <a href="#ABOUT">ABOUT US</a>
           </li>
           <li>
-            <a href="#CONTACT">CONTACT</a>
+            <a href=".contact-us">CONTACT</a>
           </li>
          
         </ul>
@@ -90,7 +90,7 @@ function Nav() {
                 </a>
               </li>
               <li>
-                <a href="/CONTACT" className="item">
+                <a href="#contact-us" className="item">
                   CONTACT
                 </a>
               </li>

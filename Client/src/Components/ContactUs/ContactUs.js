@@ -3,7 +3,7 @@ import './contactus.css'
 
 function ContactUs() {
   return (
-    <div className="contact-us-section">
+    <div className="contact-us-section" id='contact-us'>
       <h2 className="header-title">Contact Us</h2>
       <p className="info">
         We'd love to hear from you! Please fill out the form below and we will
