@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
     const perPage = parseInt(req.query.perPage) || 3; // Default to 3 products per page
     const skipCount = (page - 1) * perPage;
 
-    const products = await Product.find({}, { __v: 0 })
+    const products = await Product.find({}, { __v: 0 ,color:0})
       .skip(skipCount)
       .limit(perPage);
 
