@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import './products.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {
@@ -14,40 +14,61 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/free-mode';
 import 'swiper/css/bundle';
+import ProductCard from '../../Shop/ProductCard/productCard';
 
 import treadmill from '../../assets/media/products/Commercial Treadmill Gymmost 98,900LE.webp';
 import bar from '../../assets/media/products/bar.webp';
-import multigym from '../../assets/media/products/multigym.jpg';
-import heavybag from '../../assets/media/products/heavybag.jpg';
-import stairmaster from '../../assets/media/products/stairmaster.jpg';
+import multigym from '../../assets/media/products/multigym.webp';
+import heavybag from '../../assets/media/products/heavybag.webp';
+import stairmaster from '../../assets/media/products/stairmaster.webp';
 import dumbbellsBbundle from '../../assets/media/products/hex-dumbbell-bundle-45kg-433168_360x.webp';
-import IndoorBike from '../../assets/media/products/kettler indoor bike.jpg';
+import IndoorBike from '../../assets/media/products/kettler indoor bike.webp';
 import dumbbells from '../../assets/media/products/hex-dumbbells-5-25kg-600662_360x.webp';
-import airHockey from '../../assets/media/products/airhockey_01.jpg';
+import airHockey from '../../assets/media/products/airhockey_01.webp';
 
 function Products() {
-  const products = [
-    { name: 'bars', photo: bar, price: '250.00' },
-    {
-      name: 'Hex Dumbbell Bundle [195kg]',
-      photo: dumbbellsBbundle,
-      price: '549.00',
-    },
-    { name: 'Hex Dumbbells [5-40kg]', photo: dumbbells, price: '39.00' },
-    { name: 'multigym Machine', photo: multigym, price: '250.00' },
-    { name: 'treadmill', photo: treadmill, price: '250.00' },
-    { name: 'heavybag', photo: heavybag, price: '250.00' },
-    { name: 'stairmaster', photo: stairmaster, price: '250.00' },
-    { name: `Air Hockey Table Game `, photo: airHockey, price: '250.00' },
-    { name: 'Kettler & indoor Bikes', photo: IndoorBike, price: '250.00' },
-  ];
+  const productsArr = useMemo(
+    () => [
+      { id: 1, prodTitle: 'bars', imageUrl: bar, price: '250.00' },
+      {
+        id: 2,
+        prodTitle: 'Hex Dumbbell Bundle [195kg]',
+        imageUrl: dumbbellsBbundle,
+        price: '549.00',
+      },
+      {
+        id: 3,
+        prodTitle: 'Hex Dumbbells [5-40kg]',
+        imageUrl: dumbbells,
+        price: '39.00',
+      },
+      { id: 4, prodTitle: 'multigym Machine', imageUrl: multigym, price: '250.00' },
+      { id: 5, prodTitle: 'treadmill', imageUrl: treadmill, price: '250.00' },
+      { id: 6, prodTitle: 'heavybag', imageUrl: heavybag, price: '250.00' },
+      { id: 7, prodTitle: 'stairmaster', imageUrl: stairmaster, price: '250.00' },
+      {
+        id: 8,
+        prodTitle: 'Air Hockey Table Game',
+        imageUrl: airHockey,
+        price: '250.00',
+      },
+      {
+        id: 9,
+        prodTitle: 'Kettler & indoor Bikes',
+        imageUrl: IndoorBike,
+        price: '250.00',
+      },
+    ],
+    []
+  );
 
   const swiperRef = useRef(null);
+
   useEffect(() => {
     if (swiperRef.current && swiperRef.current.swiper) {
       swiperRef.current.swiper.update();
     }
-  }, []);
+  }, [productsArr]);
 
   return (
     <div className="container products">
@@ -91,30 +112,9 @@ function Products() {
             prevEl: '.swiper-button-prev',
           }}
         >
-          {products.map((product, index) => (
-            <SwiperSlide key={index}>
-              <div className="card" id={index}>
-                <div className="product-info">
-                  <div className="photo">
-                    <img
-                      src={product.photo}
-                      alt={product.name}
-                      className="product-photo"
-                    />
-                  </div>
-                  <div className="product-text">
-                    <p className="product-name">{product.name}</p>
-                    <p className="product-price">
-                      <span className="prev-price">
-                      $
-                        {parseFloat(product.price) + 10 + .00}
-                      </span>{' '}
-                      to ${product.price}
-                    </p>
-                  </div>
-                </div>
-                <button>View Product</button>
-              </div>
+          {productsArr.map((product) => (
+            <SwiperSlide key={product.id}>
+              <ProductCard product={product} />
             </SwiperSlide>
           ))}
         </Swiper>

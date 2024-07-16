@@ -74,7 +74,9 @@ function Register() {
     <div className="register-page">
       <div className="register-container">
         <div className="register-header">
-          <p className="register-logo">BlueShell</p>
+          <a href="/">
+            <p className="register-logo">BlueShell</p>
+          </a>
           {/* <img src={photo} alt="Logo" className="register-logo" /> */}
         </div>
         <form onSubmit={handleSubmit} className="register-form">
