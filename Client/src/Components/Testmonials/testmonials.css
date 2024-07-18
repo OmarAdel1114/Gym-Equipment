@@ -42,9 +42,14 @@
   }
   
   .testimonial-text {
-    font-size: 1.2em;
+    font-size: clamp(1.4rem, 1.2em, 0.9rem);
     color: #555;
     margin-bottom: 10px;
+  }
+  @media screen and (max-width:768px) {
+    .testimonial-text {
+      font-size: 1rem;
+    }
   }
   
   .testimonial-name {

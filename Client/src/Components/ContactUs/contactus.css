@@ -22,6 +22,11 @@
   margin-bottom: 30px;
   color: #555;
 }
+@media screen and (max-width: 500px) {
+  .contact-us-section p {
+    font-size: 1.1rem;
+  }
+}
 
 .contact-form {
   display: flex;

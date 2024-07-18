@@ -37,15 +37,19 @@ function Nav() {
   return (
     <div className="container">
       <div className="side-menu">
-          <div id="close-btn" onClick={closeNav}>
-            <a href="#home" className='exit'>X</a>
-          </div>
+        <div id="close-btn" onClick={closeNav}>
+          <a href="#home" className="exit">
+            X
+          </a>
+        </div>
         <ul>
           <li>
             <a href="#home">Home</a>
           </li>
           <li>
-            <a href="/Shop" onClick={() => (window.location.href = '/Shop')}>SHOP</a>
+            <a href="/Shop" onClick={() => (window.location.href = '/Shop')}>
+              SHOP
+            </a>
           </li>
           <li>
             <a href="#ABOUT">ABOUT US</a>
@@ -53,7 +57,6 @@ function Nav() {
           <li>
             <a href=".contact-us">CONTACT</a>
           </li>
-         
         </ul>
         <div className="Lang">
           <div>
@@ -65,17 +68,18 @@ function Nav() {
         </div>
       </div>
 
-
       <div className="nav-bar">
         <div className="header">
           <div className="logo">
-            <img src={logo} alt="" />
+            <a href="/">
+              <img src={logo} alt="blue-shell-logo" />
+            </a>
           </div>
           <div className="nav-holder">
             {/* <ul className={isHovered ? 'nav-bar-hover' : 'nav-bar'}> */}
             <ul className={isHovered ? 'nav-bar' : 'nav-bar'}>
               <li>
-                <a href="/Home" className="item">
+                <a href="/" className="item">
                   HOME
                 </a>
               </li>
@@ -85,7 +89,11 @@ function Nav() {
                 </a>
               </li>
               <li>
-                <a href="/ABOUT" className="item" onClick={() => (window.location.href = '/Shop')}>
+                <a
+                  href="/ABOUT"
+                  className="item"
+                  onClick={() => (window.location.href = '/Shop')}
+                >
                   ABOUT US
                 </a>
               </li>

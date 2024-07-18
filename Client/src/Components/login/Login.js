@@ -49,7 +49,7 @@ function Login() {
     <div className="login-page">
       <div className="login-container">
         <div className="login-header">
-          <p className='login-logo'>BlueShell</p>
+          <a href='/'><p className='login-logo'>BlueShell</p></a>
           {/* <img src={photo} alt="Logo" className="login-logo" /> */}
         </div>
         <form onSubmit={handleSubmit} className="login-form">
