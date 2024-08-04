@@ -10,14 +10,22 @@ import Testmonials from './Components/Testmonials/Testmonials';
 import CTASection from './Components/CTASection/CTASection';
 import ContactUs from './Components/ContactUs/ContactUs';
 import Footer from './Components/Footer/Footer';
+import { ProductContext } from './Components/Context';
 
 
 function App() {
+
+
+  
   return (
     <div className="App">
       <Nav />
       <Landing />
+
+      <ProductContext.Provider>
       <Bestseller />
+      </ProductContext.Provider>
+      
       {/* <Sales /> */}
       <Products />
       {/* <About /> */}

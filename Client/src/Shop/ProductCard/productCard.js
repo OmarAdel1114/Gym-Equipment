@@ -23,7 +23,7 @@ function ProductCard({ product }) {
       </div>
       <button
         className="product-view"
-        onClick={() => (window.location.href = '/Shop')}
+        onClick={() => (window.location.href = '/AboutProduct')}
       >
         View Product
       </button>

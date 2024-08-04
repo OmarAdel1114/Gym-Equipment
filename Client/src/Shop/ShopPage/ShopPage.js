@@ -38,6 +38,7 @@ function ShopPage() {
   //     );
   //   });
 
+
   return (
     <div className="shop">
       <Nav />

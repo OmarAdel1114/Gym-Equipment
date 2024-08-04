@@ -1,9 +1,16 @@
-import React from 'react'
+import React from 'react';
+import './about.css';
+import Nav from '../Components/nav/Nav';
+// import Landing from '../Components/landing/Landing';
+import Footer from '../Components/Footer/Footer';
+import AboutUs from '../Components/About/AboutUs';
 
 function About() {
   return (
     <div>
-      this is about page
+      <Nav />
+      <AboutUs />
+      <Footer />
     </div>
   )
 }

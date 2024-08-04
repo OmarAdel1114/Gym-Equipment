@@ -32,9 +32,10 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  min-width: 300px; 
+  min-width: 300px;
 }
-.contact-form *, .contact-form label * {
+.contact-form *,
+.contact-form label * {
   font-family: 'roboto-light';
   font-weight: 600;
 }
@@ -77,4 +78,36 @@
 .contact-form button:hover {
   background-color: rgb(15, 105, 179);
   transform: scale(1.05);
+}
+.contact-us-section  .error-message {
+  color: red;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: 'roboto-light';
+  /* position: absolute; */
+}
+
+.contact-us-section .info {
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+}
+
+.contact-us-section .confirmation-message {
+  font-size: 1rem;
+  background-color: #ecfef0;
+  border-radius: 6px;
+  padding: 5px;
+  margin: 5px 0;
+  /* 
+  box-shadow: 5px 0 18px 1px gray;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%); */
+  font-weight: 500;
+  font-size: 0.8rem;
+  font-family: 'roboto-light';
+  color: #56ad6a;
+  border: solid 0.1rem #56ad6a;
 }

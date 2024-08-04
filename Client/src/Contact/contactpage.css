@@ -1,0 +1,57 @@
+.contact-page {
+    /* max-width: 800px; */
+    margin: auto;
+    padding: 0 20px 20px ;
+    text-align: center;
+  }
+  
+  /* .contact-page .photo-header {
+    background: url(../../src/assets/media/tinified.zip);
+  } */
+  
+  .contact-page .header-title {
+    background-image: url('../../src/assets/media/tinified/pexels-michal-packo-663414463-20201303.jpg');
+    background-size: cover;
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+    padding: 30px 0;
+
+    color: white;
+  }
+  
+  .contact-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .contact-item {
+    /* flex: 1 1 45%; */
+    display: flex;
+    align-items: center;
+    margin: 40px 0;
+    text-align: left;
+    padding: 20px;
+    transition: all 0.1s linear;
+  }
+
+  .contact-item:hover {
+    transform: translateY(-10px);
+  }
+  
+  .contact-icon {
+    font-size: 2em;
+    margin-right: 15px;
+  }
+  
+  .contact-item h2 {
+    margin: 0;
+    /* color: var(--primary-color); */
+  }
+  
+  .contact-item p {
+    margin: 5px 0 0;
+    font: italic normal 600 1rem/14px 'roboto-light';
+    color: var(--darken-color);
+}
+  

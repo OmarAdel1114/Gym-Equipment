@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import './nav.css';
-import Newlogo from '../../assets/media/NewLogo.webp';
 import logo from '../../assets/media/New_Blue Logo Whait_2 (2) (1).webp';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
@@ -98,7 +97,11 @@ function Nav() {
                 </a>
               </li>
               <li>
-                <a href="#contact-us" className="item">
+                <a
+                  href="/contactUs"
+                  className="item"
+                  onClick={() => (window.location.href = '/contact')}
+                >
                   CONTACT
                 </a>
               </li>

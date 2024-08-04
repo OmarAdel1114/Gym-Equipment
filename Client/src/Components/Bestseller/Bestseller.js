@@ -3,6 +3,7 @@ import './bestseller.css';
 import axios from 'axios';
 import ProductCard from '../../Shop/ProductCard/productCard';
 
+
 function Bestseller() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
