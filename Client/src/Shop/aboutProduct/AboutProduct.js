@@ -1,12 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './about-product.css';
 import Nav from '../../Components/nav/Nav';
 import Footer from '../../Components/Footer/Footer';
 import { ProductContext } from '../../Components/Context';
 import itemPhoto from '../../assets/media/products/bar.webp';
+import axios from 'axios';
 
 function AboutProduct() {
   const product = useContext(ProductContext);
+  const [productInfo, setProductInfo] = useState([]);
+  const [errors, setErrors] = useState(null);
 
   // Sample data for product specs and reviews
   const productSpecs = [
@@ -16,20 +19,42 @@ function AboutProduct() {
   ];
 
   const reviews = [
-    { user: 'John Doe', rating: 5, comment: 'Great quality product!' },
-    { user: 'Jane Smith', rating: 4, comment: 'Very sturdy and well-made.' },
+    {
+      user: 'John Doe',
+      rating: 5,
+      comment: 'Great quality product!',
+      date: '29/2/2023',
+    },
+    {
+      user: 'Jane Smith',
+      rating: 4,
+      comment: 'Very sturdy and well-made.',
+      date: '10/8/2024',
+    },
   ];
+
+  useEffect(() => {
+    const url =
+      'https://gym-equipment.vercel.app/api/products/668484114e15491299114e9e';
+
+    axios.get(url).then((res) => {
+      console.log(res);
+      setProductInfo(res.data.data);
+    });
+  }, []);
 
   return (
     <>
       <Nav />
       <div className="container-body about-product">
-        <h1 className="header-title">{product.ProductName}</h1>
+        <h1 className="header-title">About The Product </h1>
         <div className="item-wrapper">
-          <img src={itemPhoto} alt="item-description" />
+          <img src={productInfo.imageUrl} alt="item-description" />
           <div className="item-info">
-            <h2 className="item-name">7ft Hollow Axle Bar (12kg)</h2>
-            <p className="item-price">$120</p>
+            <h2 className="item-name">
+              {productInfo.color} {productInfo.prodTitle} {productInfo.brand}
+            </h2>
+            <p className="product-price"><span className='prev-price'>2100$</span>{productInfo.price} $ </p>
             <p className="item-description par-default">
               The Heavy duty 5-Bar Vertical Barbell Hanger is a must-have for
               any gym or fitness facility looking to maximize floor space and
@@ -43,7 +68,9 @@ function AboutProduct() {
               Barbell Hanger.
             </p>
             <div className="item-button">
-              <button className="add-to-cart-btn btn-default">Add To Cart</button>
+              <button className="add-to-cart-btn btn-default">
+                Add To Cart
+              </button>
               <button className="buy-now-btn btn-default">Buy Now</button>
             </div>
           </div>
@@ -63,7 +90,9 @@ function AboutProduct() {
             <h3>Reviews</h3>
             {reviews.map((review, index) => (
               <div key={index} className="review">
-                <p><strong>{review.user}</strong> ({review.rating} stars)</p>
+                <p>
+                  <strong>{review.user}</strong> ({review.rating} stars)
+                </p>
                 <p>{review.comment}</p>
               </div>
             ))}

@@ -16,7 +16,8 @@ function ShopPage() {
 
   useEffect(() => {
     // Fetch products from API
-    const url = 'https://gym-equipment.vercel.app/api/products';
+    const url =
+      'https://gym-equipment.vercel.app/api/products';
     axios
       .get(url)
       .then((response) => {
@@ -38,7 +39,6 @@ function ShopPage() {
   //     );
   //   });
 
-
   return (
     <div className="shop">
       <Nav />
@@ -53,8 +53,8 @@ function ShopPage() {
             <Filter onFilter={setFilter} />
           </div>
           <div className="products-grid">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {products.map((product, index) => (
+              <ProductCard key={index} product={product} />
             ))}
           </div>
         </div>
