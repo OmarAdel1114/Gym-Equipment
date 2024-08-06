@@ -4,6 +4,7 @@ import './about-product.css';
 import Nav from '../../Components/nav/Nav';
 import Footer from '../../Components/Footer/Footer';
 import axios from 'axios';
+import AppLayout from '../../Components/appLayout';
 
 function AboutProduct() {
   const { id } = useParams();
@@ -56,7 +57,8 @@ function AboutProduct() {
 
   return (
     <>
-      <Nav />
+      <AppLayout>
+
       <div className="container-body about-product">
         <h1 className="header-title">About The Product</h1>
         <div className="item-wrapper">
@@ -112,7 +114,8 @@ function AboutProduct() {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
+            </AppLayout>
     </>
   );
 }

@@ -10,11 +10,13 @@ import {
   faClock,
   faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
+import AppLayout from '../Components/appLayout';
 
 function ContactPage() {
   return (
     <>
-      <Nav />
+      <AppLayout>
+
       <div className="contact-page">
         <div className='photo-header'>
           <h1 className="header-title">Contact Us</h1>
@@ -51,7 +53,7 @@ function ContactPage() {
         </div>
         <ContactUs />
       </div>
-      <Footer />
+      </AppLayout>
     </>
   );
 }

@@ -3,7 +3,7 @@ import './nav.css';
 import logo from '../../assets/media/New_Blue Logo Whait_2 (2) (1).webp';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-function Nav() {
+function Nav({ toggleCart }) {
   const [isHovered, setIsHovered] = useState(null);
   const timeOutRef = useRef(null);
 
@@ -123,9 +123,8 @@ function Nav() {
               <i className="fa-regular fa-user"></i>
               <p id="login"> </p>
             </a>
-
             <div className="cart-icon">
-              <button className="cart-btn">
+              <button className="cart-btn" onClick={toggleCart}>
                 <i className="fa-solid fa-cart-shopping"></i>
               </button>
             </div>

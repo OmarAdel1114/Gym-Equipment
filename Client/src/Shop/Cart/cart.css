@@ -1,0 +1,110 @@
+/* cart.css */
+
+.cart-side-wrapper {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Hidden by default */
+    width: 300px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out; /* Smooth transition for sliding */
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Ensures contents do not overflow the sidebar */
+}
+
+/* Overlay to cover the background when cart is open */
+.cart-side-wrapper.open {
+    right: 0; /* Slide in */
+}
+
+/* .cart-side-wrapper.open::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 99; 
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+    pointer-events: none; 
+} */
+
+.cart-side-wrapper::before {
+    opacity: 0;
+}
+
+.cart-side-wrapper .close-button {
+    align-self: flex-end;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.cart-items-holder {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.item-info h4,
+.item-info p {
+    margin: 0;
+}
+
+.checkout-action {
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+}
+
+.checkout-action button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    font-family: 'roboto-light';
+    font-weight: 700;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.checkout-action a {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.checkout-action .anchor {
+    text-decoration: underline;
+    color: black;
+    font-family: 'roboto-light';
+}
+
+.cart-icon-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1001; /* Above other elements */
+}
+
+
+.no-scroll {
+    overflow: hidden;
+}
