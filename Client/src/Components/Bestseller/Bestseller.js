@@ -36,8 +36,8 @@ function Bestseller() {
       <h2 className="header-title">BEST SELLERS</h2>
       <h3 className="info">Items that prove useful to customers</h3>
       <div className="card-holder">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+        {products.map((product, index) => (
+          <ProductCard key={index} product={product} />
         ))}
       </div>
     </div>

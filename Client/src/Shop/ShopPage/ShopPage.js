@@ -6,22 +6,32 @@ import Footer from '../../Components/Footer/Footer';
 import ProductCard from '../ProductCard/productCard';
 import Search from '../searchbar/SearchBar';
 import Filter from '../FilterSidebar/FilterBar';
-
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function ShopPage() {
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filter, setFilter] = useState('');
 
+  const navigate = useNavigate();
+
+  const handleProductClick = (id) => {
+    if (id) {
+      navigate(`/product/${id}`);
+    }
+    else {
+      console.error('product ID is undefined')
+    }
+  };
+
   useEffect(() => {
     // Fetch products from API
-    const url =
-      'https://gym-equipment.vercel.app/api/products';
+    const url = 'https://gym-equipment.vercel.app/api/products/?page=1&perPage=3';
     axios
       .get(url)
       .then((response) => {
         setProducts(response.data.data.products);
+        console.log('fetched data : ' ,response.data.data.products)
       })
       .catch((error) => {
         console.error('Error fetching products:', error);
@@ -31,13 +41,6 @@ function ShopPage() {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  // const filteredProducts = products
-  //   .filter((product) => {
-  //     return (
-  //       product.name.includes(searchQuery) &&
-  //       (filter === '' || product.category === filter)
-  //     );
-  //   });
 
   return (
     <div className="shop">
@@ -54,7 +57,13 @@ function ShopPage() {
           </div>
           <div className="products-grid">
             {products.map((product, index) => (
-              <ProductCard key={index} product={product} />
+              <ProductCard
+                // key={product.id}
+                key={index}
+                // omar adel 3amel 3 products b nfs al id
+                product={product}
+                onClick={() => handleProductClick(product._id)}
+              />
             ))}
           </div>
         </div>

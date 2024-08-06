@@ -1,8 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function ProductCard({ product }) {
+function ProductCard({ product, onClick }) {
   return (
-    <div className="card" id={product.id}>
+    <div className="card" id={product._id} onClick={onClick}>
       <div className="photo">
         <img
           src={product.imageUrl}
@@ -12,7 +13,7 @@ function ProductCard({ product }) {
       </div>
       <div className="product-info">
         <p className="product-name">
-          {product.brand} {product.prodTitle}
+          {product.brand} {product.prodTitle} 
         </p>
         <p className="product-price">
           <span className="prev-price">
@@ -23,7 +24,7 @@ function ProductCard({ product }) {
       </div>
       <button
         className="product-view"
-        onClick={() => (window.location.href = '/AboutProduct')}
+        onClick={onClick}
       >
         View Product
       </button>

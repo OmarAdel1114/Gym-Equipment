@@ -1,5 +1,4 @@
-import { createContext } from "react";
+import { createContext } from 'react';
+import ProductInfo from '../Shop/aboutProduct/AboutProduct';
 
-import  ProductCard from '../Shop/ProductCard/productCard'
-
-export const ProductContext = createContext(ProductCard);
+export const ProductContext = createContext(ProductInfo);
