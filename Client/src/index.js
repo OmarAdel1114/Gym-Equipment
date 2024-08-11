@@ -10,46 +10,81 @@ import ShopPage from './Shop/ShopPage/ShopPage';
 import About from './About/About';
 import ContactPage from './Contact/ContactPage';
 import AboutProduct from './Shop/aboutProduct/AboutProduct';
+import { ProductProvider } from './Components/Context';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: (
+      // <ProductProvider>
+        <Home />
+      // </ProductProvider>
+    ),
   },
   {
     path: '/Home',
-    element: <Home />,
+    element: (
+      // <ProductProvider>
+        <Home />
+      // </ProductProvider>
+    ),
   },
   {
     path: '/Login',
-    element: <Login />,
+    element: (
+      // <ProductProvider>
+        <Login />
+      // </ProductProvider>
+    ),
   },
   {
     path: '/Register',
-    element: <Register />,
+    element: (
+      // <ProductProvider>
+        <Register />
+      // </ProductProvider>
+    ),
   },
   {
     path: '/shop',
-    element: <ShopPage />,
+    element: (
+      // <ProductProvider>
+        <ShopPage />
+      // </ProductProvider>
+    ),
   },
   {
     path: '/about',
-    element: <About />,
+    element: (
+      // <ProductProvider>
+        <About />
+      // </ProductProvider>
+    ),
   },
   {
     path: '/contactUs',
-    element: <ContactPage />,
+    element: (
+      // <ProductProvider>
+        <ContactPage />
+      // </ProductProvider>
+    ),
   },
   {
-    path: '/product/:id',
-    element: <AboutProduct />,
+    path: '/:product/:id',
+    element: (
+      // <ProductProvider>
+        <AboutProduct />
+      // </ProductProvider>
+    ),
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ProductProvider>
+      <RouterProvider router={router} />
+    </ProductProvider>
   </React.StrictMode>
 );
 

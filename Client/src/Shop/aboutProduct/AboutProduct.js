@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
 import './about-product.css';
-import Nav from '../../Components/nav/Nav';
-import Footer from '../../Components/Footer/Footer';
 import axios from 'axios';
 import AppLayout from '../../Components/appLayout';
+import { ProductContext } from '../../Components/Context';
 
 function AboutProduct() {
   const { id } = useParams();
   const [productInfo, setProductInfo] = useState(null);
   const [errors, setErrors] = useState(null);
+  const { addToCartCont } = useContext(ProductContext);
 
   const productSpecs = [
     { label: 'Weight', value: '12kg' },
@@ -47,6 +47,9 @@ function AboutProduct() {
       });
   }, [id]);
 
+  const location = useLocation();
+  const path = location.pathname;
+
   if (errors) {
     return <div>Error loading product details.</div>;
   }
@@ -55,12 +58,14 @@ function AboutProduct() {
     return <div>Loading...</div>;
   }
 
-  return (
-    <>
-      <AppLayout>
+  if (!addToCartCont) {
+    return <div>Error: Product context not found.</div>;
+  }
 
+  return (
+    <AppLayout>
       <div className="container-body about-product">
-        <h1 className="header-title">About The Product</h1>
+        <p className="header-title">Home/ Shop {path}</p>
         <div className="item-wrapper">
           <img src={productInfo.imageUrl} alt="item-description" />
           <div className="item-info">
@@ -68,22 +73,16 @@ function AboutProduct() {
               {productInfo.color} {productInfo.prodTitle} {productInfo.brand}
             </h2>
             <p className="product-price">
-              <span className="prev-price">2100$</span> {productInfo.price} $
+              <span className="prev-price">2100$</span> {productInfo.price}$
             </p>
             <p className="item-description par-default">
-              The Heavy duty 5-Bar Vertical Barbell Hanger is a must-have for
-              any gym or fitness facility looking to maximize floor space and
-              keep equipment organized. This hanger bolts securely to the wall
-              and can store up to five Olympic barbells vertically, saving
-              valuable floor space for workouts. Made with durable 5mm thick
-              precision laser cut steel, this hanger is designed to safely and
-              securely hold your barbells in place, making it easy to grab the
-              one you need for your next lift. Say goodbye to cluttered floors
-              and hello to efficient organization with the 5-Bar Vertical
-              Barbell Hanger.
+              {productInfo.description}
             </p>
             <div className="item-button">
-              <button className="add-to-cart-btn btn-default">
+              <button
+                className="add-to-cart-btn btn-default"
+                onClick={() => addToCartCont(productInfo)}
+              >
                 Add To Cart
               </button>
               <button className="buy-now-btn btn-default">Buy Now</button>
@@ -114,9 +113,7 @@ function AboutProduct() {
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
-            </AppLayout>
-    </>
+    </AppLayout>
   );
 }
 

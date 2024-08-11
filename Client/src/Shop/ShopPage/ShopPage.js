@@ -14,9 +14,9 @@ function ShopPage() {
 
   const navigate = useNavigate();
 
-  const handleProductClick = (id) => {
+  const handleProductClick = (id, product) => {
     if (id) {
-      navigate(`/product/${id}`);
+      navigate(`/${product}/${id}`);
     } else {
       console.error('Product ID is undefined');
     }
@@ -24,7 +24,8 @@ function ShopPage() {
 
   React.useEffect(() => {
     // Fetch products from API
-    const url = 'https://gym-equipment.vercel.app/api/products/?page=1&perPage=3';
+    const url =
+      'https://gym-equipment.vercel.app/api/products/?page=1&perPage=3';
     axios
       .get(url)
       .then((response) => {
@@ -56,7 +57,9 @@ function ShopPage() {
                 <ProductCard
                   key={product._id}
                   product={product}
-                  onClick={() => handleProductClick(product._id)}
+                  onClick={() =>
+                    handleProductClick(product._id, product.prodTitle)
+                  }
                 />
               ))}
             </div>

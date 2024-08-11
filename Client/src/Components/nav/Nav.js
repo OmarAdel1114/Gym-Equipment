@@ -1,11 +1,15 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import './nav.css';
 import logo from '../../assets/media/New_Blue Logo Whait_2 (2) (1).webp';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { ProductContext } from '../Context';
 
-function Nav({ toggleCart }) {
+function Nav({ togglecart }) {
   const [isHovered, setIsHovered] = useState(null);
   const timeOutRef = useRef(null);
+
+  const cartItems = useContext(ProductContext);
+
 
   const hoverMouseEnter = (i) => {
     setIsHovered(i);
@@ -124,7 +128,7 @@ function Nav({ toggleCart }) {
               <p id="login"> </p>
             </a>
             <div className="cart-icon">
-              <button className="cart-btn" onClick={toggleCart}>
+              <button className = {`cart-btn ${cartItems.length > 0?'has-item': ""}`} onClick={togglecart} >
                 <i className="fa-solid fa-cart-shopping"></i>
               </button>
             </div>

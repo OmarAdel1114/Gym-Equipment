@@ -114,7 +114,7 @@ function Products() {
         >
           {productsArr.map((product) => (
             <SwiperSlide key={product.id}>
-              <ProductCard product={product} />
+              <ProductCard product={product} onClick={() => window.location.href = '/shop'}/>
             </SwiperSlide>
           ))}
         </Swiper>

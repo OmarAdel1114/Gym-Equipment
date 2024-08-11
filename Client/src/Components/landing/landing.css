@@ -74,7 +74,8 @@
   text-transform: uppercase;
 }
 
-.landing button, .btn-default {
+.landing button,
+.btn-default {
   width: fit-content;
   margin: 25px 4px;
   padding: 15px 30px;
@@ -108,8 +109,8 @@
 
   .landing {
     /* background: url(http://localhost:3000/static/media/pexels-michal-packo-663414463-20201303.abf8805a097badd9f09e.webp) */
-    background: url('../../../src/assets/media/tinified.zip')
-      no-repeat cover center;
+    background: url('../../../src/assets/media/tinified.zip') no-repeat cover
+      center;
   }
 }
 

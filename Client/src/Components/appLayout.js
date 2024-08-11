@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Nav from './nav/Nav';
 import Footer from './Footer/Footer';
 import Cart from '../Shop/Cart/Cart';
+import { ProductProvider } from './Context';
 // import './AppLayout.css';
 
 function AppLayout({ children }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const toggleCart = () => {
+  const togglecart = () => {
     setIsCartOpen(!isCartOpen);
   };
 
@@ -19,13 +20,14 @@ function AppLayout({ children }) {
     }
   }, [isCartOpen]);
 
-
   return (
     <div className="app-layout">
-      <Nav toggleCart={toggleCart} />
-      <Cart isOpen={isCartOpen} closeCart={toggleCart} />
-      <main toggleCart={toggleCart}>{children}</main>
-      <Footer />
+      {/* <ProductProvider> */}
+        <Nav togglecart={togglecart} />
+        <Cart isOpen={isCartOpen} closeCart={togglecart} />
+        <main >{children}</main>
+        <Footer />
+      {/* </ProductProvider> */}
     </div>
   );
 }

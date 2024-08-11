@@ -16,7 +16,7 @@ function Bestseller() {
       .get(url)
       .then((response) => {
         setProducts(response.data.data.products);
-        console.log(response.data.data.products);
+        // console.log(response.data.data.products);
         response.status === 200 ? setLoading(false) : setLoading(true);
       })
       .catch((error) => {
@@ -37,7 +37,7 @@ function Bestseller() {
       <h3 className="info">Items that prove useful to customers</h3>
       <div className="card-holder">
         {products.map((product, index) => (
-          <ProductCard key={index} product={product} />
+          <ProductCard key={index} product={product} onclick={() => window.location.href = '/shop'} />
         ))}
       </div>
     </div>
