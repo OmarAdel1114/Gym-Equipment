@@ -37,7 +37,7 @@
 .card {
   position: relative;
   min-height: 350px;
-  width: clamp(200px , 350px, 400px);
+  width: clamp(200px , 400px, 420px);
   margin: 15px;
   display: flex;
   flex-direction: column;
@@ -156,6 +156,7 @@
 }
 .card .product-info .product-name {
   margin-bottom: 20px;
+  font-size: 1.3rem;
 }
 
 
