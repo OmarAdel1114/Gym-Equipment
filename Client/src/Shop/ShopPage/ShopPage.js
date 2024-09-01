@@ -25,7 +25,7 @@ function ShopPage() {
   React.useEffect(() => {
     // Fetch products from API
     const url =
-      'https://gym-equipment.vercel.app/api/products/?page=1&perPage=3';
+      'https://gym-equipment.vercel.app/api/products/?page=1&perPage=10';
     axios
       .get(url)
       .then((response) => {

@@ -13,7 +13,8 @@ function ProductCard({ product, onClick }) {
       </div>
       <div className="product-info">
         <p className="product-name">
-          {product.brand} {product.prodTitle} 
+        {/* {product.brand}  */}
+          {product.prodTitle} 
         </p>
         <p className="product-price">
           <span className="prev-price">
