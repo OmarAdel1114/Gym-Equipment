@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { ratings } = require("stars-schema");
 
 const productSchema = new mongoose.Schema({
   prodTitle: {
@@ -27,13 +28,15 @@ const productSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
+    required: false,
   },
 
-  //description: String,
+  //description: String done
   // rating out of five
-  // if possible ad d comments
+  // if possible add comments
   // check if possible to add more than one image to the same products
 });
+
+productSchema.plugin(ratings, { name: "stars", levels: [1, 2, 3, 4, 5] });
 
 module.exports = mongoose.model("products", productSchema);

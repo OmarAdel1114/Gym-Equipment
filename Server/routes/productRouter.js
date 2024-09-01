@@ -14,7 +14,10 @@ router.get("/", async (req, res) => {
     const perPage = parseInt(req.query.perPage) || 3; // Default to 3 products per page
     const skipCount = (page - 1) * perPage;
 
-    const products = await Product.find({}, { __v: 0, color: 0, publicId: 0 })
+    const products = await Product.find(
+      {},
+      { __v: 0, color: 0, publicId: 0, id: 0 }
+    )
       .skip(skipCount)
       .limit(perPage);
 
@@ -52,9 +55,16 @@ router.post(
   upload.single("productImage"),
   async (req, res) => {
     try {
-      const { prodTitle, price, brand, color } = req.body;
+      const { prodTitle, price, brand, color, description } = req.body;
 
-      if (!prodTitle || !price || !brand || !color || !req.file) {
+      if (
+        !prodTitle ||
+        !price ||
+        !brand ||
+        !color ||
+        !description ||
+        !req.file
+      ) {
         console.log("All attributes must be provided");
       }
 
@@ -65,6 +75,7 @@ router.post(
         price,
         brand,
         color,
+        description,
         imageUrl: data.url,
         publicId: data.public_id,
       });
@@ -123,6 +134,45 @@ router.patch("/:id", verifyToken, async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json("internal server error");
+  }
+});
+
+// Add a star rating for a product
+router.post("/rate/:id", verifyToken, async (req, res) => {
+  try {
+    const { stars } = req.body; // Expects 'stars' to be a number from 1 to 5
+
+    // Validate the stars input
+    if (stars == null || typeof stars !== "number" || stars < 1 || stars > 5) {
+      return res
+        .status(400)
+        .json({ message: "Stars must be a number between 1 and 5." });
+    }
+
+    // Find the product by ID
+    const product = await Product.findById(req.params.id);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    // Use the $inc operator to increment the stars count for the given rating level
+    const update = { [`stars.${stars}`]: 1 };
+
+    // Update the product's rating using the findOneAndUpdate method
+    const updatedProduct = await Product.findByIdAndUpdate(
+      req.params.id,
+      { $inc: update },
+      { new: true }
+    );
+
+    res.json({
+      message: "Rating updated successfully",
+      product: updatedProduct,
+    });
+  } catch (err) {
+    console.error("Error caught:", err.message);
+    res.status(500).json({ message: err.message });
   }
 });
 
