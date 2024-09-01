@@ -25,6 +25,15 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  description: {
+    type: String,
+    required: true,
+  },
+
+  //description: String,
+  // rating out of five
+  // if possible ad d comments
+  // check if possible to add more than one image to the same products
 });
 
 module.exports = mongoose.model("products", productSchema);
