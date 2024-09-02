@@ -32,7 +32,7 @@ const productSchema = new mongoose.Schema({
   },
 
   //description: String done
-  // rating out of five
+  // rating out of five done 
   // if possible add comments
   // check if possible to add more than one image to the same products
 });
