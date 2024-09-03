@@ -52,7 +52,7 @@ router.get("/:id", async (req, res) => {
 router.post(
   "/add",
   verifyToken,
-  upload.single("productImage"),
+  upload.array("productImage",5),
   async (req, res) => {
     try {
       const { prodTitle, price, brand, color, description } = req.body;
@@ -63,12 +63,21 @@ router.post(
         !brand ||
         !color ||
         !description ||
-        !req.file
+        !req.files ||
+        req.files.length === 0
       ) {
         console.log("All attributes must be provided");
       }
 
-      data = await uploadToCloudinary(req.file.path, "product-images");
+      // Upload all images to Cloudinary and collect their URLs and public IDs
+      const imageUploadPromises = req.files.map((file) =>
+        uploadToCloudinary(file.path, "product-images")
+      );
+      const imageUploadResults = await Promise.all(imageUploadPromises);
+
+      // Extract URLs and public IDs from the upload results
+      const imageUrls = imageUploadResults.map((result) => result.url);
+      const publicIds = imageUploadResults.map((result) => result.public_id);
 
       const product = new Product({
         prodTitle,
@@ -76,8 +85,8 @@ router.post(
         brand,
         color,
         description,
-        imageUrl: data.url,
-        publicId: data.public_id,
+        imageUrl: imageUrls,
+        publicId: publicIds,
       });
 
       const newProduct = await product.save();
