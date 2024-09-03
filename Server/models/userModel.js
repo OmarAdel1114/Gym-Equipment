@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const Product = require('./productModel');
+const Product = require("./productModel");
 
 const userSchema = new mongoose.Schema({
   firstName: {
@@ -43,7 +43,12 @@ const userSchema = new mongoose.Schema({
   refreshToken: {
     type: String,
   },
-  
+  reviews: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Review", // Reference to the Review model
+    },
+  ],
 });
 
 module.exports = mongoose.model("users", userSchema);

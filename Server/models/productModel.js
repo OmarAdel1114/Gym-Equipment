@@ -30,11 +30,17 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  reviews: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Review", // Reference to the Review model
+    },
+  ],
 
   //description: String done
   // rating out of five done
   // if possible add comments
-  // check if possible to add more than one image to the same products
+  // check if possible to add more than one image to the same products done
 });
 
 productSchema.plugin(ratings, { name: "stars", levels: [1, 2, 3, 4, 5] });

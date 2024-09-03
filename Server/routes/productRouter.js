@@ -3,6 +3,8 @@ const router = express.Router();
 router.use(express.json());
 const mongoose = require("mongoose");
 const Product = require("../models/productModel");
+const Review = require("../models/reviewModel");
+const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const verifyToken = require("../middleware/auth.middleware");
 const upload = require("../middleware/upload");
@@ -52,7 +54,7 @@ router.get("/:id", async (req, res) => {
 router.post(
   "/add",
   verifyToken,
-  upload.array("productImage",5),
+  upload.array("productImage", 5),
   async (req, res) => {
     try {
       const { prodTitle, price, brand, color, description } = req.body;
@@ -149,8 +151,9 @@ router.patch("/:id", verifyToken, async (req, res) => {
 // Add a star rating for a product
 router.post("/rate/:id", verifyToken, async (req, res) => {
   try {
-    const { stars } = req.body; // Expects 'stars' to be a number from 1 to 5
-
+    const { stars, comment } = req.body; // Expects 'stars' to be a number from 1 to 5
+    const userId = req.userId; // Assume user ID is available in the request
+    console.log("User ID from middleware:", userId); // Log userId
     // Validate the stars input
     if (stars == null || typeof stars !== "number" || stars < 1 || stars > 5) {
       return res
@@ -175,8 +178,36 @@ router.post("/rate/:id", verifyToken, async (req, res) => {
       { new: true }
     );
 
+    // If a comment is provided, create a review
+    if (comment) {
+      // Create a new review
+      const review = new Review({
+        userId,
+        productId: req.params.id,
+        rating: stars,
+        comment,
+      });
+
+      // Save the review
+      await review.save();
+
+      // Update the product with the new review
+      await Product.findByIdAndUpdate(
+        req.params.id,
+        { $push: { reviews: review._id } },
+        { new: true }
+      );
+
+      // Optionally, update the user with the new review
+      await User.findByIdAndUpdate(
+        userId,
+        { $push: { reviews: review._id } },
+        { new: true }
+      );
+    }
+
     res.json({
-      message: "Rating updated successfully",
+      message: "Rating and review updated successfully",
       product: updatedProduct,
     });
   } catch (err) {
