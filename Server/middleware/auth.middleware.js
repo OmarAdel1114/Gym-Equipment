@@ -11,11 +11,14 @@ function verifyToken(req, res, next) {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    req.userId = decoded.userId;
+    console.log("Decoded token:", decoded);
+    req.userId = decoded.id;
     next();
   } catch (error) {
-    if (error.name === 'TokenExpiredError') {
-      return res.status(401).json({ error: "Token expired, please refresh your token" });
+    if (error.name === "TokenExpiredError") {
+      return res
+        .status(401)
+        .json({ error: "Token expired, please refresh your token" });
     }
     res.status(401).json({ error: "Invalid token" });
   }
