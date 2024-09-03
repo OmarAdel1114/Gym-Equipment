@@ -4,12 +4,21 @@ import './about-product.css';
 import axios from 'axios';
 import AppLayout from '../../Components/appLayout';
 import { ProductContext } from '../../Components/Context';
+import StarRating from '../starRating/StarRating';
 
 function AboutProduct() {
   const { id } = useParams();
   const [productInfo, setProductInfo] = useState(null);
   const [errors, setErrors] = useState(null);
   const { addToCartCont } = useContext(ProductContext);
+
+  const description = `
+  Lorem ipsum dolor sit amet, consectetur
+   adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+    dolore magna aliqua Lorem ipsum dolor sit amet, consectetur
+   adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+    dolore magna aliqua.
+`;
 
   const productSpecs = [
     { label: 'Weight', value: '12kg' },
@@ -48,7 +57,9 @@ function AboutProduct() {
   }, [id]);
 
   const location = useLocation();
-  const path = location.pathname;
+  const path = location.pathname.split('/');
+  path.pop();
+  const newPath = path.join('/');
 
   if (errors) {
     return <div>Error loading product details.</div>;
@@ -62,21 +73,25 @@ function AboutProduct() {
     return <div>Error: Product context not found.</div>;
   }
 
+  console.log(productInfo);
   return (
     <AppLayout>
       <div className="container-body about-product">
-        <p className="header-title">Home/ Shop {path}</p>
+        <p className="header-title">Home/ Shop {newPath}</p>
         <div className="item-wrapper">
           <img src={productInfo.imageUrl} alt="item-description" />
           <div className="item-info">
             <h2 className="item-name">
-              {productInfo.color} {productInfo.prodTitle} {productInfo.brand}
+              <span className="brand">{productInfo.brand}</span>
+              {productInfo.color} {productInfo.prodTitle}
+              <StarRating rating={(productInfo.rating = 5)} totalStars={5} />
             </h2>
+            <p className="stars"></p>
             <p className="product-price">
               <span className="prev-price">2100$</span> {productInfo.price}$
             </p>
             <p className="item-description par-default">
-              {productInfo.description}
+              {description}
             </p>
             <div className="item-button">
               <button

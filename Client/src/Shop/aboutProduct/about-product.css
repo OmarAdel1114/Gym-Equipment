@@ -32,18 +32,29 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
-.item-name {
-  font-size: 24px;
-  color: var(--primary-color);
+.item-name , .brand{
+  font-size: 2rem;
+  color: var(--darken-color);
   margin-bottom: 5px;
 }
+.item-info .brand {
+  margin: 0 10px 0 0;
+  text-transform: uppercase;
+}
 
-.product-price {
-  font-size: 20px;
+.stars {
+  margin: 0;
+}
+
+
+.item-info .product-price,.item-info .prev-price {
+  font-size: 1.4rem;
   color: black;
+  font-family: "roboto-light";
+  /* font-family: sans-serif; */
   margin: 5px 0 15px;
 }
 
@@ -53,15 +64,15 @@
   color: #757575;
 }
 
-.item-description {
-  font-size: 14px;
+.item-info .item-description {
+  font-size: 1rem;
   color: #555;
   line-height: 1.6;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .item-button {
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
