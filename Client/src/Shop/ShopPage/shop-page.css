@@ -94,6 +94,9 @@
   justify-content: space-between;
   /* justify-content: center; */
 }
+.shop .card {
+  width: 400px;
+}
 
 
 

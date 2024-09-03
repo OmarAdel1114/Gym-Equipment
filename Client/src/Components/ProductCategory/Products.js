@@ -88,6 +88,7 @@ function Products() {
             },
             640: {
               slidesPerView: 2,
+              centeredSlides: true,
             },
             768: {
               slidesPerView: 2,

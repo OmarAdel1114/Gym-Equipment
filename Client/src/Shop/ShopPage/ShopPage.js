@@ -21,6 +21,7 @@ function ShopPage() {
       console.error('Product ID is undefined');
     }
   };
+  
 
   React.useEffect(() => {
     // Fetch products from API

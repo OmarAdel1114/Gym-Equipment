@@ -125,3 +125,12 @@
   }
   
 }
+
+.products .card {
+  width: 300px;
+}
+
+
+.products .product-holder .product-photo {
+ height: 100%;
+}
