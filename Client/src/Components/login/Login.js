@@ -1,14 +1,17 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './login.css';
 // import photo from '../../assets/media/New_Blue Logo Whait_2 (2) (1).webp';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../AuthContext';
 
 function Login() {
   const [email, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({ email: '', password: '' });
   const navigate = useNavigate();
+
+  const { login } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,28 +42,27 @@ function Login() {
         {
           email,
           password,
-        },
-        {
-          withCredentials: true,
         }
+        // {
+        //   withCredentials: true,
+        // }
       );
 
       // authentication request
-      //
 
       if (response.status === 200) {
         console.log('Login successful:', response.data);
-        console.log(response);
+        // console.log(response);
         const token = response.data.data.accessToken;
-        const userId = response.data.data.userId
+        const userId = response.data.data.user._id;
+        console.log(userId);
 
-        localStorage.setItem('accessToken: ', token);
-        localStorage.setItem('user ID: ', userId)
+        login(token, userId);
+
         // to get the access token from the request and put it in the local storage
         // try to push a request with the token
 
         // in the cart for example , make ssure to put in header -> the authorization : Bearer ${token}
-        console.log(token);
         navigate('/home'); // Navigate to the dashboard or another appropriate route
       } else {
         console.log('Unexpected response status:', response.status);

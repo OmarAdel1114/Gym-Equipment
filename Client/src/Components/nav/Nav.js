@@ -3,6 +3,7 @@ import './nav.css';
 import logo from '../../assets/media/New_Blue Logo Whait_2 (2) (1).webp';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { ProductContext } from '../Context';
+import { AuthContext } from '../AuthContext';
 
 function Nav({ togglecart }) {
   const [isHovered, setIsHovered] = useState(null);
@@ -10,6 +11,7 @@ function Nav({ togglecart }) {
 
   const cartItems = useContext(ProductContext);
 
+  const { isAuthenticated, userId, login, logout } = useContext(AuthContext);
 
   const hoverMouseEnter = (i) => {
     setIsHovered(i);
@@ -124,11 +126,21 @@ function Nav({ togglecart }) {
               href="/Login"
               onClick={() => (window.location.href = '/Login')}
             >
-              <i className="fa-regular fa-user"></i>
+              {isAuthenticated ? (
+                <div>
+                  <p>Welcome, User {userId}</p>
+                  <button onClick={logout}>Logout</button>
+                </div>
+              ) : (
+                <i className="fa-regular fa-user"></i>
+              )}
               <p id="login"> </p>
             </a>
             <div className="cart-icon">
-              <button className = {`cart-btn ${cartItems.length > 0?'has-item': ""}`} onClick={togglecart} >
+              <button
+                className={`cart-btn ${cartItems.length > 0 ? 'has-item' : ''}`}
+                onClick={togglecart}
+              >
                 <i className="fa-solid fa-cart-shopping"></i>
               </button>
             </div>

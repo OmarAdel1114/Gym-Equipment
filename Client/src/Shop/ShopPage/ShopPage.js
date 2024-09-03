@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './shop-page.css';
 import axios from 'axios';
 import AppLayout from '../../Components/appLayout';
@@ -21,7 +21,6 @@ function ShopPage() {
       console.error('Product ID is undefined');
     }
   };
-  
 
   React.useEffect(() => {
     // Fetch products from API
@@ -36,6 +35,27 @@ function ShopPage() {
         console.error('Error fetching products:', error);
       });
   }, []);
+
+  const isAuthenticated = true; // Replace with your authentication logic
+  const token = localStorage.getItem('accessToken');
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login'); // Redirect to login page if user is not authenticated
+    }
+    axios
+      .get('https://gym-equipment.vercel.app/api/', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [isAuthenticated, navigate, token]);
 
   const location = useLocation();
   const currentPath = location.pathname;

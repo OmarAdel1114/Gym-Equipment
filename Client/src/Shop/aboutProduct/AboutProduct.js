@@ -60,6 +60,7 @@ function AboutProduct() {
   const path = location.pathname.split('/');
   path.pop();
   const newPath = path.join('/');
+  console.log(productInfo);
 
   if (errors) {
     return <div>Error loading product details.</div>;
@@ -90,9 +91,13 @@ function AboutProduct() {
             <p className="product-price">
               <span className="prev-price">2100$</span> {productInfo.price}$
             </p>
-            <p className="item-description par-default">
-              {description}
-            </p>
+            {productInfo.description ? (
+              <p className="item-description par-default">
+                {productInfo.description}
+              </p>
+            ) : (
+              <p className="item-description par-default">{description}</p>
+            )}
             <div className="item-button">
               <button
                 className="add-to-cart-btn btn-default"
