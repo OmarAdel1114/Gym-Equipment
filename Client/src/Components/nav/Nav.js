@@ -11,24 +11,15 @@ function Nav({ togglecart }) {
 
   const cartItems = useContext(ProductContext);
 
-  const { isAuthenticated, userId, login, logout } = useContext(AuthContext);
+  const { isAuthenticated, userId, handlelogin, logout } =
+    useContext(AuthContext);
+  // console.log(isAuthenticated)
 
   const hoverMouseEnter = (i) => {
     setIsHovered(i);
     if (timeOutRef.current) {
-      // clearTimeout(timeOutRef.current);
     }
-    // console.log(`is Hovered: ${isHovered}`);
-    // const list = document.createElement("div");
-    // list.className = "drop-down-list";
-    // list.appendChild(e.target)
   };
-
-  // const hoverMouseLeave = () => {
-  //   timeOutRef.current = setTimeout(() => {
-  //     setIsHovered(null);
-  //   }, 200);
-  // };
 
   function openNav() {
     document.querySelector('.side-menu').style.width = '300px';
@@ -81,7 +72,6 @@ function Nav({ togglecart }) {
             </a>
           </div>
           <div className="nav-holder">
-            {/* <ul className={isHovered ? 'nav-bar-hover' : 'nav-bar'}> */}
             <ul className={isHovered ? 'nav-bar' : 'nav-bar'}>
               <li>
                 <a href="/" className="item">
@@ -115,11 +105,6 @@ function Nav({ togglecart }) {
           </div>
 
           <div className="center-holder">
-            {/* <div className="search-bar">
-              <input placeholder={`I'm shopping for`} />
-              <i className="fa-solid fa-magnifying-glass"></i>
-            </div> */}
-
             <a
               className="login"
               rel="stylesheet"
@@ -127,9 +112,13 @@ function Nav({ togglecart }) {
               onClick={() => (window.location.href = '/Login')}
             >
               {isAuthenticated ? (
-                <div>
-                  <p>Welcome, User {userId}</p>
-                  <button onClick={logout}>Logout</button>
+                <div className="logged-in">
+                  <div className="scrolling-holder">
+                    <p>user{userId[0]},thanks for choosing us</p>
+                  </div>
+                  <button onClick={logout} className="logout-btn">
+                    Logout
+                  </button>
                 </div>
               ) : (
                 <i className="fa-regular fa-user"></i>

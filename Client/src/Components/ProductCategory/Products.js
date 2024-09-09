@@ -42,10 +42,20 @@ function Products() {
         imageUrl: dumbbells,
         price: '39.00',
       },
-      { id: 4, prodTitle: 'multigym Machine', imageUrl: multigym, price: '250.00' },
+      {
+        id: 4,
+        prodTitle: 'multigym Machine',
+        imageUrl: multigym,
+        price: '250.00',
+      },
       { id: 5, prodTitle: 'treadmill', imageUrl: treadmill, price: '250.00' },
       { id: 6, prodTitle: 'heavybag', imageUrl: heavybag, price: '250.00' },
-      { id: 7, prodTitle: 'stairmaster', imageUrl: stairmaster, price: '250.00' },
+      {
+        id: 7,
+        prodTitle: 'stairmaster',
+        imageUrl: stairmaster,
+        price: '250.00',
+      },
       {
         id: 8,
         prodTitle: 'Air Hockey Table Game',
@@ -115,7 +125,10 @@ function Products() {
         >
           {productsArr.map((product) => (
             <SwiperSlide key={product.id}>
-              <ProductCard product={product} onClick={() => window.location.href = '/shop'}/>
+              <ProductCard
+                product={product}
+                onClick={() => (window.location.href = '/shop')}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

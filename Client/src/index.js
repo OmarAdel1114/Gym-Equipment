@@ -11,13 +11,14 @@ import About from './About/About';
 import ContactPage from './Contact/ContactPage';
 import AboutProduct from './Shop/aboutProduct/AboutProduct';
 import { ProductProvider } from './Components/Context';
+import AuthProvider from './Components/AuthContext';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: (
       // <ProductProvider>
-        <Home />
+      <Home />
       // </ProductProvider>
     ),
   },
@@ -25,23 +26,23 @@ const router = createBrowserRouter([
     path: '/Home',
     element: (
       // <ProductProvider>
-        <Home />
+      <Home />
       // </ProductProvider>
     ),
   },
   {
     path: '/Login',
     element: (
-      // <ProductProvider>
+      <AuthProvider>
         <Login />
-      // </ProductProvider>
+      </AuthProvider>
     ),
   },
   {
     path: '/Register',
     element: (
       // <ProductProvider>
-        <Register />
+      <Register />
       // </ProductProvider>
     ),
   },
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
     path: '/shop',
     element: (
       // <ProductProvider>
-        <ShopPage />
+      <ShopPage />
       // </ProductProvider>
     ),
   },
@@ -57,7 +58,7 @@ const router = createBrowserRouter([
     path: '/about',
     element: (
       // <ProductProvider>
-        <About />
+      <About />
       // </ProductProvider>
     ),
   },
@@ -65,7 +66,7 @@ const router = createBrowserRouter([
     path: '/contactUs',
     element: (
       // <ProductProvider>
-        <ContactPage />
+      <ContactPage />
       // </ProductProvider>
     ),
   },
@@ -73,7 +74,7 @@ const router = createBrowserRouter([
     path: '/:product/:id',
     element: (
       // <ProductProvider>
-        <AboutProduct />
+      <AboutProduct />
       // </ProductProvider>
     ),
   },

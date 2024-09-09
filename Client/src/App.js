@@ -21,10 +21,10 @@ function App() {
 
   return (
     <div className="App">
-      <AuthProvider>
-        <ProductProvider>
-          <AppLayout>
-            <Cart isOpen={isCartOpen} closeCart={togglecart} />
+      <ProductProvider>
+        <AppLayout>
+          {/* <AuthProvider> */}
+            {/* <Cart isOpen={isCartOpen} closeCart={togglecart} /> */}
             <Landing />
             <Bestseller />
             <Products />
@@ -32,9 +32,9 @@ function App() {
             <Testmonials />
             <CTASection />
             <ContactUs />
-          </AppLayout>
-        </ProductProvider>
-      </AuthProvider>
+          {/* </AuthProvider> */}
+        </AppLayout>
+      </ProductProvider>
     </div>
   );
 }

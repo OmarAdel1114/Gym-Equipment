@@ -3,13 +3,14 @@ import Nav from './nav/Nav';
 import Footer from './Footer/Footer';
 import Cart from '../Shop/Cart/Cart';
 import { ProductProvider } from './Context';
+import AuthProvider from './AuthContext';
 // import './AppLayout.css';
 
 function AppLayout({ children }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const togglecart = () => {
-    setIsCartOpen(!isCartOpen);
+    setIsCartOpen(prev => !prev);
   };
 
   useEffect(() => {
@@ -22,12 +23,14 @@ function AppLayout({ children }) {
 
   return (
     <div className="app-layout">
-      {/* <ProductProvider> */}
-        <Nav togglecart={togglecart} />
-        <Cart isOpen={isCartOpen} closeCart={togglecart} />
-        <main >{children}</main>
-        <Footer />
-      {/* </ProductProvider> */}
+      <AuthProvider>
+        <ProductProvider>
+          <Nav togglecart={togglecart} />
+          <Cart isOpen={isCartOpen} closeCart={togglecart} />
+          <main>{children}</main>
+          <Footer />
+        </ProductProvider>
+      </AuthProvider>
     </div>
   );
 }

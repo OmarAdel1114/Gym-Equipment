@@ -11,7 +11,7 @@ function Login() {
   const [errors, setErrors] = useState({ email: '', password: '' });
   const navigate = useNavigate();
 
-  const { login } = useContext(AuthContext);
+  const { login: handleLogin } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,13 +57,12 @@ function Login() {
         const userId = response.data.data.user._id;
         console.log(userId);
 
-        login(token, userId);
-
+        handleLogin(token, userId);
+        navigate('/'); // Navigate to the dashboard or another appropriate route
         // to get the access token from the request and put it in the local storage
         // try to push a request with the token
 
         // in the cart for example , make ssure to put in header -> the authorization : Bearer ${token}
-        navigate('/home'); // Navigate to the dashboard or another appropriate route
       } else {
         console.log('Unexpected response status:', response.status);
       }

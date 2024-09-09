@@ -6,7 +6,7 @@ function ProductCard({ product, onClick }) {
     <div className="card" id={product._id} onClick={onClick}>
       <div className="photo">
         <img
-          src={product.imageUrl[0]}
+          src={Array.isArray(product.imageUrl) ? product.imageUrl[0]: product.imageUrl} // array of images i want the first if it is array 
           // make sure to modify the indexing of the photos
           className="product-photo best-seller-photo"
           alt="product-info"

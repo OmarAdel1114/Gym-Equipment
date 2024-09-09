@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from 'react';
 // import jwtDecode from 'jwt-decode';
 
 // Create the AuthContext
-export const AuthContext = createContext({  });
+export const AuthContext = createContext({});
 
 // Create the AuthProvider component
 export const AuthProvider = ({ children }) => {
@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     // console.log(`user id from token ${userIdGen}`)
     
     const storedUserId = localStorage.getItem('userId');
-    console.log(token);
+    // console.log(token);
     if (token && storedUserId) {
       setIsAuthenticated(true);
       setUserId(storedUserId);

@@ -35,10 +35,11 @@ li {
 
 .nav-bar .header {
   width: 100%;
-  padding: 5px;
+  padding: 15px 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .header .logo {
@@ -55,8 +56,8 @@ li {
 }
 
 .header .logo::after {
-  content:"";
-  width: 2px; 
+  content: '';
+  width: 2px;
   height: 60%;
   background-color: rgb(194, 189, 189);
   position: absolute;
@@ -66,7 +67,7 @@ li {
 }
 
 .center-holder {
-  width: 80%;
+  width: 100%;
   margin: 0 30px;
   display: flex;
   gap: 25px;
@@ -88,7 +89,6 @@ li {
 
   align-items: center;
 }
-
 
 .header input {
   width: 90%;
@@ -184,7 +184,7 @@ li {
 
 /* nav-bar */
 .nav-bar * {
-  font-family: "roboto-light";
+  font-family: 'roboto-light';
   font-weight: 700;
 }
 
@@ -208,14 +208,13 @@ li {
   }
 }
 
- ul.nav-bar {
+ul.nav-bar {
   width: 70%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   list-style-type: none;
   border-radius: 0 0 10px 10px;
-  
 }
 
 .nav-holder ul li {
@@ -304,7 +303,7 @@ li .drop-down {
   right: 0;
   background-color: #111;
   overflow-x: hidden;
-  transition: 0.5s all ;
+  transition: 0.5s all;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -315,19 +314,17 @@ li .drop-down {
   margin-top: 20px;
 }
 
-
-.side-menu ul li { 
+.side-menu ul li {
   position: relative;
 }
 .side-menu ul li::after {
-  content: "";
+  content: '';
   width: 100%;
   height: 1px;
   background-color: #818181;
   position: absolute;
   left: 0;
- }
-
+}
 
 .side-menu ul li a {
   padding: 25px 0 25px 0;
@@ -348,7 +345,7 @@ li .drop-down {
   font-size: 36px;
   margin-bottom: 30px;
 }
-.side-menu #close-btn a { 
+.side-menu #close-btn a {
   color: white;
   margin-bottom: 30px;
 }
@@ -357,16 +354,19 @@ li .drop-down {
   display: flex;
   width: 100%;
   justify-content: space-around;
-
 }
 .Lang a {
   color: white;
   font-size: 10px;
 }
 
-@media screen and (max-width:450px) {
-  .side-menu {padding-top: 15px;}
-  .side-menu a {font-size: 18px;}
+@media screen and (max-width: 450px) {
+  .side-menu {
+    padding-top: 15px;
+  }
+  .side-menu a {
+    font-size: 18px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -392,5 +392,75 @@ li .drop-down {
   }
   .cart-icon .cart-btn {
     font-size: 1rem;
+  }
+}
+
+.logged-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 5px;
+  border-radius: 10px;
+  background-color: var(--secondry-color);
+  font-weight: 600;
+  transition: all 0.2s linear;
+}
+
+.scrolling-holder {
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.scrolling-holder p {
+  margin: 0 10px;
+  font-size: 0.9rem;
+  color: var(--darken-color);
+  position: relative;
+  /* left: 0; */
+  animation: scroll 7s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+
+.logout-btn {
+  background-color: var(--primary-color);
+  color: var(--secondry-color);
+  padding: 5px 10px;
+  border: none;
+  font-weight: 600;
+
+  transition: all 0.2s linear;
+}
+.logout-btn:hover {
+  cursor: pointer;
+  background-color: var(--darken-color);
+}
+
+@media screen and (max-width: 1200px) {
+  .scrolling-holder p {
+    font-size: 0.6rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .scrolling-holder p {
+    font-size: 0.8rem;
+  }
+  .logged-in {
+    padding: 4px 0 0 0;
+  }
+  .scrolling-holder {
+    display: none;
   }
 }

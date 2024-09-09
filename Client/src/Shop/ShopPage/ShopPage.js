@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './shop-page.css';
 import axios from 'axios';
 import AppLayout from '../../Components/appLayout';
@@ -8,9 +8,10 @@ import Filter from '../FilterSidebar/FilterBar';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function ShopPage() {
-  const [products, setProducts] = React.useState([]);
-  const [searchQuery, setSearchQuery] = React.useState('');
-  const [filter, setFilter] = React.useState('');
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]); // Stores filtered products
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filter, setFilter] = useState(''); // Stores applied filters
 
   const navigate = useNavigate();
 
@@ -22,7 +23,7 @@ function ShopPage() {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Fetch products from API
     const url =
       'https://gym-equipment.vercel.app/api/products/?page=1&perPage=10';
@@ -30,35 +31,42 @@ function ShopPage() {
       .get(url)
       .then((response) => {
         setProducts(response.data.data.products);
+        setFilteredProducts(response.data.data.products); // Initial state for filtering
       })
       .catch((error) => {
         console.error('Error fetching products:', error);
       });
   }, []);
 
-  const isAuthenticated = true; // Replace with your authentication logic
-  const token = localStorage.getItem('accessToken');
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate('/login'); // Redirect to login page if user is not authenticated
-    }
-    axios
-      .get('https://gym-equipment.vercel.app/api/', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [isAuthenticated, navigate, token]);
-
   const location = useLocation();
   const currentPath = location.pathname;
+
+  // Function to handle search input change
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+
+    // Filter products based on search query
+    const filteredProducts = products.filter((product) =>
+      product.prodTitle.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredProducts(filteredProducts);
+    if (query === '') {
+      setFilteredProducts(products);
+    }
+  };
+
+  // Function to handle filter changes from Filter component
+  const handleFilterChange = (appliedFilter) => {
+    setFilter(appliedFilter);
+
+    // Apply filter to products based on selected criteria
+    const filteredProducts = products.filter((product) => {
+      // Implement logic based on your filter criteria (e.g., price range, category)
+      // This example assumes a simple "inStock" filter
+      return appliedFilter === 'all' || product.inStock;
+    });
+    setFilteredProducts(filteredProducts);
+  };
 
   return (
     <AppLayout>
@@ -70,17 +78,15 @@ function ShopPage() {
           </div>
           <div className="shop-page-content">
             <div className="search-filter">
-              <Search onSearch={setSearchQuery} />
-              <Filter onFilter={setFilter} />
+              <Search onSearch={handleSearch} />
+              <Filter onFilter={handleFilterChange} />
             </div>
             <div className="products-grid">
-              {products.map((product) => (
+              {filteredProducts.map((product) => (
                 <ProductCard
                   key={product._id}
                   product={product}
-                  onClick={() =>
-                    handleProductClick(product._id, product.prodTitle)
-                  }
+                  onClick={() => handleProductClick(product._id, product.prodTitle)}
                 />
               ))}
             </div>
