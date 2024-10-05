@@ -44,7 +44,7 @@
   padding: 0 10px;
 }
 .best-sellers .card-holder .card {
-  width: 400px;
+  width: 350px;
 }
 
 
@@ -210,6 +210,9 @@
   .card button, .product-info p, .shop span {
     font-size: 0.7rem;
   }
-  
+  .card .product-info .product-name {
+    font-size: 15px;
+    line-height: 18px;
+  }
   
 }

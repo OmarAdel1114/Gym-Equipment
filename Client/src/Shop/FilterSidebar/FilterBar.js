@@ -1,5 +1,4 @@
 import React from 'react';
-import "./filterbar.css";
 
 function Filter({ onFilter }) {
   const handleFilterChange = (e) => {
@@ -11,6 +10,8 @@ function Filter({ onFilter }) {
       <option value="">All</option>
       <option value="treadmill">Treadmills</option>
       <option value="dumbbell">Dumbbells</option>
+      <option value="bar">Bars</option>
+      <option value="machines">Machines</option>
       {/* Add more filter options as needed */}
     </select>
   );

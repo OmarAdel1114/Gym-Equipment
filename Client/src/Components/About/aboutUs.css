@@ -1,113 +1,207 @@
+:root {
+  --bck-ground: #d4d4d4;
+  /* --bck-ground: #g1g1g1; */
+}
+
 .about {
-    padding: 0 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 60px;
-    /* background: linear-gradient(135deg, var(--primary-color), var(--darken-color)); */
-    /* color: white; */
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    border-radius: 15px;
-    margin: 50px auto;
-    max-width: 800px;
-    /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
-  
+  /* padding: 20px 0; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 60px; */
+  /* background: linear-gradient(135deg, var(--primary-color), var(--darken-color)); */
+  /* color: white; */
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  /* border-radius: 15px; */
+  margin: auto;
+  background-color: var(--bck-ground);
+  /* max-width: 800px; */
+  /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
 }
 .about * {
-    /* color: white; */
+  /* color: white; */
 }
+
+.about .photo-header {
+  background-image: url('../../assets/media/tinified/pexels-michal-packo-663414463-20201303.jpg');
+  width: 100%;
+  background-size: cover;
+  /* background-position: center; */
+  /* background-repeat: no-repeat; */
+  padding: 150px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.about .photo-header h1 {
+  font-size: clamp(2rem, 3rem, 4rem);
+  font-weight: 700;
+  margin: 10px 0;
+  color: white;
+}
+.about .photo-header p {
+  color: white;
+  font-size: 1.3rem;
+  font-family: 'roboto-light';
+  line-height: 2rem;
+  width: 50%;
+  text-align: left;
+}
+
 .about::before {
-    content: "";
-    position: absolute;
-    top: -50px;
-    left: -50px;
-    width: 100px;
-    height: 100px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    z-index: 0;
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  .about::after {
-    content: "";
-    position: absolute;
-    bottom: -50px;
-    right: -50px;
-    width: 100px;
-    height: 100px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    z-index: 0;
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-  }
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  z-index: 0;
+  animation: float 6s ease-in-out infinite;
+}
 
+.about::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  z-index: 0;
+  animation: float 6s ease-in-out infinite;
+}
 
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
 
 /*  */
 /*  */
 /*  */
 
 .about .text {
-    /* width: 50%; */
-    margin: 30px 0;
-    padding: 20px;
-    /* text-align: left; */
-    /* box-shadow: 0px 0px 5px 0px gray; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 65%;
+  margin: 30px 0;
+  padding: 20px;
+  /* text-align: left; */
+  /* box-shadow: 0px 0px 5px 0px gray; */
 }
 
- .sub-heading {
-    /* color: var(--primary-color); */
-    font-size: clamp(1.3rem, 2rem, 2.5rem);
-    font-weight: 700;
-    display: block;
-    margin: 10px 0;
+.sub-heading {
+  font-size: clamp(1.5rem, 2.3rem, 3rem);
+  font-family: 'roboto-light';
+  font-weight: 700;
+  margin: 25px 0 30px 0;
+  text-transform: uppercase;
 }
-.about .text p, .par-default {
-    font-family: "roboto-light";
-    display: block;
-    font-size: 1.1rem;
-    font-weight: 500;
-    line-height: 1.5;
-    /* letter-spacing: 1px; */
-    
+.about .text p,
+.par-default {
+  width: 60%;
+  font-family: 'roboto-light', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 200;
+  line-height: 1.5;
+  /* margin-bottom: 10px; */
+  /* text-align: center; */
+  /* letter-spacing: 1px; */
 }
 #ceo-signature {
-    margin: 20px 0;
+  margin: 20px 0;
+  text-align: right;
+  align-self: flex-end;
 }
+
+.section-holder {
+  /* i want to make the photo take 60% of the width of the page and the text the rest*/
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 1;
+  margin: 50px 0;
+  padding: 50px;
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+}
+
+.section-holder .text-section {
+  padding: 50px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+}
+
+.section-holder .text-section h2 {
+  font-size: clamp(2rem, 3rem, 4rem);
+  font-weight: 500;
+  margin: 10px 0 25px;
+}
+.section-holder .text-section p {
+  font-size: 1.1rem;
+  font-family: 'roboto-light';
+  line-height: 2rem;
+  /* width: 40%; */
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.section-holder .image-section {
+  width: 45%;
+  background-size: cover;
+  background-position: center;
+  /* background-repeat: no-repeat; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.section-holder .image-section img {
+  width: 100%;
+}
+
+
+
+/* parteners logo */
+
 .partners {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 50px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    /* text-align: left; */
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 50px;
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  /* text-align: left; */
 }
 
 .sub-header {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .partners-logos {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 40px;
-    margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 50px;
 }
 .partners-logos img {
-    width: 80px;
-    cursor: pointer;
+  width: 100px;
+  cursor: pointer;
 }

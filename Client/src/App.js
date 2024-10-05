@@ -10,6 +10,7 @@ import Cart from './Shop/Cart/Cart';
 import { useState } from 'react';
 import AppLayout from './Components/appLayout';
 import { ProductProvider } from './Components/Context';
+import { AuthProvider } from './Components/AuthContext';
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -22,14 +23,16 @@ function App() {
     <div className="App">
       <ProductProvider>
         <AppLayout>
-          <Cart isOpen={isCartOpen} closeCart={togglecart} />
-          <Landing />
-          <Bestseller />
-          <Products />
-          <Blog />
-          <Testmonials />
-          <CTASection />
-          <ContactUs />
+          {/* <AuthProvider> */}
+            {/* <Cart isOpen={isCartOpen} closeCart={togglecart} /> */}
+            <Landing />
+            <Bestseller />
+            <Products />
+            <Blog />
+            <Testmonials />
+            <CTASection />
+            <ContactUs />
+          {/* </AuthProvider> */}
         </AppLayout>
       </ProductProvider>
     </div>

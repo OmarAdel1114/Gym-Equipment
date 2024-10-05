@@ -11,6 +11,7 @@ function AboutProduct() {
   const [productInfo, setProductInfo] = useState(null);
   const [errors, setErrors] = useState(null);
   const { addToCartCont } = useContext(ProductContext);
+  const { rating, setRating } = useState([]);
 
   const description = `
   Lorem ipsum dolor sit amet, consectetur
@@ -54,12 +55,19 @@ function AboutProduct() {
         console.error('Error fetching product details:', error);
         setErrors(error);
       });
+
+    
   }, [id]);
+
+
 
   const location = useLocation();
   const path = location.pathname.split('/');
   path.pop();
   const newPath = path.join('/');
+  // console.log(productInfo);
+  // setRating(productInfo.stars);
+  
 
   if (errors) {
     return <div>Error loading product details.</div>;
@@ -73,7 +81,6 @@ function AboutProduct() {
     return <div>Error: Product context not found.</div>;
   }
 
-  console.log(productInfo);
   return (
     <AppLayout>
       <div className="container-body about-product">
@@ -84,15 +91,22 @@ function AboutProduct() {
             <h2 className="item-name">
               <span className="brand">{productInfo.brand}</span>
               {productInfo.color} {productInfo.prodTitle}
-              <StarRating rating={(productInfo.rating = 5)} totalStars={5} />
+              <StarRating
+                rating={(productInfo.stars)}
+                totalStars={5}
+              />
             </h2>
             <p className="stars"></p>
             <p className="product-price">
               <span className="prev-price">2100$</span> {productInfo.price}$
             </p>
-            <p className="item-description par-default">
-              {description}
-            </p>
+            {productInfo.description ? (
+              <p className="item-description par-default">
+                {productInfo.description}
+              </p>
+            ) : (
+              <p className="item-description par-default">{description}</p>
+            )}
             <div className="item-button">
               <button
                 className="add-to-cart-btn btn-default"

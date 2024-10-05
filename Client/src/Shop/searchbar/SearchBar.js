@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import "./searchbar.css";
 
 function Search({ onSearch }) {
   const [query, setQuery] = useState('');
 
   const handleSearch = (e) => {
     setQuery(e.target.value);
-    onSearch(e.target.value);
+    // Call the onSearch prop function with the current search query
+    onSearch(query.toLowerCase()); // Perform search in lowercase for case-insensitive search
   };
 
   return (
