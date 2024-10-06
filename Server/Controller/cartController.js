@@ -1,4 +1,5 @@
 const Cart = require('../models/cartModel');
+const logger = require("../config/logger");
 
 const getCart =  async (req, res) => {
     try {
@@ -14,7 +15,7 @@ const getCart =  async (req, res) => {
   
       res.status(200).json({ Status: "Success", data: { cart } });
     } catch (error) {
-      console.error("cannot get the Cart details:", error);
+      logger.error("cannot get the Cart details:", error);
       res
         .status(500)
         .json({ error: "Internal Server Error", message: error.message });
@@ -32,7 +33,7 @@ const addToCart =  async (req, res) => {
   
       res.status(201).json({ Status: "Success", data: { newCart } });
     } catch (error) {
-      console.error("Failed", error);
+      logger.error("Failed", error);
       res.status(500).json({ error: "Failed", message: error.message });
     }
   }

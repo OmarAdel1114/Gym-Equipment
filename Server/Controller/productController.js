@@ -2,7 +2,8 @@ const Product = require("../models/productModel");
 const Review = require("../models/reviewModel");
 const User = require("../models/userModel");
 const { uploadToCloudinary } = require("../utils/cloudinary");
-//
+const logger = require("../config/logger");
+
 const getAllProducts = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
@@ -18,13 +19,12 @@ const getAllProducts = async (req, res) => {
 
     res.status(200).json({ Status: "Success", data: { products } });
   } catch (error) {
-    console.error("Error fetching users:", error);
+    logger.error("Error fetching users:", error);
     res
       .status(500)
       .json({ error: "Internal Server Error", message: error.message });
   }
 };
-//
 const getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id, {
@@ -37,11 +37,10 @@ const getProductById = async (req, res) => {
       res.status(200).json({ message: "Product found", data: product });
     }
   } catch (error) {
-    console.error("Failed to find the product", error);
+    logger.error("Failed to find the product", error);
     res.status(400).json(error);
   }
 };
-//
 const deleteProduct = async (req, res) => {
   try {
     const id = req.params.id;
@@ -57,11 +56,10 @@ const deleteProduct = async (req, res) => {
         .json({ message: "product removed successfully", data: product });
     }
   } catch (error) {
-    console.error("Failed to delete the product", error);
+    logger.error("Failed to delete the product", error);
     res.status(400).json(error);
   }
 };
-//
 const updateProduct = async (req, res) => {
   try {
     const { prodTitle, price, brand, color, photo } = req.body;
@@ -80,11 +78,10 @@ const updateProduct = async (req, res) => {
       .status(201)
       .json({ message: "Product updated successfully", data: updatedProduct });
   } catch (error) {
-    console.error(error);
+    logger.error(error);
     res.status(500).json("internal server error");
   }
 };
-//
 const productRating = async (req, res) => {
   try {
     const { stars, comment } = req.body; // Expects 'stars' to be a number from 1 to 5
@@ -147,11 +144,10 @@ const productRating = async (req, res) => {
       product: updatedProduct,
     });
   } catch (err) {
-    console.error("Error caught:", err.message);
+    logger.error("Error caught:", err.message);
     res.status(500).json({ message: err.message });
   }
 };
-//
 const addProduct = async (req, res) => {
   try {
     const { prodTitle, price, brand, color, description } = req.body;
@@ -192,7 +188,7 @@ const addProduct = async (req, res) => {
 
     res.status(201).json({ Status: "Success", data: { newProduct } });
   } catch (error) {
-    console.error("Failed to add new Product", error);
+    logger.error("Failed to add new Product", error);
     res
       .status(500)
       .json({ error: "Failed to add new Product", message: error.message });

@@ -1,6 +1,7 @@
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const logger = require("../config/logger");
 const setRefreshTokenCookie = (res, refreshToken) => {
   res.cookie("refreshToken", refreshToken, {
     httpOnly: true,
@@ -16,7 +17,7 @@ const getAllUsers = async (req, res) => {
 
     res.json({ Status: "Success", data: { users } });
   } catch (error) {
-    console.error("Error fetching users:", error);
+    logger.error("Error fetching users:", error);
     res
       .status(500)
       .json({ error: "Internal Server Error", message: error.message });
@@ -37,6 +38,7 @@ const tokenRefresh = async (req, res) => {
     );
     res.status(201).json({ accessToken });
   } catch (error) {
+    logger.error("Invalid refresh token", error);
     res.status(403).json({ error: "Invalid refresh token" });
   }
 };
@@ -90,7 +92,7 @@ const register = async (req, res) => {
     });
   } catch (error) {
     // Log and handle registration errors
-    console.error("Registration Failed", error);
+    logger.error("Registration Failed", error);
     res
       .status(400)
       .json({ error: "Registration Failed", message: error.message });
@@ -143,7 +145,7 @@ const login = async (req, res) => {
       },
     });
   } catch (error) {
-    console.log("Login failed", error);
+    logger.log("Login failed", error);
     res.status(500).json({ error: "login failed", message: error.message });
   }
 };
