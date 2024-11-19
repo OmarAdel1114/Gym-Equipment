@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
+<<<<<<< HEAD
 const mongoose = require('mongoose');
 require('dotenv').config();
 const User = require('../models/userModel');
@@ -160,5 +161,15 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ error: 'login failed', message: error.message });
   }
 });
+=======
+require("dotenv").config();
+const verifyToken = require("../middleware/auth.middleware");
+const userController = require('../Controller/userController');
+
+router.get("/", verifyToken, userController.getAllUsers );
+router.post("/token",userController.tokenRefresh );
+router.post("/register",userController.register);
+router.post("/login",userController.login);
+>>>>>>> 902741f32de5ba0cf73dd2dd27d324816e46fad3
 
 module.exports = router;

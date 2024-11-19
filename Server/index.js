@@ -4,6 +4,7 @@ app.use(express.json());
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
+const logger = require("./config/logger");
 
 const userRoutes = require("./routes/userRouter");
 const productRoutes = require("./routes/productRouter");
@@ -14,7 +15,7 @@ mongoose
   .then(() => {
     console.log(`MongoDB Server Started `);
   })
-  .catch((err) => console.error("Could not connect to MongoDB...", err));
+  .catch((err) => logger.error("Could not connect to MongoDB...", err));
 const port = process.env.PORT;
 
 app.use(cors());
