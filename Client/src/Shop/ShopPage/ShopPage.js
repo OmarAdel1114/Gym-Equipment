@@ -61,7 +61,7 @@ function ShopPage() {
       <div className="shop">
         <div className="container-body">
           <div className="head-shop">
-            <h2 className="header-title">All Products</h2>
+            <h1 className="header-title">All Products</h1>
             <p className="info">Home {currentPath}</p>
           </div>
           <div className="shop-page-content">

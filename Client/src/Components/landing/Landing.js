@@ -10,10 +10,10 @@ function Landing() {
         <img src={photo} alt="landing" />
       </div> */}
       <div className="text">
-        <p className="bigger">
+        <h1 className="bigger">
           {' '}
           Gear Up for <span id="colored">Success</span>{' '}
-        </p>
+        </h1>
         <p className="small">
           We are a complete ecosystem of High-Quality fitness solutions. We
           offer high standard equipment and a variety of services to set up your

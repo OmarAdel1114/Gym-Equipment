@@ -64,7 +64,7 @@
     padding: 10px;
   }
 }
-.landing .text p {
+.landing .text p, .landing h1 {
   color: white;
   /* margin-bottom: 10px; */
 }
