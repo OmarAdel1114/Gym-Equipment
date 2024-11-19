@@ -18,16 +18,19 @@ import trx from '../../assets/media/partners/trx-logo.png';
 import butterfly from '../../assets/media/partners/butterfly.jpg';
 
 import ourstoryPhoto from '../../assets/media/About-sec/SAXON_Bespoke_2-1024x1024.jpg';
+import img from  '../../assets/media/tinified/pexels-michal-packo-663414463-20201303.jpg';
 
 function AboutUs() {
   return (
     <div className="container about">
+      <div className='bckground' > 
       <div className="photo-header">
         <h1 className="header-title">OUR STORY</h1>
         <p>
           From the North East of England through our passion to deliver
           exceptional bespoke gym equipment, Saxon Fitness was born.
         </p>
+      </div>
       </div>
       <div className="text">
         <h2 className="sub-heading">What is Blue Shell mission?</h2>

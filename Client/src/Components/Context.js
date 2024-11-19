@@ -8,12 +8,23 @@ export const ProductProvider = ({ children }) => {
   const { isAuthenticated, userId, token } = useContext(AuthContext);
   const [cartItems, setCartItems] = useState([]);
 
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+
   useEffect(() => {
     console.log('isAuthenticated changed:', isAuthenticated);
   }, [isAuthenticated]);
 
   const addToCartCont = (product) => {
     console.log('isAuthenticated changed:', isAuthenticated);
+
+    // Show popup
+    setIsPopupVisible(true);
+
+    // Hide popup after 3 seconds
+    setTimeout(() => {
+      setIsPopupVisible(false);
+    }, 3000);
+
     // if (!isAuthenticated) {
     //   console.log('user Is Not Authenticated. Delaying adding cart...');
     //   return;

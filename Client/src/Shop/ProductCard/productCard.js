@@ -6,7 +6,11 @@ function ProductCard({ product, onClick }) {
     <div className="card" id={product._id} onClick={onClick}>
       <div className="photo">
         <img
-          src={Array.isArray(product.imageUrl) ? product.imageUrl[0]: product.imageUrl} // array of images i want the first if it is array 
+          src={
+            Array.isArray(product.imageUrl)
+              ? product.imageUrl[0]
+              : product.imageUrl
+          } // array of images i want the first if it is array
           // make sure to modify the indexing of the photos
           className="product-photo best-seller-photo"
           alt="product-info"
@@ -14,8 +18,8 @@ function ProductCard({ product, onClick }) {
       </div>
       <div className="product-info">
         <p className="product-name">
-        {/* {product.brand}  */}
-          {(product.prodTitle)} 
+          {/* {product.brand}  */}
+          {product.prodTitle}
         </p>
         <p className="product-price">
           <span className="prev-price">
@@ -24,10 +28,7 @@ function ProductCard({ product, onClick }) {
           to ${product.price}{' '}
         </p>
       </div>
-      <button
-        className="product-view"
-        onClick={onClick}
-      >
+      <button className="product-view" onClick={onClick}>
         View Product
       </button>
     </div>
