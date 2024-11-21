@@ -3,14 +3,16 @@ import './shop-page.css';
 import axios from 'axios';
 import AppLayout from '../../Components/appLayout';
 import ProductCard from '../ProductCard/productCard';
-import Search from '../searchbar/SearchBar';
 import Filter from '../FilterSidebar/FilterBar';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function ShopPage() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]); // Stores filtered products
+
   const [searchQuery, setSearchQuery] = useState('');
+  console.log(searchQuery);
+
   const [filter, setFilter] = useState(''); // Stores applied filters
 
   const navigate = useNavigate();
@@ -26,7 +28,7 @@ function ShopPage() {
   useEffect(() => {
     // Fetch products from API
     const url =
-      'https://gym-equipment.vercel.app/api/products/?page=1&perPage=10';
+      'https://gym-equipment.vercel.app/api/products/?page=1&perPage=12';
     axios
       .get(url)
       .then((response) => {
@@ -40,20 +42,6 @@ function ShopPage() {
 
   const location = useLocation();
   const currentPath = location.pathname;
-
-  // Function to handle search input change
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-
-    // Filter products based on search query
-    const filteredProducts = products.filter((product) =>
-      product.prodTitle.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredProducts(filteredProducts);
-    if (query === '') {
-      setFilteredProducts(products);
-    }
-  };
 
   // Function to handle filter changes from Filter component
   const handleFilterChange = (appliedFilter) => {
@@ -73,22 +61,36 @@ function ShopPage() {
       <div className="shop">
         <div className="container-body">
           <div className="head-shop">
-            <h2 className="header-title">All Products</h2>
+            <h1 className="header-title">All Products</h1>
             <p className="info">Home {currentPath}</p>
           </div>
           <div className="shop-page-content">
             <div className="search-filter">
-              <Search onSearch={handleSearch} />
+              <input
+                type="text"
+                placeholder="Search products..."
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
               <Filter onFilter={handleFilterChange} />
             </div>
             <div className="products-grid">
-              {filteredProducts.map((product) => (
-                <ProductCard
-                  key={product._id}
-                  product={product}
-                  onClick={() => handleProductClick(product._id, product.prodTitle)}
-                />
-              ))}
+              {filteredProducts
+                .filter((item) => {
+                  return searchQuery.toLowerCase() === ''
+                    ? item
+                    : item.prodTitle
+                        .toLowerCase()
+                        .includes(searchQuery.toLowerCase());
+                })
+                .map((product) => (
+                  <ProductCard
+                    key={product._id}
+                    product={product}
+                    onClick={() =>
+                      handleProductClick(product._id, product.prodTitle)
+                    }
+                  />
+                ))}
             </div>
           </div>
         </div>

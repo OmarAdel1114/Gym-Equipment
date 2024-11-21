@@ -37,20 +37,28 @@ function Cart({ isOpen, closeCart }) {
   // Fetch cart data from API and update cartItems state
   useEffect(() => {
     if (user) {
-      axios
-        .get(`https://gym-equipment.vercel.app/api/cart/${user}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          console.log('Cart data:', res.data);
-          // Update the cartItems state with the fetched data
-          setCartItems(res.data.cartItems);
-        })
-        .catch((err) => {
-          console.error('Error fetching cart data:', err);
-        });
+      const fetchCartItems = async () => {
+        try {
+          const token = localStorage.getItem('accessToken');
+          if (!token) {
+            throw new Error('No token found');
+          }
+
+          const response = await axios.get(
+            `http://localhost:5000/api/cart/65d33f2822d536c0da134cc2`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          setCartItems(response.data);
+        } catch (error) {
+          console.error('Error fetching cart items:', error);
+        }
+      };
+
+      fetchCartItems();
     }
   }, [user, token, setCartItems]); // Ensure setCartItems is included in the dependency array
 
@@ -59,7 +67,7 @@ function Cart({ isOpen, closeCart }) {
     (total, item) => total + item.price * item.quantity,
     0
   );
-  console.log(isOpen)
+  console.log(isOpen);
   if (!isOpen) return null;
 
   return (
@@ -81,7 +89,7 @@ function Cart({ isOpen, closeCart }) {
               </div>
             ))
           ) : (
-            <p className='no-items'>No items in the cart.</p>
+            <p className="no-items">No items in the cart.</p>
           )}
         </div>
       ) : (
@@ -95,7 +103,7 @@ function Cart({ isOpen, closeCart }) {
         </button>
 
         <a href="/shop" className="anchor btn-opp">
-          Continue shopping
+          Continue shopping.
         </a>
       </div>
     </div>

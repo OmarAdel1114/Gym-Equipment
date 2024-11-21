@@ -1,20 +1,45 @@
+:root {
+  /* --primary-color: #40a798; */
+  /* --primary-color: rgb(61, 155, 233); */
+  --primary-color: rgb(21, 141, 240);
+  --darken-color: rgb(52, 117, 171);
+  --secondry-color: white;
+}
+body {
+  scroll-behavior: smooth;
+  transition: all 0.3s linear;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: black;
+  text-decoration: none;
+}
+
+i {
+  transition: all 0.1s linear;
+}
+li {
+  list-style-type: none;
+}
+
 @font-face {
-  font-family: "roboto";
+  font-family: 'roboto';
   src: url('./Fonts/Roboto/Roboto-Black.ttf');
 }
 @font-face {
-  font-family: "roboto-light";
+  font-family: 'roboto-light';
   src: url('./Fonts/Roboto/Roboto-Light.ttf');
 }
 
 * {
-  font-family: "roboto", sans-serif;
-  scroll-behavior:smooth;
+  font-family: 'roboto', sans-serif;
+  scroll-behavior: smooth;
 }
 
 .App {
   text-align: center;
-  
 }
 
 .App-logo {

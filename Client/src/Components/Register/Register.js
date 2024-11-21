@@ -49,15 +49,18 @@ function Register() {
       const response = await axios.post(
         'https://gym-equipment.vercel.app/api/users/register',
         {
+          firstName: 'John',
+          lastName: 'Doe',
           userName,
           email,
           password,
+          role: 'user',
         }
       );
-
-      if (response.status === 200) {
+      if (response.status === 201) {
         console.log('Registration successful:', response.data);
-        navigate('/dashboard'); // Navigate to the dashboard or another appropriate route
+        navigate('/dashboard');
+        // Navigate to the dashboard or another appropriate route
       } else {
         console.log('Unexpected response status:', response.status);
       }
@@ -68,6 +71,7 @@ function Register() {
         general: 'Registration failed. Please try again.',
       }));
     }
+    console.log(userName, email, password);
   };
 
   return (
@@ -77,11 +81,8 @@ function Register() {
           <a href="/">
             <p className="register-logo">BlueShell</p>
           </a>
-          {/* <img src={photo} alt="Logo" className="register-logo" /> */}
         </div>
         <form onSubmit={handleSubmit} className="register-form">
-          {/* <h2 className="register-heading">Register</h2> */}
-
           <input
             value={userName}
             placeholder="Username"

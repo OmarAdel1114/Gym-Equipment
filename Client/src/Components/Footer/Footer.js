@@ -1,6 +1,7 @@
 import React from 'react';
 import './footer.css';
 import logo from '../../assets/media/New_Blue Logo Whait_2 (2) (1).webp';
+import { Link } from 'react-router-dom';
 import {
   FaFacebook,
   FaYoutube,
@@ -15,13 +16,19 @@ import {
   FaCheckCircle,
   FaHandshake,
 } from 'react-icons/fa';
+import About from '../../About/About';
+import ContactUs from '../ContactUs/ContactUs';
+import ContactPage from '../../Contact/ContactPage';
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-logo">
-          <img src={logo} alt="Blueshell Logo" />
+          <Link to={'/'}>
+            {' '}
+            <img src={logo} alt="Blueshell Logo" />{' '}
+          </Link>
           <div className="social-icons">
             <a
               href="https://www.facebook.com"
@@ -106,14 +113,19 @@ const Footer = () => {
         </div>
         <div className="footer-content">
           <div className="footer-about">
-            <h2>About Us</h2>
+            <h2>
+              <Link to={'/About'}>ABOUT US </Link>{' '}
+            </h2>
             <p>
               We provide high-quality fitness equipment and services to help you
               set up your dream gym.
             </p>
           </div>
           <div className="footer-contact">
-            <h2>Contact Us</h2>
+            <h2>
+              {' '}
+              <Link to={'/ContactUs'}>CONTACT US</Link>{' '}
+            </h2>
             <ul>
               <li>
                 <FaMapMarkerAlt /> <span>123 Fitness Street, Cairo, Egypt</span>
@@ -131,17 +143,15 @@ const Footer = () => {
           <p>
             Made by{' '}
             <span className="anchor-profile">
-              <a href="https://abdelrahmanemad2712.me" target='blank' rel="">
+              <a href="https://abdelrahmanemad2712.me" target="blank" rel="">
                 Abdelrahman Emad
               </a>
-            </span>
-            {' '}
-            and
-            {' '} 
-            <span className='anchor-profile'>
-           <a href={"https://Facebook.com"} target='blank'>
-             Omar Adel
-            </a>
+            </span>{' '}
+            and{' '}
+            <span className="anchor-profile">
+              <a href={'https://Facebook.com'} target="blank">
+                Omar Adel
+              </a>
             </span>
           </p>
         </div>
