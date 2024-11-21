@@ -137,6 +137,8 @@ function AboutProduct() {
             })}
           </ul>
         </nav>
+
+        
         <div className="item-wrapper">
           <img src={productInfo.imageUrl} alt="item-description" />
           <div className="item-info">

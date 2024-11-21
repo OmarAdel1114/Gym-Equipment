@@ -4,11 +4,15 @@ import axios from 'axios';
 import AppLayout from '../../Components/appLayout';
 import ProductCard from '../ProductCard/productCard';
 import Filter from '../FilterSidebar/FilterBar';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 function ShopPage() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]); // Stores filtered products
+  const location = useLocation();
+
+  // Split the current path into segments
+  const pathnames = location.pathname.split('/').filter((x) => x);
 
   const [searchQuery, setSearchQuery] = useState('');
   console.log(searchQuery);
@@ -40,9 +44,6 @@ function ShopPage() {
       });
   }, []);
 
-  const location = useLocation();
-  const currentPath = location.pathname;
-
   // Function to handle filter changes from Filter component
   const handleFilterChange = (appliedFilter) => {
     setFilter(appliedFilter);
@@ -62,7 +63,31 @@ function ShopPage() {
         <div className="container-body">
           <div className="head-shop">
             <h1 className="header-title">All Products</h1>
-            <p className="info">Home {currentPath}</p>
+            <nav aria-label="breadcrumb">
+              <ul className="path">
+                <li>
+                  <Link to="/">Home</Link>{' '}
+                </li>
+                <li></li>
+                {pathnames.map((value, index) => {
+                  const to = `/${pathnames.slice(0, index + 1).join('/')}`;
+                  return (
+                    <li key={to}>
+                      <span>/</span>
+                      {index === pathnames.length - 1 ? (
+                        <span>
+                          {value.charAt(0).toUpperCase() + value.slice(1)}
+                        </span>
+                      ) : (
+                        <Link to={to}>
+                          {value.charAt(0).toUpperCase() + value.slice(1)}
+                        </Link>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
           </div>
           <div className="shop-page-content">
             <div className="search-filter">
