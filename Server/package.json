@@ -6,7 +6,8 @@
   "scripts": {
     "build": "npm install",
     "start": "nodemon index.js",
-    "vercel-build": "echo hello"
+    "vercel-build": "echo hello",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +31,8 @@
     "winston-mongodb": "^6.0.0"
   },
   "devDependencies": {
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^10.1.0",
     "nodemon": "^3.0.3"
   }
 }

@@ -3,25 +3,25 @@ const validator = require("validator");
 const Product = require("./productModel");
 
 const userSchema = new mongoose.Schema({
-  firstName: {
+  firstName: { //
     type: String,
-    required: true,
+    required: [true,"First name is required"],
     unique: false,
   },
-  lastName: {
+  lastName: {//
     type: String,
-    required: true,
+    required: [true,"Last name is required"],
     unique: false,
   },
   userName: {
     type: String,
-    required: [true, "Username is required"],
-    unique: [true, "Username is not available"],
+    required: [true, "Username is required"],//
+    unique: [true, "Username is not available"], //
   },
   email: {
     type: String,
-    required: [true, "Email is required"],
-    unique: true,
+    required: [true, "Email is required"],//
+    unique: [true,"This Email is already signed up"],//
     lowerCase: true,
     validate: [validator.isEmail, "Must be a valid Email"],
   },

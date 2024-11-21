@@ -1,0 +1,8 @@
+{
+  "jest.autoEnable": true,
+  "jest.pathToJest": "npm test --",
+  "jest.showCoverageOnTestRun": true,
+  "jest.runAllTestsFirst": false,
+  "jest.enableCodeLens": true,
+  "jest.debugMode": true
+}

@@ -1,0 +1,12 @@
+### Register
+Link: https://gym-equipment.vercel.app/api/users/register
+reqBody:  firstName:STRING,
+          lastName:STRING
+          userName:STRING + UNIQUE, 
+          email:EMAIL + UNIQUE, 
+          password: NOT LESS THAT 6 CHARACTERS
+
+
+### lOGIN  
+Link: https://gym-equipment.vercel.app/api/users/login 
+reqBody: email, password

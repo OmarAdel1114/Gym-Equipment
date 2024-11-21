@@ -4,20 +4,25 @@ const { ratings } = require("stars-schema");
 const productSchema = new mongoose.Schema({
   prodTitle: {
     type: String,
-    required: [true, "Title is required"],
+    required: [true, "Title is missing"],
   },
   price: {
     type: Number,
     float: true,
-    required: true,
-  },
+    required: [true, "Price is missing"],
+    min: [1, "Price must be more than zero"],
+    validate: {
+      validator: function(value) {
+        return !isNaN(value); // Ensures that the value is a number
+      },
+      message: "Price must be a valid number"},
   brand: {
     type: String,
-    required: true,
+    required: [true, "Brand is missing"],
   },
   color: {
     type: String,
-    required: true,
+    required: [true, "color is missing"],
   },
   publicId: {
     type: [String],
@@ -36,12 +41,7 @@ const productSchema = new mongoose.Schema({
       ref: "Review", // Reference to the Review model
     },
   ],
-
-  //description: String done
-  // rating out of five done
-  // if possible add comments
-  // check if possible to add more than one image to the same products done
-});
+}});
 
 productSchema.plugin(ratings, { name: "stars", levels: [1, 2, 3, 4, 5] });
 

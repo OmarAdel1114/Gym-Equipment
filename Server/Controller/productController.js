@@ -25,7 +25,7 @@ const getAllProducts = async (req, res) => {
       .json({ error: "Internal Server Error", message: error.message });
   }
 };
-const getProductById = async (req, res) => {
+const getProductById = async (req, res,next) => {
   try {
     const product = await Product.findById(req.params.id, {
       __v: 0,
@@ -85,7 +85,7 @@ const updateProduct = async (req, res) => {
 const productRating = async (req, res) => {
   try {
     const { stars, comment } = req.body; // Expects 'stars' to be a number from 1 to 5
-    const userId = req.userId; // Assume user ID is available in the request
+    const userId = req.userId;
     console.log("User ID from middleware:", userId); // Log userId
     // Validate the stars input
     if (stars == null || typeof stars !== "number" || stars < 1 || stars > 5) {
