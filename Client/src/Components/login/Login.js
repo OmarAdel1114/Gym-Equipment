@@ -37,36 +37,52 @@ function Login() {
     if (hasError) return;
 
     try {
-      const response = await axios.post(
-        'https://gym-equipment.vercel.app/api/users/login',
-        {
-          email,
-          password,
-        }
-        // {
-        //   withCredentials: true,
-        // }
-      );
+      // const response = await axios.post(
+      //   'https://gym-equipment.vercel.app/api/users/login',
+      //   {
+      //     email,
+      //     password,
+      //   }
+      //   // {
+      //   //   withCredentials: true,
+      //   // }
+      // );
 
       // authentication request
 
-      if (response.status === 200) {
-        console.log('Login successful:', response.data);
-        // console.log(response);
-        const token = response.data.data.accessToken;
-        const userId = response.data.data.user._id;
-        console.log(userId);
+      // if (response.status === 200) {
+      //   console.log('Login successful:', response.data);
+      //   // console.log(response);
+      //   const token = response.data.data.accessToken;
+      //   const userId = response.data.data.user._id;
+      //   console.log(userId);
 
-        handleLogin(token, userId);
+        // handleLogin(token, userId);
         navigate('/'); // Navigate to the dashboard or another appropriate route
         // to get the access token from the request and put it in the local storage
         // try to push a request with the token
 
         // in the cart for example , make ssure to put in header -> the authorization : Bearer ${token}
-      } else {
-        console.log('Unexpected response status:', response.status);
+      // } else {
+        console.log('NOT 201')
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          console.log('CHECK KEY:', key)
+          if (key === email) {
+            const storedPassword = localStorage.getItem(key);
+
+            if (password === storedPassword) {
+              navigate('/');
+              handleLogin(email, password);
+              break;
+            }
+          } else {
+            // console.log('Unexpected response status:', response.status);
+          }
+        }
       }
-    } catch (error) {
+    // } 
+    catch (error) {
       console.error('Login failed:', error);
       setErrors((prevErrors) => ({
         ...prevErrors,

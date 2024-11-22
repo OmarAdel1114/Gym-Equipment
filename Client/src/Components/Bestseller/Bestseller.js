@@ -35,7 +35,7 @@ function Bestseller() {
   }, []);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (error) return "";
   if (!Array.isArray(products) || products.length === 0) {
     return <div>No products available</div>;
   }

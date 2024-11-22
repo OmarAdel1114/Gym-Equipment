@@ -8,6 +8,7 @@ function Register() {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
   const [errors, setErrors] = useState({
     userName: '',
     email: '',
@@ -46,32 +47,58 @@ function Register() {
     if (hasError) return;
 
     try {
-      const response = await axios.post(
-        'https://gym-equipment.vercel.app/api/users/register',
-        {
-          firstName: 'John',
-          lastName: 'Doe',
-          userName,
-          email,
-          password,
-          role: 'user',
-        }
-      );
-      if (response.status === 201) {
-        console.log('Registration successful:', response.data);
-        navigate('/dashboard');
-        // Navigate to the dashboard or another appropriate route
+      // const response = await axios.post(
+      //   'https://gym-equipment.vercel.app/api/users/register',
+      //   {
+      //     userName,
+      //     email,
+      //     password,
+      //   }
+      // );
+      // if (response.status === 201) {
+      // console.log('Registration successful:', response.data);
+      // navigate('/dashboard');
+      // } else {
+      // console.log('Unexpected response status:', response.status);
+      // }
+
+
+      if (localStorage.getItem(email)) {
+        console.log('this email is already taken');
+        hasError = true;
+        setErrors((prev) => ({
+          ...prev,
+          email: 'this email is already taken',
+        }));
       } else {
-        console.log('Unexpected response status:', response.status);
+        setLoggedIn(true);
+        const user = { ID: Math.random(), userName, email, password, loggedIn };
+        localStorage.setItem("user", JSON.stringify(user));
+        navigate('/home')
       }
+
+
     } catch (error) {
-      console.error('Registration failed:', error);
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        general: 'Registration failed. Please try again.',
-      }));
+      if (error.response) {
+        console.error('Server Error:', error.response.data);
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          general: error.response.data.message || 'Server error occurred',
+        }));
+      } else if (error.request) {
+        console.error('Network Error: No response received');
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          general: 'Network error. Please try again.',
+        }));
+      } else {
+        console.error('Unexpected Error:', error.message);
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          general: 'Unexpected error occurred. Please try again.',
+        }));
+      }
     }
-    console.log(userName, email, password);
   };
 
   return (

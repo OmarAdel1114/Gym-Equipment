@@ -5,15 +5,20 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { ProductContext } from '../Context';
 import { AuthContext } from '../AuthContext';
 
+import { CiLogin, CiLogout } from 'react-icons/ci';
+
 function Nav({ togglecart }) {
   const [isHovered, setIsHovered] = useState(null);
   const timeOutRef = useRef(null);
 
   const cartItems = useContext(ProductContext);
 
-  const { isAuthenticated, userId, handlelogin, logout } =
+  const { isAuthenticated, userName,userId, handlelogin, logout } =
     useContext(AuthContext);
   // console.log(isAuthenticated)
+
+  const userData = JSON.parse(localStorage.getItem("user"));
+  console.log("logged:" , userData.loggedIn)
 
   const hoverMouseEnter = (i) => {
     setIsHovered(i);
@@ -111,19 +116,21 @@ function Nav({ togglecart }) {
               href="/Login"
               onClick={() => (window.location.href = '/Login')}
             >
-              {isAuthenticated ? (
+              {userData ? (
                 <div className="logged-in">
                   <div className="scrolling-holder">
-                    <p>user{userId[0]},thanks for choosing us</p>
+                    <p>Welcome {userData.userName}</p>
                   </div>
                   <button onClick={logout} className="logout-btn">
-                    Logout
+                    Logout <CiLogout />
                   </button>
                 </div>
               ) : (
-                <i className="fa-regular fa-user"></i>
+                <div className='login'>
+                  <CiLogin className="login-icon" />
+                  <p id="login">Login</p>
+                </div>
               )}
-              <p id="login"> </p>
             </a>
             <div className="cart-icon">
               <button

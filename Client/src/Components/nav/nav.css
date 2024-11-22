@@ -92,15 +92,26 @@
 
 .login {
   display: flex;
+  flex-direction: row;
   align-items: center;
   padding: 8px;
   border-radius: 10px;
   font-weight: bold;
   transition: all 0.2s linear;
-  /* background-color: white; */
+  justify-content: center;
+  min-width: 100px;
 }
-.login i {
-  margin: 0 5px 0 0;
+.login .login-icon {
+  width: 50px;
+  height: 23px;
+  padding: 0;
+}
+.login-icon+p {
+  padding: 0;
+  margin: 0;
+  /* font-size: 1rem; */
+  font-family: "roboto-light";
+  font-weight: 600;
 }
 #login {
   transition: all 0.1s linear;
@@ -113,7 +124,7 @@
 }
 
 .login:hover #login,
-.login:hover .fa-user {
+.login:hover .fa-user, .login-icon:hover {
   color: var(--primary-color);
 }
 
@@ -130,7 +141,7 @@
   height: 50%;
   right: -10px;
   bottom: -5px;
-  z-index: 100;
+  z-index: 3;
   font-size: 0.7rem;
   border-radius: 50%;
 }
@@ -391,6 +402,7 @@ li .drop-down {
 }
 
 .logged-in {
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -419,27 +431,31 @@ li .drop-down {
   animation: scroll 7s linear infinite;
 }
 
-@keyframes scroll {
+/* @keyframes scroll {
   0% {
     left: -100%;
   }
   100% {
     left: 200%;
   }
-}
+} */
 
 .logout-btn {
-  background-color: var(--primary-color);
-  color: var(--secondry-color);
+  background-color: transparent;
   padding: 5px 10px;
   border: none;
+  font-size: 0.9rem;
   font-weight: 600;
-
+  min-width: 100px;
   transition: all 0.2s linear;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .logout-btn:hover {
   cursor: pointer;
-  background-color: var(--darken-color);
+  color: var(--primary-color);
+  background-color: transparent;
 }
 
 @media screen and (max-width: 1200px) {

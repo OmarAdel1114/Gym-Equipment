@@ -75,7 +75,7 @@ function Cart({ isOpen, closeCart }) {
       <span onClick={closeCart} className="close-button">
         ×
       </span>
-      {user ? (
+      
         <div className="cart-items-holder">
           {cartItems.length > 0 ? (
             cartItems.map((item) => (
@@ -92,9 +92,8 @@ function Cart({ isOpen, closeCart }) {
             <p className="no-items">No items in the cart.</p>
           )}
         </div>
-      ) : (
-        <p>Please login to view cart items.</p>
-      )}
+    
+      
 
       <div className="checkout-action">
         <button className="btn">
