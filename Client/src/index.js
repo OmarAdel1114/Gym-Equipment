@@ -41,9 +41,9 @@ const router = createBrowserRouter([
   {
     path: '/Register',
     element: (
-      // <ProductProvider>
-      <Register />
-      // </ProductProvider>
+      <AuthProvider>
+        <Register />
+      </AuthProvider>
     ),
   },
   {

@@ -6,6 +6,7 @@ import { ProductContext } from '../Context';
 import { AuthContext } from '../AuthContext';
 
 import { CiLogin, CiLogout } from 'react-icons/ci';
+import Login from '../login/Login';
 
 function Nav({ togglecart }) {
   const [isHovered, setIsHovered] = useState(null);
@@ -13,12 +14,18 @@ function Nav({ togglecart }) {
 
   const cartItems = useContext(ProductContext);
 
-  const { isAuthenticated, userName,userId, handlelogin, logout } =
-    useContext(AuthContext);
-  // console.log(isAuthenticated)
+  const {
+    isAuthenticated,
+    userName,
+    userId,
+    handlelogin,
+    logout,
+    signUp,
+    loggedIn,
+  } = useContext(AuthContext);
+  console.log('logging status from nav:', loggedIn);
 
-  const userData = JSON.parse(localStorage.getItem("user"));
-  console.log("logged:" , userData.loggedIn)
+  const userData = JSON.parse(localStorage.getItem('user'));
 
   const hoverMouseEnter = (i) => {
     setIsHovered(i);
@@ -110,13 +117,8 @@ function Nav({ togglecart }) {
           </div>
 
           <div className="center-holder">
-            <a
-              className="login"
-              rel="stylesheet"
-              href="/Login"
-              onClick={() => (window.location.href = '/Login')}
-            >
-              {userData ? (
+            <div className="login">
+              {loggedIn === true ? (
                 <div className="logged-in">
                   <div className="scrolling-holder">
                     <p>Welcome {userData.userName}</p>
@@ -126,12 +128,12 @@ function Nav({ togglecart }) {
                   </button>
                 </div>
               ) : (
-                <div className='login'>
+                <div className="login">
                   <CiLogin className="login-icon" />
-                  <p id="login">Login</p>
+                  <a href='/login' id="login">Login</a>
                 </div>
               )}
-            </a>
+            </div>
             <div className="cart-icon">
               <button
                 className={`cart-btn ${cartItems.length > 0 ? 'has-item' : ''}`}

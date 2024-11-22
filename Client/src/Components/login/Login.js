@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import './login.css';
 // import photo from '../../assets/media/New_Blue Logo Whait_2 (2) (1).webp';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext';
 
 function Login() {
@@ -12,6 +12,8 @@ function Login() {
   const navigate = useNavigate();
 
   const { login: handleLogin } = useContext(AuthContext);
+
+  const userData = JSON.parse(localStorage.getItem('user'));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,33 +59,36 @@ function Login() {
       //   const userId = response.data.data.user._id;
       //   console.log(userId);
 
-        // handleLogin(token, userId);
-        navigate('/'); // Navigate to the dashboard or another appropriate route
-        // to get the access token from the request and put it in the local storage
-        // try to push a request with the token
+      // handleLogin(token, userId);
+      // Navigate to the dashboard or another appropriate route
+      // to get the access token from the request and put it in the local storage
+      // try to push a request with the token
 
-        // in the cart for example , make ssure to put in header -> the authorization : Bearer ${token}
+      // in the cart for example , make ssure to put in header -> the authorization : Bearer ${token}
       // } else {
-        console.log('NOT 201')
-        for (let i = 0; i < localStorage.length; i++) {
-          const key = localStorage.key(i);
-          console.log('CHECK KEY:', key)
-          if (key === email) {
-            const storedPassword = localStorage.getItem(key);
+      console.log('NOT 201');
 
-            if (password === storedPassword) {
-              navigate('/');
-              handleLogin(email, password);
-              break;
-            }
-          } else {
-            // console.log('Unexpected response status:', response.status);
-          }
+      if (userData && userData.email === email) {
+        const storedPassword = userData.password;
+        if (password === storedPassword) {
+          console.log('Login successful');
+          navigate('/');
+          handleLogin(email, password);
+        } else {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            password: 'username or password is incorrect',
+          }));
         }
+      } else {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          password: 'username or password is incorrect',
+        }));
       }
-    // } 
-    catch (error) {
-      console.error('Login failed:', error);
+    } catch (error) {
+      // }
+      // console.error('Login failed:', error);
       setErrors((prevErrors) => ({
         ...prevErrors,
         general: 'Login failed. Please try again.',
@@ -123,9 +128,7 @@ function Login() {
             <div className="login-error">{errors.general}</div>
           )}
 
-          <button type="submit" className="login-button">
-            Log in
-          </button>
+          <button className="login-button">Log in</button>
           <p className="login-link">
             <a href="/accounts/password">Forget Password?</a>
           </p>
