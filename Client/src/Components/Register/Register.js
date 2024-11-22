@@ -62,7 +62,6 @@ function Register() {
       // console.log('Unexpected response status:', response.status);
       // }
 
-
       if (localStorage.getItem(email)) {
         console.log('this email is already taken');
         hasError = true;
@@ -73,11 +72,9 @@ function Register() {
       } else {
         setLoggedIn(true);
         const user = { ID: Math.random(), userName, email, password, loggedIn };
-        localStorage.setItem("user", JSON.stringify(user));
-        navigate('/home')
+        localStorage.setItem('user', JSON.stringify(user));
+        navigate('/home');
       }
-
-
     } catch (error) {
       if (error.response) {
         console.error('Server Error:', error.response.data);
@@ -151,7 +148,12 @@ function Register() {
             <a href="/login">Log in</a>
           </p>
         </form>
+        
       </div>
+      <div className="caution">
+         * please be inform that this step is not supported by server side
+          service and it is for practicing purpose only!
+        </div>
     </div>
   );
 }
