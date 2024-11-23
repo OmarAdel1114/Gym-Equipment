@@ -23,15 +23,18 @@ function Nav({ togglecart }) {
     signUp,
     loggedIn,
   } = useContext(AuthContext);
-  console.log('logging status from nav:', loggedIn);
-
+  
   const userData = JSON.parse(localStorage.getItem('user'));
-
+  
   const hoverMouseEnter = (i) => {
     setIsHovered(i);
     if (timeOutRef.current) {
     }
   };
+  
+  console.log('logging status from nav:', loggedIn);
+  console.log('logging status from local:', userData.loggedIn);
+
 
   function openNav() {
     document.querySelector('.side-menu').style.width = '300px';
@@ -41,7 +44,6 @@ function Nav({ togglecart }) {
     document.querySelector('.side-menu').style.width = '0';
     document.querySelector('.side-menu').style.padding = '0';
   }
-
   return (
     <div className="container">
       <div className="side-menu">
@@ -118,7 +120,7 @@ function Nav({ togglecart }) {
 
           <div className="center-holder">
             <div className="login">
-              {loggedIn === true ? (
+              {loggedIn && userData.loggedIn ? (
                 <div className="logged-in">
                   <div className="scrolling-holder">
                     <p>Welcome {userData.userName}</p>

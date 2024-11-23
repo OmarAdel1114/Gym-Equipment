@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import './login.css';
 // import photo from '../../assets/media/New_Blue Logo Whait_2 (2) (1).webp';
-import { json, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext';
 
 function Login() {
@@ -11,7 +11,7 @@ function Login() {
   const [errors, setErrors] = useState({ email: '', password: '' });
   const navigate = useNavigate();
 
-  const { login: handleLogin } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const userData = JSON.parse(localStorage.getItem('user'));
 
@@ -66,26 +66,7 @@ function Login() {
 
       // in the cart for example , make ssure to put in header -> the authorization : Bearer ${token}
       // } else {
-      console.log('NOT 201');
-
-      if (userData && userData.email === email) {
-        const storedPassword = userData.password;
-        if (password === storedPassword) {
-          console.log('Login successful');
-          navigate('/');
-          handleLogin(email, password);
-        } else {
-          setErrors((prevErrors) => ({
-            ...prevErrors,
-            password: 'username or password is incorrect',
-          }));
-        }
-      } else {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          password: 'username or password is incorrect',
-        }));
-      }
+      login(email, password);
     } catch (error) {
       // }
       // console.error('Login failed:', error);

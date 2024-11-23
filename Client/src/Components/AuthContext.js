@@ -24,16 +24,30 @@ export const AuthProvider = ({ children }) => {
     if (token && storedUserId) {
       setIsAuthenticated(true);
       setUserId(storedUserId);
+      setLoggedIn(true); // Ensure loggedIn is updated
     }
   }, []);
 
   // Login function
-  const login = (token, userId) => {
-    // navigate('/login')
-    localStorage.setItem('accessToken', token);
-    localStorage.setItem('userId', userId);
-    setIsAuthenticated(true);
-    setUserId(userId);
+  const login = (email, password) => {
+    const userData = JSON.parse(localStorage.getItem('user'));
+    if (
+      userData &&
+      userData.email === email &&
+      userData.password === password
+    ) {
+      setLoggedIn(true);
+      localStorage.setItem('accessToken', 'dummy-token'); // Set a dummy token
+      localStorage.setItem('userId', userData.ID);
+      setIsAuthenticated(true);
+      setUserId(userData.ID);
+      navigate('/'); // Navigate to the home page after login
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        general: 'Invalid email or password.',
+      }));
+    }
   };
 
   // Logout function
@@ -42,10 +56,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('userId');
     setIsAuthenticated(false);
     setUserId(null);
-
-
     setLoggedIn(false); // Set loggedIn to false here
-    console.log('logging status from logout:', loggedIn);
     navigate('/'); // Navigate to the home page
   };
 
@@ -57,7 +68,7 @@ export const AuthProvider = ({ children }) => {
         email: 'This email is already taken',
       }));
     } else {
-      const user = { ID: Math.random(), userName, email, password, loggedIn: true };
+      const user = { ID: Math.random(), userName, email, password };
       localStorage.setItem('user', JSON.stringify(user));
       setLoggedIn(true); // Set loggedIn to true here
       navigate('/'); // Navigate after sign-up
