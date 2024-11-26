@@ -12,6 +12,7 @@ import ContactPage from './Contact/ContactPage';
 import AboutProduct from './Shop/aboutProduct/AboutProduct';
 import { ProductProvider } from './Components/Context';
 import AuthProvider from './Components/AuthContext';
+import Profile from './Components/profile/Profile';
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,14 @@ const router = createBrowserRouter([
       // <ProductProvider>
       <AboutProduct />
       // </ProductProvider>
+    ),
+  },
+  {
+    path: '/profile',
+    element: (
+      <AuthProvider>
+        <Profile />
+      </AuthProvider>
     ),
   },
 ]);

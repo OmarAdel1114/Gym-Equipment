@@ -7,15 +7,21 @@ import { AuthContext } from '../AuthContext';
 
 function Register() {
   const [userName, setUserName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPass, setConfirmPass] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
   const [errors, setErrors] = useState({
     userName: '',
+    phoneNumber: '',
     email: '',
     password: '',
+    confirmPass: '',
   });
   // const navigate = useNavigate();
+  const phoneRegex = /^[+]?(\d{1,4})?[-.\s]?(\d{1,4})[-.\s]?(\d{1,9})$/;
+
 
   const { signUp } = useContext(AuthContext);
 
@@ -32,6 +38,23 @@ function Register() {
       }));
       hasError = true;
     }
+    
+
+    if (phoneNumber.trim() === '') {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        userName: 'Phone number is required',
+      }));
+      hasError = true;
+    }
+    if (!phoneRegex.test(phoneNumber)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        userName: 'please write phone number +1-234-567-9101',
+      }));
+      hasError = true;
+    }
+
     if (!email.includes('@')) {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -43,6 +66,13 @@ function Register() {
       setErrors((prevErrors) => ({
         ...prevErrors,
         password: 'Password must be at least 8 characters',
+      }));
+      hasError = true;
+    }
+    if (password !== confirmPass) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        confirmPass: 'please write the same password',
       }));
       hasError = true;
     }
@@ -119,6 +149,15 @@ function Register() {
           {errors.userName && (
             <div className="register-error">{errors.userName}</div>
           )}
+          <input
+            value={phoneNumber}
+            placeholder="Phone number"
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            className="register-input"
+          />
+          {errors.phoneNumber && (
+            <div className="register-error">{errors.phoneNumber}</div>
+          )}
 
           <input
             value={email}
@@ -138,6 +177,16 @@ function Register() {
           />
           {errors.password && (
             <div className="register-error">{errors.password}</div>
+          )}
+          <input
+            placeholder="confirm Password"
+            value={confirmPass}
+            type="password"
+            onChange={(e) => setConfirmPass(e.target.value)}
+            className="register-input"
+          />
+          {errors.confirmPass && (
+            <div className="register-error">{errors.confirmPass}</div>
           )}
           {errors.general && (
             <div className="register-error">{errors.general}</div>

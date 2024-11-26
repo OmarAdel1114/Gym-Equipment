@@ -7,6 +7,7 @@ import { AuthContext } from '../AuthContext';
 
 import { CiLogin, CiLogout } from 'react-icons/ci';
 import Login from '../login/Login';
+import Profile from '../profile/Profile';
 
 function Nav({ togglecart }) {
   const [isHovered, setIsHovered] = useState(null);
@@ -23,18 +24,17 @@ function Nav({ togglecart }) {
     signUp,
     loggedIn,
   } = useContext(AuthContext);
-  
+
   const userData = JSON.parse(localStorage.getItem('user'));
-  
+
   const hoverMouseEnter = (i) => {
     setIsHovered(i);
     if (timeOutRef.current) {
     }
   };
-  
+
   console.log('logging status from nav:', loggedIn);
   console.log('logging status from local:', userData.loggedIn);
-
 
   function openNav() {
     document.querySelector('.side-menu').style.width = '300px';
@@ -123,7 +123,7 @@ function Nav({ togglecart }) {
               {loggedIn && userData.loggedIn ? (
                 <div className="logged-in">
                   <div className="scrolling-holder">
-                    <p>Welcome {userData.userName}</p>
+                    <p> <a href='/profile'>icon</a> </p>
                   </div>
                   <button onClick={logout} className="logout-btn">
                     Logout <CiLogout />
@@ -132,7 +132,9 @@ function Nav({ togglecart }) {
               ) : (
                 <div className="login">
                   <CiLogin className="login-icon" />
-                  <a href='/login' id="login">Login</a>
+                  <a href="/login" id="login">
+                    Login
+                  </a>
                 </div>
               )}
             </div>

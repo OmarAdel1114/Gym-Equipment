@@ -29,8 +29,8 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   // Login function
+  const userData = JSON.parse(localStorage.getItem('user'));
   const login = (email, password) => {
-    const userData = JSON.parse(localStorage.getItem('user'));
     if (
       userData &&
       userData.email === email &&

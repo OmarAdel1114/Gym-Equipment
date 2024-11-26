@@ -11,7 +11,7 @@ function Login() {
   const [errors, setErrors] = useState({ email: '', password: '' });
   const navigate = useNavigate();
 
-  const { login } = useContext(AuthContext);
+  const { login, error } = useContext(AuthContext);
 
   const userData = JSON.parse(localStorage.getItem('user'));
 
@@ -107,6 +107,9 @@ function Login() {
           )}
           {errors.general && (
             <div className="login-error">{errors.general}</div>
+          )}
+          {error && (
+            <div className="login-error">{error}</div>
           )}
 
           <button className="login-button">Log in</button>
